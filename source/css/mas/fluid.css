@@ -1,0 +1,109 @@
+/** Define all top-level and section elements here in the order they should appear. Use these lists to structure your z-index layering orders within a given section of the page. Avoid using one-off values UNLESS they are 0 or negative values. Usage: z-index: z($list_name, element_name); Example: z-index: z($elements, page); */
+/* reset ---------------- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+@font-face { font-family: 'Source Sans Pro Semibold'; src: url("/mas/static-css/fonts/sourcesanspro-semibold-webfont.eot"); src: url("/mas/static-css/fonts/sourcesanspro-semibold-webfont.eot?#iefix") format("embedded-opentype"), url("/mas/static-css/fonts/sourcesanspro-semibold-webfont.woff") format("woff"), url("/mas/static-css/fonts/sourcesanspro-semibold-webfont.ttf") format("truetype"), url("/mas/static-css/fonts/sourcesanspro-semibold-webfont.svg#source_sans_prosemibold") format("svg"); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Source Sans Pro Light'; src: url("/mas/static-css/fonts/sourcesanspro-light-webfont.eot"); src: url("/mas/static-css/fonts/sourcesanspro-light-webfont.eot?#iefix") format("embedded-opentype"), url("/mas/static-css/fonts/sourcesanspro-light-webfont.woff") format("woff"), url("/mas/static-css/fonts/sourcesanspro-light-webfont.ttf") format("truetype"), url("/mas/static-css/fonts/sourcesanspro-light-webfont.svg#source_sans_prolight") format("svg"); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Source Sans Pro Bold'; src: url("/mas/static-css/fonts/sourcesanspro-bold-webfont.eot"); src: url("/mas/static-css/fonts/sourcesanspro-bold-webfont.eot?#iefix") format("embedded-opentype"), url("/mas/static-css/fonts/sourcesanspro-bold-webfont.woff") format("woff"), url("/mas/static-css/fonts/sourcesanspro-bold-webfont.ttf") format("truetype"), url("/mas/static-css/fonts/sourcesanspro-bold-webfont.svg#source_sans_probold") format("svg"); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Source Sans Pro'; src: url("/mas/static-css/fonts/sourcesanspro-regular-webfont.eot"); src: url("/mas/static-css/fonts/sourcesanspro-regular-webfont.eot?#iefix") format("embedded-opentype"), url("/mas/static-css/fonts/sourcesanspro-regular-webfont.woff") format("woff"), url("/mas/static-css/fonts/sourcesanspro-regular-webfont.ttf") format("truetype"), url("/mas/static-css/fonts/sourcesanspro-regular-webfont.svg#source_sans_proregular") format("svg"); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Helvetica Neue LT Medium'; src: url("/mas/static-css/fonts/helveticaneueltstd-mdcn-webfont.eot"); src: url("/mas/static-css/fonts/helveticaneueltstd-mdcn-webfont.eot?#iefix") format("embedded-opentype"), url("/mas/static-css/fonts/helveticaneueltstd-mdcn-webfont.woff") format("woff"), url("/mas/static-css/fonts/helveticaneueltstd-mdcn-webfont.ttf") format("truetype"), url("/mas/static-css/fonts/helveticaneueltstd-mdcn-webfont.svg#helveticaneueltstd-mdcn") format("svg"); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Double LB'; src: url("/mas/static-css/fonts/helveticaltstd-extracomp-webfont.eot"); src: url("/mas/static-css/fonts/helveticaltstd-extracomp-webfont.eot?#iefix") format("embedded-opentype"), url("/mas/static-css/fonts/helveticaltstd-extracomp-webfont.woff") format("woff"), url("/mas/static-css/fonts/helveticaltstd-extracomp-webfont.ttf") format("truetype"), url("/mas/static-css/fonts/helveticaltstd-extracomp-webfont.svg#webfontfXzY9mEX") format("svg"); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Single LB'; src: url("/mas/static-css/fonts/helveticaneueltstd-bdcn-webfont.eot"); src: url("/mas/static-css/fonts/helveticaneueltstd-bdcn-webfont.eot?#iefix") format("embedded-opentype"), url("/mas/static-css/fonts/helveticaneueltstd-bdcn-webfont.woff") format("woff"), url("/mas/static-css/fonts/helveticaneueltstd-bdcn-webfont.ttf") format("truetype"), url("/mas/static-css/fonts/helveticaneueltstd-bdcn-webfont.svg#webfontOLT3zDH6") format("svg"); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Player Name'; src: url("/mas/static-css/fonts/helveticaneueltstd-mdcn-webfont.eot"); src: url("/mas/static-css/fonts/helveticaneueltstd-mdcn-webfont.eot?#iefix") format("embedded-opentype"), url("/mas/static-css/fonts/helveticaneueltstd-mdcn-webfont.woff") format("woff"), url("/mas/static-css/fonts/helveticaneueltstd-mdcn-webfont.ttf") format("truetype"), url("/mas/static-css/fonts/helveticaneueltstd-mdcn-webfont.svg#webfontTGfwPiZq") format("svg"); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Playfair Display'; src: url("/mas/static-css/fonts/playfairdisplay-regular-webfont.woff") format("woff"), url("/mas/static-css/fonts/playfair-display-regular.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+/* note: breakpoints in em ---------------------------- base font size to determine breakpoints - 16px useful pixel to em converter http://bradfrostweb.com/demo/ish/
+-----------------------------------------------------*/
+body { width: 100%; *zoom: 1; }
+body:before, body:after { content: ""; display: table; }
+body:after { clear: both; }
+/* wrapper config ---------------------------------------------------
+.wrapperFull -- container that doesn't change the layout
+.wrapperHalf -- container that shrinks to half based on devices
+--------------------------------------------------------------------*/
+/* wrappers --------------------- */
+section.body { max-width: 1440px; min-height: 100%; *zoom: 1; margin: 0 auto; padding: 0; }
+section.body:before, section.body:after { content: ""; display: table; }
+section.body:after { clear: both; }
+.content-padding { padding: 0 1.07143%; }
+.half-content-padding { padding: 0 0.53571%; }
+.wrapperFull { float: left; width: 97.85714%; margin-left: 1.07143%; margin-right: 1.07143%; margin-bottom: 2.14286%; position: relative; *zoom: 1; }
+.wrapperFull:before, .wrapperFull:after { content: ""; display: table; }
+.wrapperFull:after { clear: both; }
+.wrapperHalfFull { float: left; width: 100%; margin: 0; position: relative; *zoom: 1; }
+.wrapperHalfFull:before, .wrapperHalfFull:after { content: ""; display: table; }
+.wrapperHalfFull:after { clear: both; }
+.wrapperHalfFull .wrapperHalf { height: 100%; }
+.wrapperHalf { float: left; width: 97.85714%; margin-left: 1.07143%; margin-right: 1.07143%; margin-bottom: 2.14286%; position: relative; }
+.wrapperSingle { float: left; width: 6.07143%; margin-left: 0.53571%; margin-right: 0.53571%; margin-bottom: 1.07143%; position: relative; background: #ccc; height: 100px; }
+.wrapperThird { float: left; width: 97.85714%; margin-left: 1.07143%; margin-right: 1.07143%; margin-bottom: 2.14286%; position: relative; }
+.wrapper { overflow: hidden; display: none; }
+.wrapper.visible, .wrapper.no_content { display: block; }
+.navWrapper, .tabWrapper { float: left; width: 97.85714%; margin-left: 1.07143%; margin-right: 1.07143%; margin-bottom: 2.14286%; padding: 0 1.07143%; position: relative; }
+/* containers config --------------------------------------------------- per WF Pg. 9
+.containerA -- Photo (covers A) -- enlarge or shrink. smaller view = hide photo credit, larger view = show photo credit and place caption right next to the label.
+.containerB -- Video (covers B) -- just to enlarge or shrink. no layout changes
+.containerC -- Article with photo or video (covers C & D) -- smaller view = half container size (half width format). top image or video. bottom with article, larger view = side by side
+.containerE -- Data Vizuallization - smaller view = image on top and text bottom (stack view), larger view = side by side. place image on the right and text on the left
+.containerF -- Social media quote - just to enlarge or shrink. no layout changes
+.containerG -- Breaking news - just to enlarge or shrink. no layout changes
+.containerX -- Headline (not present on Pg9. ref: Pg10) -- reverse of .containerC. -- smaller view = side by side, larger view = half container size (half width format). top image or video. bottom with article
+--------------------------------------------------------------------*/
+/* containers --------------------- */
+/* default view is phone view -----*/
+/* Photo (covers A) -- just to enlarge or shrink. no layout changes */
+.containerPhoto, .containerInsight { position: relative; }
+.ie8 .wrapper .containerPhoto, .ie8 .wrapper .containerInsight { position: static; }
+.containerPhoto .image img, .containerInsight .image img { width: 100%; display: block; }
+.containerPhoto .caption, .containerInsight .caption { display: block; clear: both; }
+/* Video (covers B) -- just to enlarge or shrink. no layout changes */
+.containerVideo { position: relative; }
+.ie8 .wrapper .containerVideo { position: static; }
+.containerVideo .image img { width: 100%; display: block; }
+.containerVideo .label { float: left; }
+.containerVideo .caption { display: block; clear: both; }
+/* Article with photo or video (covers C & D) */
+.containerArticle { overflow: hidden; }
+.containerArticle .label { float: left; }
+.containerArticle .image img { width: 100%; display: block; }
+/* Data Vizuallization (covers E) */
+.containerStats { overflow: hidden; }
+/* Social media quote (covers F) - just to enlarge or shrink. no layout changes */
+/* Breaking news (covers G) - just to enlarge or shrink. no layout changes */
+.containerSocial .content, .containerBreaking .content { min-height: 14.33333em; }
+.containerSocial .label, .containerBreaking .label { float: left; }
+.containerSocial .username, .containerBreaking .username { padding-top: 0.5em; }
+/* Headline (not present on Pg9. ref: Pg10) -- reverse of .containerC */
+.containerX { display: block; width: 102.14286%; margin: 0 -1.07143%; *zoom: 1; overflow: hidden; }
+.containerX:before, .containerX:after { content: ""; display: table; }
+.containerX:after { clear: both; }
+.containerX .label { float: left; }
+.containerX .image { float: left; width: 47.85714%; margin-left: 1.07143%; margin-right: 1.07143%; margin-bottom: 2.14286%; float: left; }
+.containerX .image img { width: 100%; margin: 1em 0 0 1em; }
+.containerX .contentWrapper { float: left; width: 47.85714%; margin-left: 1.07143%; margin-right: 1.07143%; margin-bottom: 2.14286%; float: left; }
+@media only screen and (min-width: 20em) { /* equivalent of 320px - based on 16px body base font size. */
+.wrapperHalf { float: left; width: 97.85714%; margin-left: 1.07143%; margin-right: 1.07143%; margin-bottom: 2.14286%; } }
+@media only screen and (min-width: 45em) { /* equivalent of 600px - based on 16px body base font size. nexus 7 doesn't recognize it if the min-width is set to more than 600px */
+.content-padding { padding: 0 0.53571%; }
+.half-content-padding { padding: 0 0.26786%; }
+.wrapperFull { float: left; width: 98.92857%; margin-left: 0.53571%; margin-right: 0.53571%; margin-bottom: 1.07143%; }
+.wrapperHalf { float: left; width: 48.92857%; margin-left: 0.53571%; margin-right: 0.53571%; margin-bottom: 1.07143%; }
+.wrapperThird { float: left; width: 32.21429%; margin-left: 0.53571%; margin-right: 0.53571%; margin-bottom: 1.07143%; }
+.navWrapper, .tabWrapper { float: left; width: 98.92857%; margin-left: 0.53571%; margin-right: 0.53571%; margin-bottom: 1.07143%; }
+/* .containerA -- caption comes next to the label. show photo credit */
+.containerPhoto .image img, .containerVideo .image img, .containerInsight .image img { width: 100%; display: block; }
+.containerPhoto .label, .containerVideo .label, .containerInsight .label { float: left; }
+.containerPhoto .caption, .containerVideo .caption, .containerInsight .caption { display: inline-block; vertical-align: bottom; }
+/*.containerC -- side by side layout */
+.containerArticle { /* nesting requires row(grid num of parents container, in this case .wrapperHalf) */ }
+.containerArticle .image { /* column(gridNum, totalRowNum) */ }
+.containerArticle .image img { width: 100%; display: block; }
+/*.containerE -- side by side layout, graph/image float right */
+.containerStats { display: block; width: 101.07143%; margin: 0 -0.53571%; *zoom: 1; overflow: hidden; }
+.containerStats:before, .containerStats:after { content: ""; display: table; }
+.containerStats:after { clear: both; }
+.containerSocial .contentWrapper img, .containerBreaking .contentWrapper img { width: 100%; display: block; }
+/*.containerX -- top bottom stack layout - opposite to containerC */
+.containerX { float: left; width: 98.92857%; margin-left: 0.53571%; margin-right: 0.53571%; margin-bottom: 1.07143%; }
+.containerX .image { width: 100%; margin: 0.5em 0 0 0; }
+.containerX .image img { margin: 0; }
+.containerX .contentWrapper { float: left; width: 98.92857%; margin-left: 0.53571%; margin-right: 0.53571%; margin-bottom: 1.07143%; } }
+/*# sourceMappingURL=fluid.css.map */
