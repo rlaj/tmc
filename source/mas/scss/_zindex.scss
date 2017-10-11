@@ -1,0 +1,12 @@
+/**
+ * Define all top-level and section elements here in the order they should appear.
+ * Use these lists to structure your z-index layering orders within a given section
+ * of the page. Avoid using one-off values UNLESS they are 0 or negative values.
+ *
+ * Usage: z-index: z($list_name, element_name);
+ * Example: z-index: z($elements, page);
+ */
+
+$elements: page, hero, headerlink, panel, alertbar, lbeverywhere, notifications, mainmenu, header, lightbox;
+
+$track_map_elements: map, gradient, weather, markers, dialog, search_link, player_nav, holeinfo, overlay;

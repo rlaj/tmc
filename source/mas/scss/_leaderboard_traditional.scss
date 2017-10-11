@@ -1,0 +1,712 @@
+
+
+/*********************************************************************
+ * GLOBAL
+ *********************************************************************/
+#traditional {
+  .missedcut, .disqualified, .withdrawn { float: left; text-align: center; font-family: 'Player Name'; font-size: 1.0em; }
+  .playerRow .playerName { text-align: left; }
+}
+
+
+@mixin non-skeumorphic-trad-table(
+  $display_scores, 
+  $display_track_and_fav,
+  $display_today,
+  $menu_header_height,
+  $border_color, 
+  $content_width,
+  $header_row_height,
+  $header_font_size,
+  $player_row_height,
+  $player_name_width,
+  $player_name_padding_left,
+  $player_stat_width,
+  $pos_width,
+  $scores_width,
+  $round_scores_width,
+  $track_background,
+  $track_width,
+  $track_off_background_position,
+  $track_on_background_position,
+  $track_hover_background_position,
+  $fav_width,
+  $fav_icon_off_background,
+  $fav_icon_on_background,
+  $row_font_size) {
+
+    #leaderboardWrapper {
+      #traditional {
+        @if $display_scores {
+          .round_score, {display:block};
+          .score { &.last { display: block;}}
+        } @else {
+          .round_score {display:none};
+          .score { &.last { display: none;}}
+        }
+        
+        @if $display_track_and_fav == false {
+          .track, .fav { display: none; }
+        } 
+
+        @if $display_today == false {
+          #Today { display:none; }
+        }
+
+        .round_score { width: pscp($round_scores_width, $player_stat_width); @include tableborder(1px, right, $border_color);}
+        .round_score ~ .round_score { @include tableborder(1px, right, $border_color);}
+
+        .score {
+          width: pscp($scores_width, $player_stat_width);@include tableborder(1px, right, $border_color);
+        }
+        
+        /* reset width of score colums */
+        .score:nth-of-type(1){ width: pscp($scores_width, $player_stat_width); }
+        .score:nth-of-type(2), .score:nth-of-type(3){ width: pscp($scores_width, $player_stat_width); }
+
+        .headerWrapper {
+          .headerRow { font-size: $header_font_size; @include wh(100%,$header_row_height); line-height: $header_row_height; @include tableborder(1px, $border_color);
+            div { height: $header_row_height; @include tableborder(1px, bottom, $border_color);}
+            .playerStatContainer { width: lbcp($player_stat_width, $content_width);
+            }
+            .player { width: lbcp($player_name_width,  $content_width);}
+            .rightHeader { 
+              &.fav { width: lbcp($fav_width, $content_width); }
+              &.track { width: lbcp($track_width, $content_width); }
+            }
+          }
+
+          &.stickybar { top: $menu_header_height; }
+        }
+
+        .playerRow { @include wh(100%,$player_row_height); height: $player_row_height; line-height: $player_row_height; font-size: $row_font_size;
+
+          div { height:$player_row_height; }
+          .playerName { width: lbcp($player_name_width, $content_width); 
+            .data { padding-left: $player_name_padding_left }
+          }
+          .pos {  @include tableborder(1px, right, $border_color); } 
+          .playerStatContainer { width: lbcp($player_stat_width, $content_width);}
+          .score { @include tableborder(1px, right, $border_color); }
+
+          @if $display_scores {
+            .playerStatContainer {  @include tableborder(1px, right, $border_color); };
+          } 
+
+          .playerStatContainer { width: lbcp($player_stat_width, $content_width); }
+          .data { @include wh(100%,$player_row_height);  line-height: $player_row_height; }
+          .live, .favorite { width: lbcp($fav_width, $content_width);}
+          .favorite { @include tableborder(1px, left, $border_color); width: lbcp($fav_width, $content_width); background: $fav_icon_off_background; }
+          .track { width: lbcp($track_width, $content_width); background: $track_background; background-position: $track_off_background_position;  
+            &.on { background-position:  $track_on_background_position;
+              &:hover { background-position: $track_hover_background_position; }
+            }
+          }
+        }
+        .headerRow, .playerRow {
+          .pos { width: lbcp($pos_width, $content_width); }
+        }
+
+       .favoritePlayer, .favorited {
+          .favorite { background: $fav_icon_on_background; }
+        }
+        .missedcut, .disqualified, .withdrawn { width: pscp($scores_width * 2, $player_stat_width); @include tableborder(1px, right, $border_color); }
+      }
+    }
+}
+
+// Common styles to traditional non-skeumorphic views across all breakpoints
+@mixin non-skeumorphic-trad-table-common() {
+
+    #leaderboardWrapper {
+      #traditional {
+        &.content { right: 0; }
+        .round_score { overflow: hidden;}
+        .round_score ~ .round_score { border-left: none;}
+        .score { overflow: hidden; }
+        
+        .headerWrapper { @include clearfix;
+          .headerRow { @include sourcesans(bold); background: #333333;  float: left; margin: 0px; overflow: hidden; position: relative;  text-transform: uppercase; font-weight: bold; color: #AAAAAA;
+            div { cursor: pointer; text-align: center; text-transform: uppercase; float: left; border-bottom: none;}
+            .playerStatContainer { border-left: none; 
+              .score, .round_score { border-right: 0; }
+            }
+            .sort_item:hover { background-color: #696969; color: $white; }
+            .pos, .player, .playerStatContainer div {
+              &.selected { background-color: #696969; color: $white; }
+            }
+            .player { padding-left: 8px; overflow: hidden; text-align: left;}
+            .rightHeader { cursor: default; text-decoration: none;
+              &.live { display: none !important; }
+              &.fav { padding-top: 0px; }
+              &.track { padding-top: 0px; }
+            }
+          }
+
+          &.stickybar { position: fixed; margin: 0; width: 100%; left: 0px; z-index: 10; }
+        }
+
+        .playerRow { text-align: center; @include sourcesans(bold);
+          // Alternating Colors for Odd/Even Rows 
+          &:nth-of-type(2n) { background-color: #F2F2F2; }
+          .titleRow ~ & {
+            &:nth-of-type(2n) { background-color: $white; }
+            &:nth-of-type(2n+1) { background-color: #F2F2F2; }
+          }
+
+          .score, .prior { background: block; }
+          div { text-transform: uppercase; float: left; }
+
+          .playerStatContainer {border-left: none; }
+          .data { background: block; }
+          .teetime { font-size: 0.85em; }
+          .favorite { cursor: pointer; }
+          .track { 
+            pointer-events: none;cursor: default;
+            &.on { cursor: pointer; pointer-events: auto;}
+            a { display:block; } //track link should occupy full cell
+          }
+          .live { display: none; }
+        }
+
+      }
+    }
+}
+
+
+
+/************************************************************************************************
+ * LARGE SCREEN SIZE AND BELOW (NON-SKEUMORPHIC)
+ * Common styles to all non-skeumorphic views
+ * Screen Size <= 1023px 
+ ***********************************************************************************************/ 
+@include lbbreakpoint(lblarge, max) {
+  @include non-skeumorphic-trad-table-common;
+}
+
+
+/******************************************************************
+ * Large Non-Skeumorphic 
+ * Screen Width >= 1024px and Height <= 619px 
+ *****************************************************************/ 
+@include lbbreakpoint(lblargeNonSkeumorphic) {
+  @include non-skeumorphic-trad-table-common;
+}
+
+
+/******************************************************************
+ * MOBILE PORTRAIT 
+ * Screen Size <= 479px 
+ *****************************************************************/
+@include lbbreakpoint(lbxsmall, max)  {
+  $args: (
+    display_scores: false,
+    display_track_and_fav: true,
+    display_today: true,
+    menu_header_height: 40px, //Height of the top menu. used to set fixed position of leaderboard header
+    border_color: #E0E0E0,
+    content_width: 320px,
+    header_row_height: 40px,
+    header_font_size: 0.9em,
+    player_row_height: 35px,
+    player_name_width: 92px,
+    player_name_padding_left: 5px,
+    player_stat_width: 138px,
+    pos_width: 24px,
+    scores_width: 46px, 
+    round_scores_width: 0px, //unused
+    track_width: 33px, 
+    track_background: url('/images/leaderboard/leaderboard-track-icons-sm.png') no-repeat,
+    track_off_background_position: 50% 4px,
+    track_on_background_position: 50% -26px,
+    track_hover_background_position: 50% -56px,
+    fav_width: 33px,
+    fav_icon_off_background: url('/images/leaderboard/leaderboard-favorites-icons-sm.png') no-repeat 50% 9px,
+    fav_icon_on_background: url('/images/leaderboard/leaderboard-favorites-icons-sm.png') no-repeat 50% -18px, 
+    row_font_size: 0.9em 
+  );
+
+  @include non-skeumorphic-trad-table($args...); 
+}
+
+
+/******************************************************************
+ * MOBILE LANDSCAPE 
+ * 480px >= Screen Size >= 719px 
+ *****************************************************************/
+@include lbbreakpoint(lbMobileLandscape) {
+  @include lbbreakpoint(lbsmall, max) {
+    $args: (
+      display_scores: true,
+      display_track_and_fav: true,
+      display_today: true,
+      menu_header_height: 40px, //Height of the top menu. used to set fixed position of leaderboard header
+      border_color: #E0E0E0,
+      content_width: 480px,
+      header_row_height: 41px,
+      header_font_size: 0.9em,
+      player_row_height: 35px,
+      player_name_width: 92px,
+      player_name_padding_left: 3px,
+      player_stat_width: 303px,
+      pos_width: 24px,
+      scores_width: 46px, 
+      round_scores_width: 29.75px, 
+      track_width: 33px, 
+      track_background: url('/images/leaderboard/leaderboard-track-icons-sm.png') no-repeat,
+      track_off_background_position: 50% 6px,
+      track_on_background_position: 50% -23px,
+      track_hover_background_position: 50% -53px,
+      fav_width: 28px,
+      fav_icon_off_background: url('/images/leaderboard/leaderboard-favorites-icons-sm.png') no-repeat 50% 11px,
+      fav_icon_on_background: url('/images/leaderboard/leaderboard-favorites-icons-sm.png') no-repeat 50% -15px, 
+      row_font_size: 0.9em 
+    );
+    @include non-skeumorphic-trad-table($args...); 
+  }
+}
+
+
+
+
+
+ /******************************************************************
+ * MEDIUM SCREEN SIZE
+ * 720px >= Screen Size >= 919px 
+ *****************************************************************/ 
+@include lbbreakpoint(lbmedium) {
+  @include lbbreakpoint(lbmedium, max)  {
+    $args: (
+      display_scores: true,
+      display_track_and_fav: true,
+      display_today: true,
+      content_width: 720px,
+      menu_header_height: 50px, //Height of the top menu. used to set fixed position of leaderboard header
+      border_color: #E0E0E0,
+      header_row_height: 41px,
+      header_font_size: 1.2,
+      player_row_height: 41px,
+      player_name_width: 126px,
+      player_name_padding_left: 5px,
+      player_stat_width: 472px,
+      pos_width: 40px,
+      scores_width: 63px, 
+      round_scores_width: 55px, 
+      track_width: 41px, 
+      track_background: url('/images/leaderboard/leaderboard-track-icons.png') no-repeat,
+      track_off_background_position: 50% 9px,
+      track_on_background_position: 50% -25px,
+      track_hover_background_position: 50% -59px,
+      fav_width: 41px,
+      fav_icon_off_background: url('/images/leaderboard/leaderboard-favorites-icons-r.png') no-repeat 50% 9px,
+      fav_icon_on_background: url('/images/leaderboard/leaderboard-favorites-icons-r.png') no-repeat 50% -28px, 
+      row_font_size: 1.2em 
+    );
+    @include non-skeumorphic-trad-table($args...); 
+  }
+}
+
+
+
+/************************************************************************************************
+ * LARGE SCREEN SIZE
+ * 920px >= Screen Size <= 1023px 
+ ***********************************************************************************************/ 
+@include lbbreakpoint(lblarge) {
+  @include lbbreakpoint(lblarge, max) {
+    $args: (
+      display_scores: true,
+      display_track_and_fav: true,
+      display_today: true,
+      content_width: 720px,
+      menu_header_height: 50px, //Height of the top menu. used to set fixed position of leaderboard header
+      border_color: #E0E0E0,
+      header_row_height: 41px,
+      header_font_size: 1.4em,
+      player_row_height: 41px,
+      player_name_width: 126px,
+      player_name_padding_left: 5px,
+      player_stat_width: 472px,
+      pos_width: 40px,
+      scores_width: 63px, 
+      round_scores_width: 55px, 
+      track_width: 41px, 
+      track_background: url('/images/leaderboard/leaderboard-track-icons.png') no-repeat,
+      track_off_background_position: 50% 10px,
+      track_on_background_position: 50% -25px,
+      track_hover_background_position: 50% -59px,
+      fav_width: 41px,
+      fav_icon_off_background: url('/images/leaderboard/leaderboard-favorites-icons-r.png') no-repeat 50% 9px,
+      fav_icon_on_background: url('/images/leaderboard/leaderboard-favorites-icons-r.png') no-repeat 50% -28px, 
+      row_font_size: 1.6em 
+    );    
+    @include non-skeumorphic-trad-table($args...); 
+  }
+}
+
+/******************************************************************
+ * Large Non-Skeumorphic 
+ * Screen Width >= 1024px and Width <= 619px 
+ *****************************************************************/ 
+@include lbbreakpoint(lblargeNonSkeumorphic) {
+  $args: (
+    display_scores: true,
+    display_track_and_fav: true,
+    display_today: true,
+    content_width: 720px,
+    menu_header_height: 50px, //Height of the top menu. used to set fixed position of leaderboard header
+    border_color: #E0E0E0,
+    header_row_height: 41px,
+    header_font_size: 1.4em,
+    player_row_height: 41px,
+    player_name_width: 126px,
+    player_name_padding_left: 5px,
+    player_stat_width: 472px,
+    pos_width: 40px,
+    scores_width: 63px, 
+    round_scores_width: 55px, 
+    track_width: 41px, 
+    track_background: url('/images/leaderboard/leaderboard-track-icons.png') no-repeat,
+    track_off_background_position: 50% 10px,
+    track_on_background_position: 50% -25px,
+    track_hover_background_position: 50% -59px,
+    fav_width: 41px,
+    fav_icon_off_background: url('/images/leaderboard/leaderboard-favorites-icons-r.png') no-repeat 50% 9px,
+    fav_icon_on_background: url('/images/leaderboard/leaderboard-favorites-icons-r.png') no-repeat 50% -28px, 
+    row_font_size: 1.6em 
+  );    
+  @include non-skeumorphic-trad-table($args...); 
+}
+
+
+
+
+
+
+
+
+@mixin skeumorphic-trad-table(
+  $large_width,  /* entire score board width */
+  $content_width,  /* actual content area */
+  $holes_container_width, 
+  $header_title_height, /* LEADERS */
+  $content_height,  /* header row + scores */
+  $score_content_height,  /* score section only - scrolling content area */
+  // Header
+  $header_row_height,
+  $header_font_size,
+  $header_background_image,
+  $header_pos_background_position,
+  $header_pos_selected_background_position,
+  $header_player_background_position,
+  $header_player_selected_background_position,
+  $header_today_background_position,
+  $header_today_selected_background_position,
+  $header_thru_background_position,
+  $header_thru_selected_background_position,
+  $header_topar_background_position,
+  $header_topar_selected_background_position,
+  $header_r1_background_position,
+  $header_r1_selected_background_position,
+  $header_r2_background_position,
+  $header_r2_selected_background_position,
+  $header_r3_background_position,
+  $header_r3_selected_background_position,
+  $header_r4_background_position,
+  $header_r4_selected_background_position,
+  $header_total_background_position,
+  $header_total_selected_background_position,
+  $header_total_width,
+  $header_track_background_position,
+  $header_fav_background_position,
+  //Player Rows
+  $player_row_height,
+  $player_row_font_size,
+  $prior_width,
+  $right_option_width,
+  $player_stat_width, 
+  $pos_width,
+  $player_name_width, 
+  $scores_width,
+  $round_scores_width,
+  $live_width,
+  $fav_width,
+  $status_container_width //width for missed cut, withdrawn, and disqualified,
+  ) {
+    #traditional {
+      .round_score { width: $round_scores_width; }
+      /* applying style except for the first .round_score element */
+      .round_score ~ .round_score { }
+      .score { width: $scores_width; }
+
+      .headerWrapper {
+        .headerRow { font-size: $header_font_size; @include wh($content_width,$header_row_height); line-height: $header_row_height; color: $black;  
+          div { background-image: $header_background_image;  height: $header_row_height; }
+          .pos, .player, .playerStatContainer div {
+            &.selected { background-image: $header_background_image; }
+          }
+          .pos { background-position: $header_pos_background_position; width: $pos_width;
+            //&:hover { background-position: 3px -65px; }
+            &:hover, &.selected { background-position: $header_pos_selected_background_position}
+          }
+          .player { background-position: $header_player_background_position;  width: $player_name_width;
+            //&:hover { background-position: -37px -65px;}
+            &:hover, &.selected { background-position: $header_player_selected_background_position; }
+           }
+           .playerStatContainer { width: $player_stat_width; }
+           #Today { background-position: $header_today_background_position;
+            //&:hover { background-position: -266px -65px;}
+            &:hover, &.selected { background-position: $header_today_selected_background_position; }
+           }
+           #Thru { background-position: $header_thru_background_position;
+            //&:hover { background-position: -363px -65px;}
+            &:hover, &.selected { background-position: $header_thru_selected_background_position; }
+           }
+           #ToPar { background-position: $header_topar_background_position;
+            //&:hover { background-position: -459px -65px;}
+            &:hover, &.selected { background-position: $header_topar_selected_background_position; }
+           }
+           #R1 { background-position: $header_r1_background_position;
+            //&:hover { background-position: -560px -65px;}
+            &:hover, &.selected { background-position: $header_r1_selected_background_position; }
+           }
+           #R2 { background-position: $header_r2_background_position;
+            //&:hover { background-position: -605px -65px;}
+            &:hover, &.selected { background-position: $header_r2_selected_background_position; }
+           }
+           #R3 { background-position: $header_r3_background_position;
+            //&:hover { background-position: -653px -65px;}
+            &:hover, &.selected { background-position: $header_r3_selected_background_position; }
+           }
+           #R4 { background-position: $header_r4_background_position;
+            //&:hover { background-position: -699px -65px;}
+            &:hover, &.selected { background-position: $header_r4_selected_background_position; }
+           }
+           #Total { background-position: $header_total_background_position; width: $header_total_width;
+            //&:hover { background-position: -747px -65px;}
+            &:hover, &.selected { background-position: $header_total_selected_background_position; }
+           }
+          .rightHeader {height:$header_row_height;
+            &.track { width: $live_width; background-position: $header_track_background_position; }
+            &.fav { width: $fav_width; border-right: none; background-position: $header_fav_background_position;}
+           }
+        } // ends .headerRow
+      }
+
+      .score {
+        width: pscp($scores_width, $player_stat_width);
+      }
+      /* reset width of score colums */
+      .score:nth-of-type(1){ width: pscp($scores_width, $player_stat_width); }
+      .score:nth-of-type(2), .score:nth-of-type(3){ width: pscp($scores_width, $player_stat_width); }
+
+      .playerRow { height:$player_row_height; line-height: $player_row_height; font-size: $player_row_font_size;
+         div {  height:$player_row_height; }
+        .score {   }
+        .playerName {width: $player_name_width; }
+        .playerStatContainer { width: $player_stat_width;}
+        .data { background: none; @include wh(100%,$player_row_height);  line-height: $player_row_height; }
+        .live { width: $live_width;}
+        .track { width: $live_width; }
+        .favorite {
+          width: $fav_width + 1px; height:$player_row_height; 
+        }
+      }
+
+      .headerRow, .playerRow {
+        .pos { width: $pos_width; }
+      }
+
+      .missedcut, .disqualified, .withdrawn { width: $status_container_width; }
+      .missedcut + .score:nth-of-type(2),.disqualified + .score:nth-of-type(2), .withdrawn + .score:nth-of-type(2)
+      { width: pscp($scores_width, $player_stat_width); }
+
+    }
+}
+
+
+// Common styles to all traditional skeumorphic views across all breakpoints
+@mixin skeumorphic-trad-table-common($border_color) {
+  #traditional {
+      .round_score { display: block; overflow: hidden; @include tableborder(1px, right, $border_color); @include tableborder(3px, left, $border_color); }
+      /* applying style except for the first .round_score element */
+      .round_score ~ .round_score { border-left: none; @include tableborder(1px, right, $border_color);}
+      .score { overflow: hidden; @include tableborder(1px, right, $border_color); }
+
+      .headerWrapper { @include clearfix; 
+        .headerRow { background: transparent; border-right: none; overflow: hidden; position: relative; @include tableborder(1px, '', $border_color); 
+          div { text-decoration: underline; cursor: pointer; float: left; text-indent: -9999px; @include tableborder(1px, bottom, $border_color); }
+          .sort_item:hover { background-color: #666666; }
+          .pos, .player, .playerStatContainer div {
+            &.selected { background-color: #666666; }
+          }
+          .pos { 
+            .border { display: none; }
+          }
+          .player { border: none; overflow: hidden; @include tableborder(3px, right, $border_color); }
+          .playerStatContainer { background-image: none; border: none; @include tableborder(3px, right, $border_color); }
+
+          .rightHeader { cursor: default;  @include tableborder(1px, right, $border_color);
+            &.track { display: block !important; }
+            &.fav { box-sizing: content-box;}
+           }
+        } // ends .headerRow
+
+        &.stickybar { position: relative; top: 0; }
+      }
+
+      .playerRow {  text-align: center;
+        .score, .prior { background: none; @include tableborder(1px, right, $border_color); }
+         div { text-transform: uppercase; float: left;}
+        .playerName { background: none; }
+        .playerStatContainer { @include tableborder(3px, right, $border_color); }
+        .data { background: none;}
+        .live { display: block; }
+        .track { display: block; }
+        .teetime { font-size: 1em;}
+
+        //set background color of player row to white when we're displaying its scorecard
+        &.showScorecard { background-color: white; }
+
+      }
+      .headerRow, .playerRow {
+        .pos {  @include tableborder(1px, right, $border_color); }
+      }      
+    }
+    .missedcut, .disqualified, .withdrawn { font-weight: bold; @include tableborder(1px, right, $border_color); }
+}
+
+
+/******************************************************************
+ * LARGER ALPHA SIZE AND ABOVE (SKEUMORPHIC)
+ * Screen Size >= 1024px and 620 height
+ *****************************************************************/ 
+@include lbbreakpoint(lblargeralpha) {
+    $content_width: 912px;
+    #leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper {
+        clear: both; @include wh(100%, 337px); float: left; overflow: hidden; position: fixed; top: 223px; left: 0; overflow-y:scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch;
+    }
+
+
+  // Only apply to skeumorphic view on the leaderboard page
+  #leaderboardWrapper {
+    $args: (border_color: #3c3c3b);
+    @include skeumorphic-trad-table-common($args...);
+
+    $args: (
+      large_width: 940px, /* entire score board width */
+      content_width: 912px, /* actual content area */
+      holes_container_width: 810px,
+      header_title_height: 53px, /* LEADERS */
+      content_height: 402px, /* header row + scores */
+      score_content_height: 339px, /* score section only - scrolling content area */
+      //Header
+      header_row_height: 64px,
+      header_font_size: 2em,
+      header_background_image: url(/images/leaderboard/leaderboard-header-trad-sm.png),
+      header_pos_background_position: 3px 0,
+      header_pos_selected_background_position: 3px -118px,
+      header_player_background_position: -37px 0,
+      header_player_selected_background_position: -37px -118px,
+      header_today_background_position: -266px 0px,
+      header_today_selected_background_position: -266px -118px,
+      header_thru_background_position: -363px 0px,
+      header_thru_selected_background_position: -363px -118px,
+      header_topar_background_position: -459px 0px,
+      header_topar_selected_background_position: -459px -118px,
+      header_r1_background_position: -560px 0px,
+      header_r1_selected_background_position: -560px -118px,
+      header_r2_background_position: -605px 0px,
+      header_r2_selected_background_position: -605px -118px,
+      header_r3_background_position: -653px 0px,
+      header_r3_selected_background_position: -653px -118px,
+      header_r4_background_position: -699px 0px,
+      header_r4_selected_background_position: -699px -118px,
+      header_total_width: 97px,
+      header_total_background_position: -747px 0px,
+      header_total_selected_background_position: -747px -118px,
+      header_track_background_position: -845px 0px,
+      header_fav_background_position: -879px 0px,
+      //Player Rows
+      player_row_height: 33px,
+      player_row_font_size: 2em,
+      prior_width: 37px,
+      right_option_width: 31px,
+      player_stat_width: 580px,
+      pos_width: 41px,
+      player_name_width: 225px,
+      scores_width: 96px,
+      round_scores_width: 48px,
+      live_width: 32px,
+      fav_width: 31px,
+      status_container_width: 191px
+    );
+    @include skeumorphic-trad-table($args...);
+  }
+    
+}
+
+
+
+/******************************************************************
+ * LARGER LARGEST SIZE AND ABOVE
+ * Screen Size >= 1440px and 820px height
+ *****************************************************************/ 
+
+@include lbbreakpoint(lblargest) {
+  // Only apply to skeumorphic view on the leaderboard page
+  #leaderboardWrapper {
+    $args: (
+      large_width: 1180px, /* entire score board width */
+      content_width: 1146px, /* actual content area */
+      holes_container_width: 1021px,
+      header_title_height: 63px, /* LEADERS */
+      content_height: 507px, /* header row + scores */
+      score_content_height: 423px, /* score section only - scrolling content area */
+      //Header
+      header_row_height: 82px,
+      header_font_size: 2.4em,
+      header_background_image: url(/images/leaderboard/leaderboard-header-trad-l.png),
+      header_pos_background_position: 0 0,
+      header_pos_selected_background_position: 0 -164px,
+      header_player_background_position: -45px 0,
+      header_player_selected_background_position: -45px -164px,
+      header_today_background_position: -332px 0px,
+      header_today_selected_background_position: -332px -164px,
+      header_thru_background_position: -453px 0px,
+      header_thru_selected_background_position: -453px -164px,
+      header_topar_background_position: -574px 0px,
+      header_topar_selected_background_position: -574px -164px,
+      header_r1_background_position: -703px 0px,
+      header_r1_selected_background_position: -703px -164px,
+      header_r2_background_position: -760px 0px,
+      header_r2_selected_background_position: -760px -164px,
+      header_r3_background_position: -820px 0px,
+      header_r3_selected_background_position: -820px -164px,
+      header_r4_background_position: -882px 0px,
+      header_r4_selected_background_position: -882px -164px,
+      header_total_width: 125px,
+      header_total_background_position: -936px 0px,
+      header_total_selected_background_position: -936px -164px,
+      header_track_background_position: -1062px 0px,
+      header_fav_background_position: -1105px 0px,
+      //Player Rows
+      player_row_height: 42px,
+      player_row_font_size: 2.4em,
+      prior_width: 44px,
+      right_option_width: 40px,
+      player_stat_width: 731px,
+      pos_width: 46px,
+      player_name_width: 288px,
+      scores_width: 121px,
+      round_scores_width: 60px,
+      live_width: 40px,
+      fav_width: 38px,
+      status_container_width: 241px
+    );
+
+    @include skeumorphic-trad-table($args...);
+  }
+}
+
+

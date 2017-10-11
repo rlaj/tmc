@@ -1,0 +1,447 @@
+@import "grid";
+@import "compass/css3";
+@import "compass/utilities";
+@import "_zindex";
+
+// set minimum browser version. overwrite in mobile device specific SCSS files
+$browser-minimum-versions: (
+  'ie': "8"
+);
+
+$white: #ffffff;
+$off_white: #ebebeb;
+$black: #000000;
+$light_gray: #aaaaaa;
+$gray: #333333;
+$live_color: #ed1c24;
+$shadow_color: #868686;
+
+$green_link_color: #339933;
+$selected_color: #fff000;
+$darker_selected_color: #dfc713;
+$disabled_color: #627a8e;
+
+// default lighter score colors on dark background
+$new_under_color: #ED1C24;
+$new_over_color: #37B81E;
+
+// darker color
+$under_color: #BF0000;
+$over_color: #14543E;
+
+$eagle: #FFF000;
+$birdie: #37B81E;
+$par: #AFAEAE;
+$bogey: #7A7A7A;
+$double: #3E3E3E;
+$video: #faeebf;
+
+$player: #58B81E;
+$field: #848383;
+
+$header_height: 50px;
+$footer_height: 3em;
+$nav_width: 385px;
+
+$mobile_header_height: 40px;
+$mobile_nav_width: 280px;
+$ls_mobile_nav_width: 378px;
+
+// Font definition mixins
+@mixin sourcesans( $weight: null ) {
+  $fallback_fonts: 'Arial, Helvetica, sans-serif';
+  $font: 'Source Sans Pro';
+  @if($weight == light) {
+    font-family: $font + ' Light', #{$fallback_fonts};
+    font-weight: 300;
+  } @else if $weight == semibold {
+    font-family: $font + ' Semibold', #{$fallback_fonts};
+    font-weight: 500;
+  } @else if $weight == bold {
+    font-family: $font + ' Bold', #{$fallback_fonts};
+    font-weight: 700;
+  } @else {
+    font-family: $font, #{$fallback_fonts};
+    font-weight: normal;
+  }
+}
+
+@mixin helveticaneue( $weight: null ) {
+  $font: 'HelveticaNeue';
+  $font2: 'Helvetica Neue LT';
+  $font3: 'Helvetica Neue';
+  $fallback_fonts: '"Helvetica Neue", Helvetica, Arial, sans-serif';
+  @if($weight == medium) {
+    font-family: $font + '-Medium', "#{$font2 + ' Medium'}", "#{$font3 + ' Medium'}", #{$fallback_fonts};
+    font-weight: 500;
+  }
+  @else if($weight == light) {
+    font-family: $font + '-Light', "#{$font2 + ' Light'}", "#{$font3 + ' Light'}", #{$fallback_fonts};
+    font-weight: 300;
+  }
+  @else {
+    font-family: $font, $font2, $font3, #{$fallback_fonts};
+    font-weight: normal;
+  }
+}
+
+@mixin playfair( $weight: null ) {
+  $fallback_fonts: 'Arial, Helvetica, sans-serif';
+  $font: 'Playfair Display';
+  @if($weight == light) {
+    font-family: $font + ' Light', #{$fallback_fonts};
+    font-weight: 300;
+  } @else if $weight == semibold {
+    font-family: $font + ' Semibold', #{$fallback_fonts};
+    font-weight: 500;
+  } @else if $weight == bold {
+    font-family: $font + ' Bold', #{$fallback_fonts};
+    font-weight: 700;
+  } @else {
+    font-family: $font, #{$fallback_fonts};
+    font-weight: normal;
+  }
+}
+
+// convenience mixins
+@mixin wh($w, $h: null) {
+  width:$w;
+  @if($h == null) { height: $w; }
+  @else { height: $h; }
+}
+
+// The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/
+@mixin clearfix() {
+  *zoom:1;
+
+  &:before,
+  &:after {
+      content:"";
+      display:table;
+  }
+  &:after {
+      clear:both;
+  }
+}
+
+// https://www.smashingmagazine.com/2014/06/sassy-z-index-management-for-complex-layouts/
+@function z($list, $element) {
+  $z-index: index($list, $element);
+
+  @if $z-index {
+    @return $z-index;
+  }
+
+  @warn 'There is no item "#{$element}" in this list; choose one of: #{$list}';
+  @return null;
+}
+
+@mixin filterscale( $path ) {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="#{$path}", sizingMethod="scale");
+}
+
+// background image size mixin covers IE8
+@mixin cover-background( $path ) {
+	background-image: url( $path );
+	@include background-size( cover );
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + $path + "', sizingMethod='scale')";
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="#{$path}", sizingMethod="scale");
+}
+
+@mixin breakpoint($break, $type : min) {
+  @if $type == min {
+    @if $break == xsmall {        // 320px
+      @media only screen and (min-width: 20em) { @content; }
+    } @else if $break == small {  // 520px
+      @media only screen and (min-width: 32.5em) { @content; }
+    } @else if $break == medium { // 720px
+      @media only screen and (min-width: 45em) { @content; }
+    } @else if $break == large {  // 920px
+      @media only screen and (min-width: 57.5em) { @content; }
+    } @else if $break == xlarge { // 1440px
+      @media only screen and (min-width: 90em) { @content; }
+    }
+  } @else if $type == max {
+    @if $break == xsmall {        // 319px
+      @media only screen and (max-width: 19.9375em) { @content; }
+    } @else if $break == small {  // 519px
+      @media only screen and (max-width: 32.4375em) { @content; }
+    } @else if $break == medium { // 719px
+      @media only screen and (max-width: 44.9375em) { @content; }
+    } @else if $break == large {  // 919px
+      @media only screen and (max-width: 57.4375em) { @content; }
+    } @else if $break == xlarge { // 1439px
+      @media only screen and (max-width: 89.9375em) { @content; }
+    }
+  }
+}
+
+@mixin lbbreakpoint($break, $type : min) {
+  @if $type == min {
+    @if $break == lbxsmall {        // 320px
+      @media only screen and (min-width: 20em) { @content; }
+    } @else if $break == lbMobileLandscape {  // 480px
+      @media only screen and (min-width: 30em) { @content; }      
+    } @else if $break == lbsmall {  // 520px
+      @media only screen and (min-width: 32.5em) { @content; }
+    } @else if $break == lbmedium { // 720px
+      @media only screen and (min-width: 45em) { @content; }
+    } @else if $break == lblarge {  // 920px
+      @media only screen and (min-width: 57.5em) { @content; }
+    } @else if $break == lblargeNonSkeumorphic { // >= 1024px and <= 619px height
+      @media only screen and (min-width: 64em) and (max-height: 38.688em) { @content; }
+    } @else if $break == lblargeralpha { // 1024px and 620 height
+      @media only screen and (min-width: 64em) and (min-height: 38.750em) { @content; }
+    } @else if $break == lblarger { // 1024px and 668 height
+      @media only screen and (min-width: 64em) and (min-height: 41.750em) { @content; }
+    } @else if $break == lblargest { // 1440px and 820px height
+      @media only screen and (min-width: 90em) and (min-height: 51.250em) { @content; }
+    }
+  } @else if $type == max {
+    @if $break == lbxsmall {        // 479px
+      @media only screen and (max-width: 29.938em) { @content; }
+    } @else if $break == lbMobileLandscape {  // 519px
+      @media only screen and (max-width: 32.438em) { @content; }
+    } @else if $break == lbsmall {  // 719px
+      @media only screen and (max-width: 44.9375em) { @content; }
+    } @else if $break == lbmedium { // 919px
+      @media only screen and (max-width: 57.4375em) { @content; }
+    } @else if $break == lblarge {  // 1023px
+      @media only screen and (max-width: 63.938em) { @content; }
+    } @else if $break == lblargeralpha { // 99px & 619
+      @media only screen and (max-width: 62.438em) and (max-height: 38.688em) { @content; }
+    } @else if $break == lblarger { // 99px & 667
+      @media only screen and (max-width: 62.438em) and (max-height: 41.688em) { @content; }
+    } @else if $break == lbNonSkeumorphic { // 1023px
+      @media only screen and (max-width: 63.938em) { @content; }      
+    } @else if $break == lblargest { // 1439px & 819px
+      @media only screen and (max-width: 89.9375em) and (max-height: 51.188em) { @content; }
+    }
+  }
+}
+
+@mixin par3breakpoint($break, $type : min) {
+  @if $type == min {
+    @if $break == lbxsmall {        // 320px
+      @media only screen and (min-width: 20em) { @content; }
+    } @else if $break == lbsmall {  // 520px
+      @media only screen and (min-width: 32.5em) { @content; }
+    } @else if $break == lbmedium { // 720px and 692px
+      @media only screen and (min-width: 45em) and (min-height: 43.25em)  { @content; }
+    } @else if $break == lblarge {  // 920px and 813px
+      @media only screen and (min-width: 57.5em) and (min-height: 50.813em) { @content; }
+    } @else if $break == lblarger { // 1200px and 600 height
+      @media only screen and (min-width: 75em) and (min-height: 37.5em) { @content; }
+    } @else if $break == lblargest { // 1440px and 800px height
+      @media only screen and (min-width: 90em) and (min-height: 50em) { @content; }
+    }
+  } @else if $type == max {
+    @if $break == lbxsmall {        // 319px
+      @media only screen and (max-width: 19.9375em) { @content; }
+    } @else if $break == lbsmall {  // 519px
+      @media only screen and (max-width: 32.4375em) { @content; }
+    } @else if $break == lbmedium { // 719px and 691px
+      @media only screen and (max-width: 44.9375em) and (max-height: 43.188em)  { @content; }
+    } @else if $break == lblarge {  // 919px and 812px
+      @media only screen and (max-width: 57.4375em) and (max-height: 50.75em)  { @content; }
+    } @else if $break == lblarger { // 1199px
+      @media only screen and (max-width: 74.938em) and (max-height: 37.438em) { @content; }
+    } @else if $break == lblargest { // 1439px & 799px
+      @media only screen and (max-width: 89.9375em) and (max-height: 49.938em) { @content; }
+    }
+  }
+}
+
+@mixin landscape_nav_breakpoint() {
+  @media only screen and (max-width: 44.9375em) and (min-aspect-ratio: 13/9) {
+    @content;
+  }
+}
+
+@mixin chromescrollfix {
+  -webkit-transform: translateZ(0);
+}
+
+@mixin no-user-selection {
+  -webkit-touch-callout: none;
+  @include user-select(none);
+}
+
+@mixin nav_transition( $property: all ) {
+  $transition : '';
+  @each $prop in $property {
+    $trans : $prop 0.5s ease-out;
+    @if $prop != nth($property,1) {
+      $transition : #{$transition}, #{$trans};
+    } @else {
+      $transition : $trans;
+    }
+  }
+  @include transition($transition);
+}
+
+@mixin no_transition {
+  @include single-transition(none);
+}
+
+@mixin _body_nav_transition() {
+  @include nav_transition(transform);
+  @include breakpoint(medium) { @include no_transition; }
+}
+
+@mixin _body_nav_translate($ieonly: false) {
+  $klass: '.js-nav';
+  @if($ieonly) {
+    $klass: '.js-nav.ie';
+  }
+  #{$klass} & { @include translate($mobile_nav_width,0);
+    @include landscape_nav_breakpoint {
+      @include translate($ls_mobile_nav_width,0);
+    }
+  }
+  #{$klass}.oldie &, #{$klass}.oldie.active & { @include translate(0,0); }
+}
+
+%body_nav_translation {
+  @include _body_nav_transition;
+  @include _body_nav_translate;
+}
+
+%body_nav_ie_translation {
+  @include _body_nav_transition;
+  @include _body_nav_translate(true);
+}
+
+@function cp($px, $max: 1440px) {
+  @return $px/$max * 100%;
+}
+
+@mixin resizable_icon( $path ) {
+  background-image: url('#{$path}');
+  .ie8 & {
+    background-image: none;
+    @include filterscale('#{$path}');
+  }
+}
+
+// $size must be defined in px
+@mixin centered_icon_size( $size, $base : 12px ) {
+  // base font size defaults to 12px
+  $em_size: #{($size/$base) + 'em'};
+  $margin_size: #{($size/$base)/-2 + 'em'};
+  width: $em_size; height: $em_size; background-size: $em_size $em_size;
+  // margin-top: $margin_size; margin-left: $margin_size;
+}
+
+// IE rgba polyfill
+@mixin background-rgba($color, $alpha: 1) {
+  $color: rgba($color,$alpha);
+  background-color: $color;
+  .ie8 & {
+    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($color)}', endColorstr='#{ie-hex-str($color)}');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($color)}', endColorstr='#{ie-hex-str($color)}')";
+  }
+}
+
+//course
+@mixin holeNumberImage($num) {
+  a { background-position: -1*($num - 1)*24px -82px;}
+  @include breakpoint(large) {
+    a { background-position: -1*($num - 1)*44px 0px;}
+   }
+
+}
+
+@mixin sprite-percentage-position($map, $sprite) {
+  background-position: sprite-position($map, $sprite, 0, 0, true);
+}
+
+// https://gist.github.com/brubrant/3166895
+// http://compass-style.org/reference/compass/helpers/sprites/
+@mixin get-sprite($map, $sprite, $height: true, $width: true) {
+
+  //http://compass-style.org/reference/compass/helpers/sprites/#sprite-file
+  $sprite-image: sprite-file($map, $sprite);
+
+  // http://compass-style.org/reference/compass/helpers/sprites/#sprite-url
+  $sprite-map: sprite-url($map);
+
+  // http://compass-style.org/reference/compass/helpers/sprites/#sprite-position
+  $sprite-position: sprite-position($map, $sprite);
+
+  // Returns background
+  background: $sprite-map $sprite-position no-repeat;
+
+  // http://compass-style.org/reference/compass/helpers/image-dimensions/
+  // Checks to see if the user wants height returned
+  @if $height == true {
+    // Gets the height of the sprite-image
+    $sprite-height: image-height($sprite-image);
+    // Returns the height
+    height: $sprite-height; }
+
+  // http://compass-style.org/reference/compass/helpers/image-dimensions/
+  // Checks to see if the user wants height returned
+  @if $width == true {
+    // Gets the width of the sprite-image
+    $sprite-width: image-width($sprite-image);
+    // Returns the width
+    width: $sprite-width; }
+}
+
+@mixin get-sprite-style($map, $sprite, $height: true, $width: true) {
+  //http://compass-style.org/reference/compass/helpers/sprites/#sprite-file
+  $sprite-image: sprite-file($map, $sprite);
+
+  // http://compass-style.org/reference/compass/helpers/sprites/#sprite-position
+  $sprite-position: sprite-position($map, $sprite);
+
+  // Returns background
+  background-position: $sprite-position;
+
+  // http://compass-style.org/reference/compass/helpers/image-dimensions/
+  // Checks to see if the user wants height returned
+  @if $height == true {
+    // Gets the height of the sprite-image
+    $sprite-height: image-height($sprite-image);
+    // Returns the height
+    height: $sprite-height; }
+
+  // http://compass-style.org/reference/compass/helpers/image-dimensions/
+  // Checks to see if the user wants height returned
+  @if $width == true {
+    // Gets the width of the sprite-image
+    $sprite-width: image-width($sprite-image);
+    // Returns the width
+    width: $sprite-width; }
+}
+
+// import from compass 1.0.1
+@mixin input-placeholder {
+  // @include with-each-prefix(css-placeholder, $input-placeholder-support-threshold) {
+    // @if $current-prefix == -webkit {
+      &::-webkit-input-placeholder {
+        @content;
+      }
+    // }
+    // @else if $current-prefix == -moz {
+      // for Firefox 19 and below
+      // @if support-legacy-browser("firefox", "4", "19", $threshold: $input-placeholder-support-threshold) {
+        &:-moz-placeholder {
+          @content;
+        }
+      // }
+      // for Firefox 20 and above
+      &::-moz-placeholder {
+        @content;
+      }
+    // }
+    // @else if $current-prefix == -ms {
+      &:-ms-input-placeholder {
+        @content;
+      }
+    // }
+  // }
+
+  // This is not standardized yet so no official selector is generated.
+}

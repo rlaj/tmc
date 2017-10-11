@@ -1,0 +1,1156 @@
+/** Define all top-level and section elements here in the order they should appear. Use these lists to structure your z-index layering orders within a given section of the page. Avoid using one-off values UNLESS they are 0 or negative values. Usage: z-index: z($list_name, element_name); Example: z-index: z($elements, page); */
+/*************************************************************************** Global **************************************************************************/
+body { font-family: Arial, sans-serif; background: #ffffff; }
+section.page-wrap { padding-bottom: 0 !important; min-width: 320px; }
+section.hero-wrap.half-standard-height { height: auto; }
+section.hero-wrap.half-standard-height .hero-content { height: auto; }
+section.hero-wrap.half-standard-height .hero-content:before { display: none; }
+section.hero-wrap.half-standard-height .hero-content > img { display: block; width: 100%; margin-left: auto; margin-right: auto; }
+section.hero-wrap.half-standard-height .hero-content .contentWrapper { position: absolute; width: 100%; top: 0; left: 0; }
+section.hero-wrap.half-standard-height .hero-content .title { display: none; }
+.navWrapper .filter .option { text-align: center; }
+.navWrapper .filter.open .options { margin-top: -5px; }
+.navWrapper .filter.open .currentRound { color: #ffffff !important; }
+#lbpopbodybottom { width: 100%; height: 30px; background: #000000; bottom: 0; position: fixed; z-index: 5; }
+#lbpopbodybottom #allScoresButton { text-align: center; }
+#lbpopbodybottom #allScoresButton a { color: #ffffff; cursor: pointer; line-height: 30px; text-transform: uppercase; }
+#leaderboardWrapper { width: 100%; margin: 0px; *zoom: 1; }
+#leaderboardWrapper:before, #leaderboardWrapper:after { content: ""; display: table; }
+#leaderboardWrapper:after { clear: both; }
+#leaderboardWrapper #leaderboardLowContainer { *zoom: 1; background: #ffffff; width: 100%; margin: 0; float: left; text-align: left; position: relative; /* holds score board bg in img tag due to the filtering weirdness on webkit browsers, no background: method is used */ }
+#leaderboardWrapper #leaderboardLowContainer:before, #leaderboardWrapper #leaderboardLowContainer:after { content: ""; display: table; }
+#leaderboardWrapper #leaderboardLowContainer:after { clear: both; }
+#leaderboardWrapper #leaderboardLowContainer #header { display: none; }
+#leaderboardWrapper #leaderboardLowContainer #header h1 { text-indent: -9999em; }
+#leaderboardWrapper #leaderboardLowContainer #leaderboardBg { display: none; }
+#leaderboardWrapper #leaderboardLow { float: left; position: relative; width: 100%; padding: 0px; margin-top: 0px; }
+#leaderboardWrapper #leaderboardLow .comments { width: 884px !important; height: 22px; text-align: right; color: #000000; padding-right: 21px; }
+#leaderboardWrapper #leaderboardLow .comments span { display: none; }
+#leaderboardWrapper #leaderboardLow .content { display: none; position: relative; }
+#leaderboardWrapper #leaderboardLow .content.selected { display: block; }
+#leaderboardWrapper #leaderboardLow .content.hidden { display: none; }
+#leaderboardWrapper #leaderboardLow .jspPane { left: 0px; }
+#leaderboardWrapper #leaderboardLow div.content { padding: 20px 0 0 0; /*overrides style.scss */ }
+#leaderboardFooterBase { position: relative; width: 320px; padding: 0; margin: 0 auto; *zoom: 1; /* left cell */ /* center cell */ /* right cell */ }
+#leaderboardFooterBase:before, #leaderboardFooterBase:after { content: ""; display: table; }
+#leaderboardFooterBase:after { clear: both; }
+#leaderboardFooterBase .footer_cell { float: left; text-align: left; }
+#leaderboardFooterBase .left_cell { width: 92.18%; }
+#leaderboardFooterBase .center_cell { width: 92.18%; height: 100%; text-align: center; }
+#leaderboardFooterBase .right_cell { width: 92.18%; }
+#leaderboardFooterBase .round_selector { text-align: center; position: relative; height: 100%; cursor: pointer; }
+#leaderboardFooterBase .round_selector .leftRound { position: relative; padding-right: 5px; }
+#leaderboardFooterBase .round_selector .rightRound { position: relative; padding-left: 20px; }
+#leaderboardFooterBase .round_selector #conCurrentRound { font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; font-size: 1em; color: #c2c2c2; text-transform: uppercase; }
+#leaderboardFooterBase .round_selector #conCurrentRound .selected { color: #000000; }
+#leaderboardFooterBase .round_selector #conCurrentRound .selected:hover { color: #000000; }
+#leaderboardFooterBase .round_selector #conCurrentRound.hide { display: none; }
+#leaderboardFooterBase .round_selector #conCurrentRound a:hover { color: #000000; }
+#leaderboardFooterBase .messageContainer { width: 100%; color: #333333; font-family: "Source Sans Pro Light", Arial, Helvetica, sans-serif; font-weight: 300; font-size: 1.167em; text-transform: none; text-align: center; }
+#leaderboardFooterBase .messageContainer .messageContent { text-align: center; padding-top: 12px; }
+#leaderboardFooterBase .messageContainer .messageContent span { display: block; }
+#leaderboardFooterBase .messageContainer .messageContent span.hide { display: none; }
+#leaderboardFooterBase .messageContainer .messageContent #view_playoff { display: none; }
+#leaderboardFooterBase .messageContainer .messageContent #conCurrentRoundText, #leaderboardFooterBase .messageContainer .messageContent .message, #leaderboardFooterBase .messageContainer .messageContent .allTimes, #leaderboardFooterBase .messageContainer .messageContent #view_playoff, #leaderboardFooterBase .messageContainer .messageContent #splittee { text-transform: none; padding: 0; }
+#leaderboardFooterBase .messageContainer .messageContent #conCurrentRoundText.hide, #leaderboardFooterBase .messageContainer .messageContent .message.hide, #leaderboardFooterBase .messageContainer .messageContent .allTimes.hide, #leaderboardFooterBase .messageContainer .messageContent #view_playoff.hide, #leaderboardFooterBase .messageContainer .messageContent #splittee.hide { display: none; }
+#leaderboardLowFooterWrapper { background: none; position: relative; width: 100%; }
+#leaderboardLowFooter { width: 100%; margin: 0 auto; padding: 0; overflow: visible; color: #000000; font-size: 1.1em; /* left cell */ /* center cell */ /* right cell */ }
+#leaderboardLowFooter .footer_cell { text-align: left; }
+#leaderboardLowFooter .left_cell { width: 295px; margin: 0 auto; clear: left; *zoom: 1; }
+#leaderboardLowFooter .left_cell:before, #leaderboardLowFooter .left_cell:after { content: ""; display: table; }
+#leaderboardLowFooter .left_cell:after { clear: both; }
+#leaderboardLowFooter .center_cell { width: 295px; margin: 0 auto; text-align: center; clear: left; *zoom: 1; }
+#leaderboardLowFooter .center_cell:before, #leaderboardLowFooter .center_cell:after { content: ""; display: table; }
+#leaderboardLowFooter .center_cell:after { clear: both; }
+#leaderboardLowFooter .right_cell { width: 295px; margin: 0 auto; position: relative; clear: left; *zoom: 1; }
+#leaderboardLowFooter .right_cell:before, #leaderboardLowFooter .right_cell:after { content: ""; display: table; }
+#leaderboardLowFooter .right_cell:after { clear: both; }
+#leaderboardLowFooter .currentRound { font-size: 1.167em; color: #000000; font-family: "Source Sans Pro Light", Arial, Helvetica, sans-serif; font-weight: 300; text-transform: uppercase; }
+#leaderboardLowFooter .view_selector { display: none; margin: 0 auto; font-family: "Source Sans Pro Light", Arial, Helvetica, sans-serif; font-weight: 300; text-transform: uppercase; }
+#leaderboardLowFooter .view_selector a, #leaderboardLowFooter .view_selector a:visited { padding: 0 1em; color: #ffffff; text-decoration: none; white-space: nowrap; }
+#leaderboardLowFooter .view_selector a.selected, #leaderboardLowFooter .view_selector a:visited.selected { color: #fff000; cursor: default; }
+#leaderboardLowFooter #roundSelectorContainer { *zoom: 1; }
+#leaderboardLowFooter #roundSelectorContainer:before, #leaderboardLowFooter #roundSelectorContainer:after { content: ""; display: table; }
+#leaderboardLowFooter #roundSelectorContainer:after { clear: both; }
+#leaderboardLowFooter #roundSelectorContainer.navWrapper .filter .options { position: relative; }
+#leaderboardLowFooter #roundSelectorContainer.navWrapper .date { display: none; }
+#leaderboardLowFooter .misc { width: 100px; float: right; text-align: right; }
+#leaderboardLowFooter .misc .radio, #leaderboardLowFooter .misc .popout { float: right; text-decoration: none; text-transform: uppercase; font-size: .9em; overflow: visible; height: 14px; cursor: pointer; }
+#leaderboardLowFooter .misc .radio > div, #leaderboardLowFooter .misc .popout > div { float: left; }
+#leaderboardLowFooter .misc .radio > div.text, #leaderboardLowFooter .misc .popout > div.text { height: 12px; }
+#leaderboardLowFooter .misc .radio > div.icon, #leaderboardLowFooter .misc .popout > div.icon { margin-left: 2px; }
+#leaderboardLowFooter .misc .radio { margin-bottom: 5px; font-style: italic; }
+#leaderboardLowFooter .misc .radio.offair { cursor: default; }
+#leaderboardLowFooter .misc .radio.onair span { font-style: normal; color: #FFFFFF; }
+#leaderboardLowFooter .misc .radio.onair span:before { content: " "; }
+#leaderboardLowFooter .misc .popout .icon { margin-top: 1px; }
+#leaderboardLowFooter .round_selector { clear: left; text-align: center; position: relative; cursor: pointer; }
+#leaderboardLowFooter .round_selector .concurrentRoundWrapper { padding-bottom: 20px; }
+#leaderboardLowFooter .round_selector .leftRound { position: relative; padding-right: 5px; }
+#leaderboardLowFooter .round_selector .rightRound { position: relative; padding-left: 20px; }
+#leaderboardLowFooter .round_selector #conCurrentRound { font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; font-size: 1.167em; color: #c2c2c2; text-transform: uppercase; }
+#leaderboardLowFooter .round_selector #conCurrentRound .selected { color: #000000; }
+#leaderboardLowFooter .player_search_cell { position: relative; float: left; margin-right: 2px; }
+#leaderboardLowFooter .player_search_cell #lbSearch { font-family: "Source Sans Pro Light", Arial, Helvetica, sans-serif; font-weight: 300; text-transform: uppercase; position: relative; width: 145px; height: 30px; margin-right: 2px; }
+#leaderboardLowFooter .player_search_cell #lbSearch.hidden { display: none; height: 0px; }
+#leaderboardLowFooter .player_search_cell #lbSearch.hidden #searchField { height: 0px; }
+#leaderboardLowFooter .player_search_cell #lbSearch.hidden #lbSearchButton { height: 0px; }
+#leaderboardLowFooter .player_search_cell #lbSearch #searchField { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; width: 145px; height: 30px; margin-right: 2px; }
+#leaderboardLowFooter .player_search_cell #lbSearch input { background: #dddddd; color: #333333; border: none; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; text-transform: uppercase; padding-left: 25px; padding-right: 15px; }
+#leaderboardLowFooter .player_search_cell #lbSearch #lbSearchButton { width: 30px; height: 28px; background: url(/images/leaderboard/leaderboard-search-icons.png) no-repeat 5px 5px; display: inline; padding: 0.5em 0.8em; position: absolute; top: 3px; left: 0px; cursor: pointer; }
+#leaderboardLowFooter .player_search_cell #lbSearch #lbSearchButton.on { background-position: 5px -16px; }
+#leaderboardLowFooter .player_filter_cell { position: relative; float: left; /* ends filter */ }
+#leaderboardLowFooter .player_filter_cell #playerSelector { width: 145px; height: 30px; background: #333333 url("/images/leaderboard/leaderboard-select-icons.png") no-repeat 98% 7px; position: relative; cursor: pointer; }
+#leaderboardLowFooter .player_filter_cell #playerSelector:hover { background-color: #000000; }
+#leaderboardLowFooter .player_filter_cell #playerSelector.open { background-position: 98% -13px; }
+#leaderboardLowFooter .player_filter_cell #playerSelector.hidden { display: none; height: 0px; }
+#leaderboardLowFooter .player_filter_cell #playerSelector .selectedContainer { width: 100%; height: 30px; display: block; }
+#leaderboardLowFooter .player_filter_cell #playerSelector .selectedContainer a.selected_option { width: 100%; height: 30px; font-family: "Source Sans Pro", Arial, Helvetica, sans-serif; font-weight: normal; color: #ffffff; font-size: 0.8em; line-height: 31px; padding: 0px 10px; text-decoration: none; text-transform: uppercase; }
+#leaderboardLowFooter .player_filter_cell .filter { width: 100%; text-align: left; margin: 0 auto; position: relative; cursor: pointer; }
+#leaderboardLowFooter .player_filter_cell .filter .options { margin-top: -1px; display: none; z-index: 4; width: 145px; position: relative; }
+#leaderboardLowFooter .player_filter_cell .filter .option { text-decoration: none; color: #333333; line-height: 31px; font-family: "Source Sans Pro", Arial, Helvetica, sans-serif; font-weight: normal; font-size: 0.8em; text-transform: uppercase; padding: 0px 5px 0 10px; border-top: 1px solid #1F1F1F; display: block; }
+#leaderboardLowFooter .player_filter_cell .filter.open .option { background-color: #000000; color: #ffffff; border: solid 1px #000000; }
+#leaderboardLowFooter .player_filter_cell .filter.open .option:hover { background: #ffffff; color: #000000; }
+#leaderboardLowFooter .player_filter_cell .filter.open .option.selected, #leaderboardLowFooter .player_filter_cell .filter.open .option.selected:hover { color: #ffffff; background: #333333; }
+#leaderboardLowFooter .player_filter_cell .filter.open .options { display: block; }
+#leaderboardLowFooter .player_filter_cell .filter.open:after { background-position: 7px 7px; }
+#leaderboardLowFooter .player_filter_cell .filter button { display: none; }
+#leaderboardWrapper .titleRow, #leaderboardWrapper .noplayers, #leaderboardWrapper .missedcutHeader, #leaderboardWrapper .cutline { float: left; width: 100%; height: 35px; line-height: 35px; border-top: 1px solid #E0E0E0; border-left: 1px solid #E0E0E0; border-right: 1px solid #E0E0E0; text-align: center; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; font-size: 1.2em; text-transform: uppercase; color: #333333; background: #DBDBDB; }
+#leaderboardWrapper .cutline { font-size: 1.4em; color: #000000; background: url(/images/leaderboard/leaderboard-cutline-only-sm.png) repeat-x center center; }
+#leaderboardWrapper .cutline span { background: #ffffff; padding: 0 10px; }
+#leaderboardWrapper .cutline:hover span { background: #efefef; }
+#leaderboardWrapper .playerRow { border: 1px solid #E0E0E0; color: #383838; clear: left; float: left; border-bottom: none; cursor: pointer; }
+#leaderboardWrapper .playerRow.lastrow { border-bottom: 1px solid #E0E0E0; }
+#leaderboardWrapper .playerRow.hoverable:hover { background: #e4ecdb; }
+#leaderboardWrapper .playerRow.hoverable:hover .playerName { color: #339933; }
+#leaderboardWrapper .playerRow.hidden { display: none; }
+#leaderboardWrapper .playerRow .playerName { border-right: 1px solid #E0E0E0; color: #383838; }
+#leaderboardWrapper .playerRow .playerName .data { padding-left: 5px; }
+#leaderboardWrapper .playerRow .playerName .smaller { font-size: .7em; }
+#leaderboardWrapper .playerRow .under { color: #BF0000 !important; }
+#leaderboardWrapper .playerRow .over { color: #14543E !important; }
+.outer-wrap { overflow: visible; /* used everything but xlarge view. style.css override*/ }
+.triplebottomborder { border-bottom: 0px solid #E0E0E0; /* overrides only in xlarge view */ }
+.tripleheight { height: 35px; /* overrides only in xlarge view */ }
+.score.last { border-right: 0px !important; }
+.clear { clear: both; }
+.desktopShow { display: none; }
+.desktopHide { display: block; }
+.tips { display: none; }
+.leaderboardBracket { display: none; }
+.leaderboardPole { display: none; }
+.searchEmptyRow.playerRow .score, .searchEmptyRow.playerRow .prior { background: none; }
+.searchEmptyRow.playerRow .playerName { cursor: none; }
+.searchEmptyRow.playerRow .rightOption.live { background: none; }
+.searchEmptyRow.playerRow .rightOption.live.on { background: none; }
+.searchEmptyRow.playerRow .track { background: none; }
+.searchEmptyRow.playerRow .favorite { background: none; cursor: none; }
+.searchEmptyRow.playerRow .favorite.hoverable:hover { background: none; cursor: none; }
+#leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper { clear: both; width: 100%; float: left; overflow: hidden; position: relative; }
+.headerWrapper.stickybar + #leaderBoardPlayers-wrapper, .headerWrapper.stickybar + #leaderBoardPlayersTraditional-wrapper { margin-top: 30px; }
+#leaderBoardPlayersFavContent, #leaderBoardPlayersTraditionalFavContent { width: 100%; }
+#leaderboardWrapper .leaderBoardContent { width: 100%; margin: 0; background: #ffffff; opacity: 1; }
+#leaderboardWrapper .leaderBoardContent .note { width: 320px; margin: 0 auto; padding: 20px 0; font-family: "Source Sans Pro", Arial, Helvetica, sans-serif; font-weight: normal; font-size: 1.0em; color: #333333; text-align: center; }
+#leaderboardWrapper .leaderBoardContent .note span { text-transform: uppercase; }
+#leaderboardWrapper .leaderBoardContent .note .pike { color: #cccccc; padding-left: 5px; padding-right: 5px; }
+#leaderboardWrapper .leaderBoardContent .note .about { padding-top: 20px; }
+#leaderboardWrapper .leaderBoardContent .note .about a, #leaderboardWrapper .leaderBoardContent .note .about a:visited { color: #333333; text-decoration: none; }
+#leaderboardWrapper .leaderBoardContent .note .about a:after, #leaderboardWrapper .leaderBoardContent .note .about a:visited:after { content: "\00a0 \00a0 \00a0 >"; }
+#leaderboardWrapper .leaderBoardContent .note .about a:hover, #leaderboardWrapper .leaderBoardContent .note .about a:visited:hover { color: #999999; }
+#leaderBoardPlayers-wrapper #leaderBoardPlayersFavContent, #leaderBoardPlayers-wrapper #leaderBoardPlayersTraditionalFavContent, #leaderBoardPlayersTraditional-wrapper #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditional-wrapper #leaderBoardPlayersTraditionalFavContent { display: none; }
+#leaderBoardPlayers-wrapper #leaderBoardPlayersFavContent .titleRow, #leaderBoardPlayers-wrapper #leaderBoardPlayersTraditionalFavContent .titleRow, #leaderBoardPlayersTraditional-wrapper #leaderBoardPlayersFavContent .titleRow, #leaderBoardPlayersTraditional-wrapper #leaderBoardPlayersTraditionalFavContent .titleRow { display: none; }
+#leaderBoardPlayers-wrapper.showFav #leaderBoardPlayersFavContent, #leaderBoardPlayers-wrapper.showFav #leaderBoardPlayersTraditionalFavContent, #leaderBoardPlayersTraditional-wrapper.showFav #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditional-wrapper.showFav #leaderBoardPlayersTraditionalFavContent { display: block; }
+#leaderBoardPlayers-wrapper.showFav #leaderBoardPlayersFavContent .titleRow, #leaderBoardPlayers-wrapper.showFav #leaderBoardPlayersTraditionalFavContent .titleRow, #leaderBoardPlayersTraditional-wrapper.showFav #leaderBoardPlayersFavContent .titleRow, #leaderBoardPlayersTraditional-wrapper.showFav #leaderBoardPlayersTraditionalFavContent .titleRow { display: block; }
+#leaderBoardPlayers-wrapper.showFav #leaderBoardPlayersContent .titleRow, #leaderBoardPlayers-wrapper.showFav #leaderBoardPlayersTraditionalContent .titleRow, #leaderBoardPlayersTraditional-wrapper.showFav #leaderBoardPlayersContent .titleRow, #leaderBoardPlayersTraditional-wrapper.showFav #leaderBoardPlayersTraditionalContent .titleRow { display: block; }
+#leaderBoardPlayers-wrapper.hideFav #leaderBoardPlayersFavContent, #leaderBoardPlayers-wrapper.hideFav #leaderBoardPlayersTraditionalFavContent, #leaderBoardPlayersTraditional-wrapper.hideFav #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditional-wrapper.hideFav #leaderBoardPlayersTraditionalFavContent { display: none; }
+#leaderBoardPlayers-wrapper.hideFav #leaderBoardPlayersFavContent .titleRow, #leaderBoardPlayers-wrapper.hideFav #leaderBoardPlayersTraditionalFavContent .titleRow, #leaderBoardPlayersTraditional-wrapper.hideFav #leaderBoardPlayersFavContent .titleRow, #leaderBoardPlayersTraditional-wrapper.hideFav #leaderBoardPlayersTraditionalFavContent .titleRow { display: none; }
+#leaderBoardPlayers-wrapper.hideFav #leaderBoardPlayersContent .titleRow, #leaderBoardPlayers-wrapper.hideFav #leaderBoardPlayersTraditionalContent .titleRow, #leaderBoardPlayersTraditional-wrapper.hideFav #leaderBoardPlayersContent .titleRow, #leaderBoardPlayersTraditional-wrapper.hideFav #leaderBoardPlayersTraditionalContent .titleRow { display: none; }
+#leaderBoardPlayers-wrapper.searchShown #leaderBoardPlayersFavContent, #leaderBoardPlayers-wrapper.searchShown #leaderBoardPlayersTraditionalFavContent, #leaderBoardPlayersTraditional-wrapper.searchShown #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditional-wrapper.searchShown #leaderBoardPlayersTraditionalFavContent { display: none; }
+#leaderBoardPlayers-wrapper.searchShown #leaderBoardPlayersFavContent .titleRow, #leaderBoardPlayers-wrapper.searchShown #leaderBoardPlayersTraditionalFavContent .titleRow, #leaderBoardPlayersTraditional-wrapper.searchShown #leaderBoardPlayersFavContent .titleRow, #leaderBoardPlayersTraditional-wrapper.searchShown #leaderBoardPlayersTraditionalFavContent .titleRow { display: none; }
+#leaderBoardPlayers-wrapper.searchShown #leaderBoardPlayersContent .titleRow, #leaderBoardPlayers-wrapper.searchShown #leaderBoardPlayersTraditionalContent .titleRow, #leaderBoardPlayersTraditional-wrapper.searchShown #leaderBoardPlayersContent .titleRow, #leaderBoardPlayersTraditional-wrapper.searchShown #leaderBoardPlayersTraditionalContent .titleRow { display: none; }
+/*************************************************************************************** Mobile Landscape and Above Screen Size >= 480px *************************************************************************************/
+@media only screen and (min-width: 30em) { #leaderboardLowFooter .center_cell { width: 400px; }
+#leaderboardLowFooter .center_cell .view_selector { font-size: 1em; display: block; padding-bottom: 20px; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; }
+#leaderboardLowFooter .center_cell .view_selector a, #leaderboardLowFooter .center_cell .view_selector a:visited { color: #999999; }
+#leaderboardLowFooter .center_cell .view_selector a.selected, #leaderboardLowFooter .center_cell .view_selector a:visited.selected { color: #000000; }
+#leaderboardLowFooter .center_cell .view_selector a:hover { color: #000000; }
+#leaderboardLowFooter .center_cell .view_selector a:hover.selected { color: #000000; } }
+/****************************************************************** MEDIUM SCREEN SIZE AND ABOVE Screen Size >= 720px ****************************************************************/
+@media only screen and (min-width: 45em) { .popout header#top { position: fixed; }
+section.hero-wrap.half-standard-height { height: auto; background: #ffffff; }
+section.hero-wrap.half-standard-height .hero-content { height: auto; }
+section.hero-wrap.half-standard-height .hero-content:before { display: none; }
+section.hero-wrap.half-standard-height .hero-content > img { display: block; width: 100%; }
+section.hero-wrap.half-standard-height .hero-content .contentWrapper { position: absolute; width: 100%; top: 0; left: 0; }
+section.hero-wrap.half-standard-height .hero-content .contentWrapper:before { max-height: 60px; } }
+@media only screen and (min-width: 45em) and (min-width: 57.5em) { section.hero-wrap.half-standard-height .hero-content .contentWrapper:before { max-height: 80px; } }
+@media only screen and (min-width: 45em) { section.hero-wrap.half-standard-height .hero-content .contentWrapper .title { display: block; }
+section.page-wrap { background: #ffffff; background-image: none; }
+.navWrapper { height: auto; min-height: 4em; }
+#roundSelectorContainer .filter { position: absolute; z-index: 10; }
+#leaderboardLowFooter .player_filter_cell .filter { position: absolute; z-index: 8; }
+#leaderboardLowFooter .left_cell { width: 500px; }
+#leaderboardWrapper .titleRow, #leaderboardWrapper .noplayers, #leaderboardWrapper .missedcutHeader, #leaderboardWrapper .cutline { height: 41px; line-height: 41px; border-top: 1px solid #E0E0E0; border-left: 1px solid #E0E0E0; font-size: 1.4em; }
+#leaderboardWrapper .cutline { font-size: 1.6em; }
+#leaderboardLowFooter .center_cell { width: 400px; }
+#leaderboardLowFooter .center_cell .view_selector { font-size: 1.16667em; } }
+/****************************************************************** LARGE SCREEN SIZE AND ABOVE Screen Size >= 920px ****************************************************************/
+@media only screen and (min-width: 57.5em) { .navWrapper .filter .selected_container { font-size: 2.0em; }
+#leaderboardFooterBase { width: 350px; }
+#leaderboardFooterBase .messageContainer .messageContent .round_selector { padding-top: 10px; } }
+/****************************************************************** LARGER ALPHA SIZE AND ABOVE Screen Size >= 1024px and 620px height Nexus 10 case... height restriction to be 620px smaller Skeuomorphic view reset the view_selector height, font-size, icons reset teetime font size hide popout LB bottom fixed Full Leader Board link move the view selector (Par 3 Contest | Over/under | Traditional) to the top adjust the styles for the Search and Filter Players ****************************************************************/
+@media only screen and (min-width: 64em) and (min-height: 38.75em) { /* entire score board width */
+/* actual content area */
+/* LEADERS */
+/* header row + scores */
+.popout header#top { position: static; }
+.desktopShow { display: inline; /* display: block causes alignment issue in the footer Par 3 link */ }
+.desktopHide { display: none; }
+.lastrow { border-bottom: 1px solid #E0E0E0; }
+section.hero-wrap.half-standard-height { display: none; }
+.outer-wrap { overflow: hidden; }
+section.nav-wrap, section.page-wrap { background-size: cover; /* overrides style.css */ }
+section.page-wrap { min-height: 100%; }
+#leaderboardWrapper { width: 940px; margin: 0 auto; /* common classes */ /* Leaderboard base - in the green area on the score board */ }
+#leaderboardWrapper #leaderboardLowContainer { background: none !important; margin: -15px 0 0 0; position: relative; width: 100%; }
+#leaderboardWrapper #leaderboardLowContainer #header { display: block; position: fixed; width: 100%; height: 53px; }
+#leaderboardWrapper #leaderboardLowContainer #header h1 { text-indent: -9999em; }
+#leaderboardWrapper #leaderboardLowContainer #leaderboardBg { display: block !important; position: absolute; z-index: 0; width: 940px; height: 522px; top: 0px; }
+#leaderboardWrapper #leaderboardLowContainer #leaderboardBg img { display: block !important; }
+#leaderboardWrapper #leaderboardLowContainer #leaderboardBg #largeSkeuomorphicBg { display: none !important; }
+#leaderboardWrapper #leaderboardLowContainer #leaderboardBg #smallSkeuomorphicBg { display: block !important; }
+#leaderboardWrapper .triplebottomborder { border-bottom: solid 2px #3c3c3b !important; }
+#leaderboardWrapper .tripleheight { height: 36px !important; }
+#leaderboardWrapper .titleRow, #leaderboardWrapper .noplayers, #leaderboardWrapper .missedcutHeader, #leaderboardWrapper .cutline { background: transparent url(/images/leaderboard/titleRow-text-sm.png) no-repeat 0 0; height: 33px; line-height: 33px; border-top: 1px solid #3c3c3b; border-right: 1px solid #3c3c3b; border-left: 1px solid #3c3c3b; font-size: 2.0em; color: #000000; text-indent: -9999px; }
+#leaderboardWrapper .favoritesTitle { background-position: 0 0; }
+#leaderboardWrapper .allPlayersTitle { background-position: 0 -37px; }
+#leaderboardWrapper .noplayers { background-position: 0 -110px; }
+#leaderboardWrapper .cutline { font-size: 2.2em; background-position: 0 -76px !important; }
+#leaderboardWrapper .cutline span { background: #f7f4f0; }
+#leaderboardWrapper #leaderboardLow { width: 940px; height: 468px; margin-top: 53px; padding: 0px 15px; }
+#leaderboardWrapper #leaderboardLow .fade { position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 10; background-color: #000000; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80); opacity: 0.8; display: none; }
+#leaderboardWrapper #leaderboardLow .content { visibility: hidden; opacity: 0; position: absolute; left: 1px; }
+#leaderboardWrapper #leaderboardLow .content.selected { visibility: visible; opacity: 1; }
+#leaderboardWrapper #leaderboardLow .content.hidden { display: block; }
+#leaderboardWrapper #leaderboardLow div.content { padding: 0 14px; /*overrides style.scss */ }
+#leaderboardWrapper .leaderBoardContent { width: 912px; margin: 0; opacity: 0; }
+#leaderboardWrapper .leaderBoardContent .note { display: none; }
+#leaderboardWrapper #leaderboardFooterBase { position: absolute; z-index: 2; top: 455px; width: 940px; height: 68px; padding: 0 17px; /* left cell */ /* center cell */ /* right cell */ }
+#leaderboardWrapper #leaderboardFooterBase .footer_cell { float: left; text-align: left; }
+#leaderboardWrapper #leaderboardFooterBase .left_cell { width: 30%; }
+#leaderboardWrapper #leaderboardFooterBase .center_cell { width: 40%; height: 100%; text-align: center; }
+#leaderboardWrapper #leaderboardFooterBase .right_cell { width: 200px; float: right; }
+#leaderboardWrapper #leaderboardFooterBase .popout { float: left; margin-top: 23px; width: 100%; }
+#leaderboardWrapper #leaderboardFooterBase .popout.hidden { visibility: hidden; }
+#leaderboardWrapper #leaderboardFooterBase .popout span { font-family: "HelveticaNeue-Medium", "Helvetica Neue LT Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 500; float: left; cursor: pointer; background: url(/images/leaderboard/popout-lb-icon-sprite.png) left top no-repeat; color: #70a370; height: 26px; line-height: 26px; padding-left: 35px; text-decoration: none; text-transform: uppercase; }
+#leaderboardWrapper #leaderboardFooterBase .popout span:hover { background-position: 0 -27px; color: #fff000; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer { height: 66px; width: 100%; color: #ffffff; font-family: "Source Sans Pro Light", Arial, Helvetica, sans-serif; font-weight: 300; font-size: 1.167em; text-transform: none; text-align: center; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer:before { content: ''; display: inline-block; height: 100%; vertical-align: middle; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent { clear: both; display: inline-block; vertical-align: middle; text-align: center; padding-top: 0; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent span { display: inline-block; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent span.hide { display: none; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .round_selector { text-align: center; position: relative; height: auto; cursor: pointer; padding-top: 0; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .round_selector .leftRound { position: relative; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .round_selector .rightRound { position: relative; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .round_selector #conCurrentRound { font-family: "Source Sans Pro Light", Arial, Helvetica, sans-serif; font-weight: 300; font-size: 1.167em; color: #ffffff; text-transform: uppercase; height: 100%; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .round_selector #conCurrentRound .selected { color: #fff000; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .round_selector #conCurrentRound .selected:hover { cursor: default; color: #fff000; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .round_selector #conCurrentRound.hide { display: none; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .round_selector #conCurrentRound a:hover { color: #fff000; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent #conCurrentRoundText, #leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .message, #leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .allTimes, #leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent #view_playoff, #leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent #splittee { text-align: center; color: #81ad82; font-family: "Source Sans Pro Light", Arial, Helvetica, sans-serif; font-weight: 300; font-size: 1em; text-transform: none; padding-top: 0px; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent #conCurrentRoundText.hide, #leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .message.hide, #leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent .allTimes.hide, #leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent #view_playoff.hide, #leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent #splittee.hide { display: none; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent #splittee { margin-right: 10px; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent #conCurrentRoundText { color: #ffffff; text-transform: uppercase; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer #view_playoff { display: inline-block; vertical-align: middle; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer #view_playoff a:link, #leaderboardWrapper #leaderboardFooterBase .messageContainer #view_playoff a:visited { text-transform: uppercase; text-decoration: none; color: #ffffff; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer #view_playoff a:hover { color: #fff000; }
+#leaderboardWrapper #leaderboardFooterBase .learn_more { float: left; margin-top: 23px; width: 100%; text-align: right; }
+#leaderboardWrapper #leaderboardFooterBase .learn_more a { font-family: "HelveticaNeue-Medium", "Helvetica Neue LT Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 500; display: block; color: #70a370; line-height: 23px; text-decoration: none; text-transform: uppercase; }
+#leaderboardWrapper #leaderboardFooterBase .learn_more a:before { width: 38px; height: 23px; content: " "; background: url(/images/leaderboard/help-icon-sprite.png) 15px top no-repeat; float: right; }
+#leaderboardWrapper #leaderboardFooterBase .learn_more a:hover { color: #fff000; }
+#leaderboardWrapper #leaderboardFooterBase .learn_more a:hover:before { background-position: 15px -23px; }
+/* Leader Board Page Footer - in the black nav bar */
+#leaderboardLowFooterWrapper { background-color: rgba(0, 0, 0, 0.8); position: relative; width: 100%; height: 50px; padding-bottom: 0px; }
+.ie8 #leaderboardLowFooterWrapper { -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#CC000000', endColorstr='#CC000000')"; }
+#leaderboardLowFooter { width: 912px; margin: 0 auto; padding: 0; overflow: visible; color: #ffffff; line-height: 4em; font-size: 13px; /* center cell */ /* center cell */ /* right cell */ }
+#leaderboardLowFooter .footer_cell { float: left; text-align: left; }
+#leaderboardLowFooter .left_cell { width: 30%; }
+#leaderboardLowFooter .center_cell { width: 40%; text-align: center; clear: none; }
+#leaderboardLowFooter .right_cell { width: 30%; position: relative; clear: none; }
+#leaderboardLowFooter .currentRound { font-size: 1.167em; color: #ffffff; font-family: "Source Sans Pro Light", Arial, Helvetica, sans-serif; font-weight: 300; text-transform: uppercase; }
+#leaderboardLowFooter .center_cell .view_selector { margin: 0 auto; font-family: "Source Sans Pro Light", Arial, Helvetica, sans-serif; font-weight: 300; text-transform: uppercase; }
+#leaderboardLowFooter .center_cell .view_selector a, #leaderboardLowFooter .center_cell .view_selector a:visited { padding: 0 1em; color: #ffffff; text-decoration: none; }
+#leaderboardLowFooter .center_cell .view_selector a.selected, #leaderboardLowFooter .center_cell .view_selector a:visited.selected { color: #fff000; cursor: default; }
+#leaderboardLowFooter .center_cell .view_selector a:hover.selected { color: #fff000; }
+#leaderboardLowFooter .center_cell .view_selector a.desktopShow:hover { color: #fff000; }
+#leaderboardLowFooter .center_cell .view_selector a.leaderboardoption:hover { color: #fff000; }
+#leaderboardLowFooter .misc { width: 100px; float: right; text-align: right; }
+#leaderboardLowFooter .misc .radio, #leaderboardLowFooter .misc .popout { float: right; text-decoration: none; text-transform: uppercase; font-size: .9em; overflow: visible; height: 14px; cursor: pointer; }
+#leaderboardLowFooter .misc .radio > div, #leaderboardLowFooter .misc .popout > div { float: left; }
+#leaderboardLowFooter .misc .radio > div.text, #leaderboardLowFooter .misc .popout > div.text { height: 12px; }
+#leaderboardLowFooter .misc .radio > div.icon, #leaderboardLowFooter .misc .popout > div.icon { margin-left: 2px; }
+#leaderboardLowFooter .misc .radio { margin-bottom: 5px; font-style: italic; }
+#leaderboardLowFooter .misc .radio.offair { cursor: default; }
+#leaderboardLowFooter .misc .radio.onair span { font-style: normal; color: #FFFFFF; }
+#leaderboardLowFooter .misc .radio.onair span:before { content: " "; }
+#leaderboardLowFooter .misc .popout .icon { margin-top: 1px; }
+#leaderboardLowFooter .player_search_cell { position: absolute; right: 126px; margin-left: 5px; }
+#leaderboardLowFooter .player_search_cell #lbSearch { font-family: "Source Sans Pro Light", Arial, Helvetica, sans-serif; font-weight: 300; text-transform: uppercase; position: relative; width: 125px; height: 30px; }
+#leaderboardLowFooter .player_search_cell #lbSearch #searchField { font-size: 1.0em; background: #bfc0c0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; width: 125px; height: 30px; }
+#leaderboardLowFooter .player_search_cell #lbSearch input[type="text"]::-webkit-input-placeholder { color: #000000; }
+#leaderboardLowFooter .player_search_cell #lbSearch input[type="text"]:-moz-placeholder { color: #000000; }
+#leaderboardLowFooter .player_search_cell #lbSearch input[type="text"]::-moz-placeholder { color: #000000; }
+#leaderboardLowFooter .player_search_cell #lbSearch input[type="text"]:-ms-input-placeholder { color: #000000; }
+#leaderboardLowFooter .player_search_cell #lbSearch #lbSearchButton { width: 30px; height: 28px; background: url(/images/leaderboard/leaderboard-search-icons.png) no-repeat 5px 5px; display: inline; padding: 0.5em 0.8em; position: absolute; top: 13px; left: 0px; cursor: pointer; }
+#leaderboardLowFooter .player_search_cell #lbSearch #lbSearchButton.on { background-position: 5px -16px; }
+#leaderboardLowFooter .player_search_cell #lbSearch.hidden { display: block; }
+#leaderboardLowFooter .player_search_cell #lbSearch.hidden #searchField { height: 30px; }
+#leaderboardLowFooter .player_search_cell #lbSearch.hidden #lbSearchButton { height: 28px; }
+#leaderboardLowFooter .player_filter_cell { float: right; position: relative; font-size: 1.0em; top: 11px; /* ends filter */ }
+#leaderboardLowFooter .player_filter_cell #playerSelector { width: 125px; height: 30px; background: #333333 url("/images/leaderboard/leaderboard-select-icons.png") no-repeat 98% 7px; border: solid 1px #858585; cursor: pointer; position: relative; }
+#leaderboardLowFooter .player_filter_cell #playerSelector:hover { background-color: #333333; }
+#leaderboardLowFooter .player_filter_cell #playerSelector.open { background-position: 98% -13px; }
+#leaderboardLowFooter .player_filter_cell #playerSelector.hidden { display: block; height: 30px; }
+#leaderboardLowFooter .player_filter_cell #playerSelector .selectedContainer { line-height: normal; width: 125px; padding-right: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#leaderboardLowFooter .player_filter_cell #playerSelector .selectedContainer a.selected_option { font-size: 1.0em; }
+#leaderboardLowFooter .player_filter_cell .filter { width: 100%; text-align: left; margin: 0 auto; position: relative; cursor: pointer; }
+#leaderboardLowFooter .player_filter_cell .filter .options { display: none; z-index: 4; width: 240px; position: absolute; top: 38px; left: -90px; margin-top: 0; }
+#leaderboardLowFooter .player_filter_cell .filter .option { font-size: 1.0em; text-decoration: none; color: #333333; line-height: 36px; font-family: "Source Sans Pro", Arial, Helvetica, sans-serif; font-weight: normal; text-transform: uppercase; padding: 0px 15px; }
+#leaderboardLowFooter .player_filter_cell .filter .option { border-top: 1px solid #1F1F1F; display: block; }
+#leaderboardLowFooter .player_filter_cell .filter.open { background-position: 6px -13px; }
+#leaderboardLowFooter .player_filter_cell .filter.open:after { background-position: 7px 7px; }
+#leaderboardLowFooter .player_filter_cell .filter button { display: none; }
+.ie8 .player_search_cell #lbSearch { top: -5px; }
+.ie8 .player_search_cell #lbSearch #lbSearchButton { top: 18px !important; }
+.ie9 .player_filter_cell #playerSelector { top: 12px !important; }
+.leaderboardBracket { display: block; position: relative; width: 104px; height: 22px; margin: 0px auto; }
+.leaderboardPole { display: block; clear: both; width: 77px; height: 22px; margin: 0px auto; background: url(/images/misc/poleOnly.jpg) repeat-y top; }
+/* popout LB - Full Leader Board Link at the bottom of the page */
+#lbpopbodybottom { display: none; } }
+/****************************************************************** Non-Skeumorphic Screen Size <= 1023px ****************************************************************/
+@media only screen and (max-width: 63.938em) { #leaderboardWrapper #leaderBoardPlayersContent, #leaderboardWrapper #leaderBoardPlayersTraditionalContent { float: left; width: 100%; padding-bottom: 20px; } }
+/****************************************************************** Large Non-Skeumorphic Screen Width >= 1024px and Height <= 619px ****************************************************************/
+@media only screen and (min-width: 64em) and (max-height: 38.688em) { #leaderboardWrapper #leaderBoardPlayersContent, #leaderboardWrapper #leaderBoardPlayersTraditionalContent { float: left; width: 100%; padding-bottom: 20px; } }
+/****************************************************************** LARGER ALPHA SIZE AND ABOVE (Skeumorphic) Screen Size >= 1024px and 620px height ****************************************************************/
+@media only screen and (min-width: 64em) and (min-height: 38.75em) { #leaderboardWrapper .playerRow { border-color: #3c3c3b; color: #383838; font-size: 2.0em; font-family: 'Single LB'; }
+#leaderboardWrapper .playerRow:nth-of-type(n) { background-color: transparent; }
+#leaderboardWrapper .playerRow .playerName { float: left; height: 33px; cursor: pointer; width: 108px; color: #383838; border-right: solid 3px #3c3c3b; font-family: 'Player Name'; font-weight: normal; position: relative; }
+#leaderboardWrapper .playerRow .playerName .smaller { font-size: .7em; }
+#leaderboardWrapper .playerRow .under { color: #BF0000 !important; }
+#leaderboardWrapper .playerRow .over { color: #14543E !important; }
+#leaderboardWrapper .playerRow .rightOption { float: left; width: 31px; height: 33px; }
+#leaderboardWrapper .playerRow .rightOption.live { border-right: 1px solid #3c3c3b; width: 31px; height: 33px; background: url(/images/leaderboard/leaderboard-live-icons-sm.png) no-repeat 55% 5px; background-color: none; }
+#leaderboardWrapper .playerRow .rightOption.live.on { background-position: 50% -26px; cursor: pointer; }
+#leaderboardWrapper .playerRow .track { pointer-events: none; cursor: default; border-right: 1px solid #3c3c3b; background: url("/images/leaderboard/leaderboard-track-icons-sm.png") no-repeat 50% 4px; cursor: default; }
+#leaderboardWrapper .playerRow .track.on { background-position: 50% -26px; cursor: pointer; pointer-events: auto; }
+#leaderboardWrapper .playerRow .track.on:hover { background-position: 50% -56px; }
+#leaderboardWrapper .playerRow .track a { display: block; }
+#leaderboardWrapper .playerRow .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-skeu-sm.png") no-repeat 50% 8px; cursor: pointer; }
+#leaderboardWrapper .playerRow.favoritePlayer .favorite, #leaderboardWrapper .playerRow.favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-skeu-sm.png") no-repeat 50% -24px; } }
+/****************************************************************** LARGER LARGEST SIZE AND ABOVE Screen Size >= 1440px and 820px height ****************************************************************/
+@media only screen and (min-width: 90em) and (min-height: 51.25em) { #leaderboardWrapper .playerRow .track { background: url("/images/leaderboard/leaderboard-track-icons.png") no-repeat 50% 10px; cursor: default; }
+#leaderboardWrapper .playerRow .track.on { background-position: 50% -25px; cursor: pointer; }
+#leaderboardWrapper .playerRow .track.on:hover { background-position: 50% -59px; }
+#leaderboardWrapper .playerRow .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons.png") no-repeat 50% 9px; cursor: pointer; }
+#leaderboardWrapper .playerRow.favoritePlayer .favorite, #leaderboardWrapper .playerRow.favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons.png") no-repeat 50% -29px; } }
+/************************************************ GLOBAL ***********************************************/
+/************************************************************************************************ LARGE SCREEN SIZE AND BELOW (NON-SKEUMORPHIC OVERUNDER) Common styles to all non-skeumorphic overunder views Screen Size <= 1023px **********************************************************************************************/
+@media only screen and (max-width: 63.938em) { #leaderboardWrapper #overunder { display: block; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow { background: #333333; color: #323232; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader { float: left; text-align: center; word-wrap: break-word; letter-spacing: 40px; line-height: normal; border-right: 1px solid #4E4E4E; border-bottom: 1px solid #4E4E4E; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader.fav { border-right: none; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader span { display: block; padding-left: 5%; }
+#leaderboardWrapper #overunder .headerWrapper.stickybar { position: fixed; margin: 0; width: 100%; left: 0px; z-index: 10; }
+#leaderboardWrapper #overunder .headerRowContent { color: #aaaaaa; border: 1px solid #4E4E4E; font-weight: bold; text-transform: uppercase; border-bottom: none; overflow: hidden; }
+#leaderboardWrapper #overunder .headerRowContent .prior { float: left; border-right: 1px solid #4E4E4E; border-bottom: 1px solid #4E4E4E; text-align: center; word-wrap: break-word; letter-spacing: 40px; }
+#leaderboardWrapper #overunder .headerRowContent .prior span { display: block; padding-left: 8%; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer { float: left; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par { float: left; text-align: center; width: 100%; line-height: 40px; border-bottom: 1px solid #4E4E4E; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .description, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .description { float: left; border-right: 1px solid #4E4E4E; letter-spacing: 1px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole { float: left; border-right: 1px solid #4E4E4E; text-align: center; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole9, #leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole9 { border-right: 1px solid #4E4E4E; }
+#leaderboardWrapper #overunder .playerRow:nth-of-type(2n) { background-color: #F2F2F2; }
+.titleRow ~ #leaderboardWrapper #overunder .playerRow:nth-of-type(2n) { background-color: #ffffff; }
+.titleRow ~ #leaderboardWrapper #overunder .playerRow:nth-of-type(2n+1) { background-color: #F2F2F2; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior { float: left; text-align: center; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #overunder .playerRow .playerContainer { float: left; }
+#leaderboardWrapper #overunder .playerRow .playerName { float: left; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; }
+#leaderboardWrapper #overunder .playerRow .playerName .smaller { font-size: .7em; }
+#leaderboardWrapper #overunder .playerRow .rightOption { float: left; }
+#leaderboardWrapper #overunder .playerRow .rightOption.live { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #overunder .playerRow .track { border-right: 1px solid #E0E0E0; pointer-events: none; cursor: default; }
+#leaderboardWrapper #overunder .playerRow .track.on { cursor: pointer; pointer-events: auto; }
+#leaderboardWrapper #overunder .playerRow .track a { display: block; }
+#leaderboardWrapper .missedcut, #leaderboardWrapper .disqualified, #leaderboardWrapper .withdrawn { border-right: 1px solid #E0E0E0; width: 100%; text-align: center; font-family: 'Player Name'; font-size: 1em; } }
+/****************************************************************** Large Non-Skeumorphic Screen Width >= 1024px and Width <= 619px ****************************************************************/
+@media only screen and (min-width: 64em) and (max-height: 38.688em) { #leaderboardWrapper #overunder { display: block; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow { background: #333333; color: #323232; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader { float: left; text-align: center; word-wrap: break-word; letter-spacing: 40px; line-height: normal; border-right: 1px solid #4E4E4E; border-bottom: 1px solid #4E4E4E; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader.fav { border-right: none; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader span { display: block; padding-left: 5%; }
+#leaderboardWrapper #overunder .headerWrapper.stickybar { position: fixed; margin: 0; width: 100%; left: 0px; z-index: 10; }
+#leaderboardWrapper #overunder .headerRowContent { color: #aaaaaa; border: 1px solid #4E4E4E; font-weight: bold; text-transform: uppercase; border-bottom: none; overflow: hidden; }
+#leaderboardWrapper #overunder .headerRowContent .prior { float: left; border-right: 1px solid #4E4E4E; border-bottom: 1px solid #4E4E4E; text-align: center; word-wrap: break-word; letter-spacing: 40px; }
+#leaderboardWrapper #overunder .headerRowContent .prior span { display: block; padding-left: 8%; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer { float: left; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par { float: left; text-align: center; width: 100%; line-height: 40px; border-bottom: 1px solid #4E4E4E; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .description, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .description { float: left; border-right: 1px solid #4E4E4E; letter-spacing: 1px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole { float: left; border-right: 1px solid #4E4E4E; text-align: center; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole9, #leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole9 { border-right: 1px solid #4E4E4E; }
+#leaderboardWrapper #overunder .playerRow:nth-of-type(2n) { background-color: #F2F2F2; }
+.titleRow ~ #leaderboardWrapper #overunder .playerRow:nth-of-type(2n) { background-color: #ffffff; }
+.titleRow ~ #leaderboardWrapper #overunder .playerRow:nth-of-type(2n+1) { background-color: #F2F2F2; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior { float: left; text-align: center; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #overunder .playerRow .playerContainer { float: left; }
+#leaderboardWrapper #overunder .playerRow .playerName { float: left; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; }
+#leaderboardWrapper #overunder .playerRow .playerName .smaller { font-size: .7em; }
+#leaderboardWrapper #overunder .playerRow .rightOption { float: left; }
+#leaderboardWrapper #overunder .playerRow .rightOption.live { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #overunder .playerRow .track { border-right: 1px solid #E0E0E0; pointer-events: none; cursor: default; }
+#leaderboardWrapper #overunder .playerRow .track.on { cursor: pointer; pointer-events: auto; }
+#leaderboardWrapper #overunder .playerRow .track a { display: block; }
+#leaderboardWrapper .missedcut, #leaderboardWrapper .disqualified, #leaderboardWrapper .withdrawn { border-right: 1px solid #E0E0E0; width: 100%; text-align: center; font-family: 'Player Name'; font-size: 1em; } }
+/********************************************************************************************** MOBILE LANDSCAPE 480px >= Screen Size >= 719px ********************************************************************************************/
+@media only screen and (min-width: 30em) and (max-width: 44.9375em) { #leaderboardWrapper #overunder .headerWrapper .headerRow { font-size: 1em; width: 100%; height: 65px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader { width: 4.79167%; height: 65px; font-size: 0.7em; padding-left: 2%; padding-top: 1%; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader.fav { width: 4.79167%; padding-top: 2%; padding-left: 1.5%; }
+#leaderboardWrapper #overunder .headerWrapper.stickybar { top: 40px; }
+#leaderboardWrapper #overunder .headerRowContent { width: 100%; height: 65px; }
+#leaderboardWrapper #overunder .headerRowContent .prior { font-size: 0.7em; width: 3.75%; height: 65px; padding-left: 1.3%; padding-top: 1%; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer { width: 86.66667%; height: 65px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par { height: 32.5px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .description, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .description { width: 24.27885%; height: 32.5px; line-height: 32.5px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole { width: 4.20673%; height: 32.5px; line-height: 32.5px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole9, #leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole9 { width: 4.20673%; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole1, #leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole1 { width: 4.20673%; }
+#leaderboardWrapper #overunder .playerRow { font-size: 1em; width: 100%; height: 35px; line-height: 35px; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior { height: 35px; }
+#leaderboardWrapper #overunder .playerRow .score .data, #leaderboardWrapper #overunder .playerRow .prior .data { height: 35px; line-height: 35px; }
+#leaderboardWrapper #overunder .playerRow .playerContainer { width: 86.66667%; }
+#leaderboardWrapper #overunder .playerRow .score { width: 4.20673%; }
+#leaderboardWrapper #overunder .playerRow .prior { width: 3.75%; }
+#leaderboardWrapper #overunder .playerRow .playerName { width: 24.27885%; height: 35px; }
+#leaderboardWrapper #overunder .playerRow .playerName .data { height: 35px; line-height: 35px; }
+#leaderboardWrapper #overunder .playerRow .rightOption { width: 6.77083%; height: 35px; }
+#leaderboardWrapper #overunder .playerRow .rightOption.live { width: 6.77083%; }
+#leaderboardWrapper #overunder .playerRow .track { width: 4.79167%; background: url("/images/leaderboard/leaderboard-track-icons-sm.png") no-repeat 50% 4px; }
+#leaderboardWrapper #overunder .playerRow .track.on { background-position: 50% -25px; }
+#leaderboardWrapper #overunder .playerRow .track.on:hover { background-position: 50% -55px; }
+#leaderboardWrapper #overunder .playerRow .favorite { width: 4.79167%; height: 35px; background: url("/images/leaderboard/leaderboard-favorites-icons-sm.png") no-repeat 50% 9px; }
+#leaderboardWrapper #overunder .favoritePlayer .favorite, #leaderboardWrapper #overunder .favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-sm.png") no-repeat 50% -18px; } }
+/***************************************************************************************************** MEDIUM SCREEN SIZE 720px >= Screen Size <= 919px ***************************************************************************************************/
+@media only screen and (min-width: 45em) and (max-width: 57.4375em) { #leaderboardWrapper #overunder .headerWrapper .headerRow { font-size: 1.2em; width: 100%; height: 65px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader { width: 4.79167%; height: 65px; font-size: 0.7em; padding-left: 2%; padding-top: 0.6%; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader.fav { width: 4.79167%; padding-top: 2%; padding-left: 2%; }
+#leaderboardWrapper #overunder .headerWrapper.stickybar { top: 50px; }
+#leaderboardWrapper #overunder .headerRowContent { width: 100%; height: 65px; }
+#leaderboardWrapper #overunder .headerRowContent .prior { font-size: 0.7em; width: 3.75%; height: 65px; padding-left: 1.3%; padding-top: 0.6%; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer { width: 86.66667%; height: 65px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par { height: 32.5px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .description, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .description { width: 24.27885%; height: 32.5px; line-height: 32.5px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole { width: 4.20673%; height: 32.5px; line-height: 32.5px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole9, #leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole9 { width: 4.20673%; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole1, #leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole1 { width: 4.20673%; }
+#leaderboardWrapper #overunder .playerRow { font-size: 1.2em; width: 100%; height: 35px; line-height: 35px; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior { height: 35px; }
+#leaderboardWrapper #overunder .playerRow .score .data, #leaderboardWrapper #overunder .playerRow .prior .data { height: 35px; line-height: 35px; }
+#leaderboardWrapper #overunder .playerRow .playerContainer { width: 86.66667%; }
+#leaderboardWrapper #overunder .playerRow .score { width: 4.20673%; }
+#leaderboardWrapper #overunder .playerRow .prior { width: 3.75%; }
+#leaderboardWrapper #overunder .playerRow .playerName { width: 24.27885%; height: 35px; }
+#leaderboardWrapper #overunder .playerRow .playerName .data { height: 35px; line-height: 35px; }
+#leaderboardWrapper #overunder .playerRow .rightOption { width: 6.77083%; height: 35px; }
+#leaderboardWrapper #overunder .playerRow .rightOption.live { width: 6.77083%; }
+#leaderboardWrapper #overunder .playerRow .track { width: 4.79167%; background: url("/images/leaderboard/leaderboard-track-icons-sm.png") no-repeat 50% 4px; }
+#leaderboardWrapper #overunder .playerRow .track.on { background-position: 50% -25px; }
+#leaderboardWrapper #overunder .playerRow .track.on:hover { background-position: 50% -55px; }
+#leaderboardWrapper #overunder .playerRow .favorite { width: 4.79167%; height: 35px; background: url("/images/leaderboard/leaderboard-favorites-icons-sm.png") no-repeat 50% 9px; }
+#leaderboardWrapper #overunder .favoritePlayer .favorite, #leaderboardWrapper #overunder .favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-sm.png") no-repeat 50% -18px; } }
+/********************************************************************************************************************* LARGE SCREEN SIZE 920px >= Screen Size >= 1023px *******************************************************************************************************************/
+@media only screen and (min-width: 57.5em) { .headerWrapper.stickybar + #leaderBoardPlayers-wrapper { margin-top: 80px; } }
+@media only screen and (min-width: 57.5em) and (max-width: 63.938em) { #leaderboardWrapper #overunder .headerWrapper .headerRow { font-size: 1.4em; width: 100%; height: 80px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader { width: 3.9%; height: 80px; font-size: 0.7em; padding-left: 1.7%; padding-top: 0.6%; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader.fav { width: 3.9%; padding-top: 2%; padding-left: 1.5%; }
+#leaderboardWrapper #overunder .headerWrapper.stickybar { top: 50px; }
+#leaderboardWrapper #overunder .headerRowContent { width: 100%; height: 80px; }
+#leaderboardWrapper #overunder .headerRowContent .prior { font-size: 0.7em; width: 3.9%; height: 80px; padding-left: 1.3%; padding-top: 0.6%; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer { width: 88.3%; height: 80px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par { height: 40px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .description, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .description { width: 19.47905%; height: 40px; line-height: 40px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole { width: 4.47339%; height: 40px; line-height: 40px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole9, #leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole9 { width: 4.47339%; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole1, #leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole1 { width: 4.47339%; }
+#leaderboardWrapper #overunder .playerRow { font-size: 1.6em; width: 100%; height: 41px; line-height: 41px; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior { height: 41px; }
+#leaderboardWrapper #overunder .playerRow .score .data, #leaderboardWrapper #overunder .playerRow .prior .data { height: 41px; line-height: 41px; }
+#leaderboardWrapper #overunder .playerRow .playerContainer { width: 88.3%; }
+#leaderboardWrapper #overunder .playerRow .score { width: 4.47339%; }
+#leaderboardWrapper #overunder .playerRow .prior { width: 3.9%; }
+#leaderboardWrapper #overunder .playerRow .playerName { width: 19.47905%; height: 41px; }
+#leaderboardWrapper #overunder .playerRow .playerName .data { height: 41px; line-height: 41px; }
+#leaderboardWrapper #overunder .playerRow .rightOption { width: 4%; height: 41px; }
+#leaderboardWrapper #overunder .playerRow .rightOption.live { width: 4%; }
+#leaderboardWrapper #overunder .playerRow .track { width: 3.9%; background: url("/images/leaderboard/leaderboard-track-icons-sm.png") no-repeat 50% 8px; }
+#leaderboardWrapper #overunder .playerRow .track.on { background-position: 50% -23px; }
+#leaderboardWrapper #overunder .playerRow .track.on:hover { background-position: 50% -55px; }
+#leaderboardWrapper #overunder .playerRow .favorite { width: 3.9%; height: 41px; background: url("/images/leaderboard/leaderboard-favorites-icons-r.png") no-repeat 50% 9px; }
+#leaderboardWrapper #overunder .favoritePlayer .favorite, #leaderboardWrapper #overunder .favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-r.png") no-repeat 50% -29px; } }
+/****************************************************************** Large Non-Skeumorphic Screen Width >= 1024px and Width <= 619px ****************************************************************/
+@media only screen and (min-width: 64em) and (max-height: 38.688em) { .headerWrapper.stickybar + #leaderBoardPlayers-wrapper { margin-top: 80px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow { font-size: 1.4em; width: 100%; height: 80px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader { width: 3.9%; height: 80px; font-size: 0.7em; padding-left: 1.7%; padding-top: 0.3%; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .rightHeader.fav { width: 3.9%; padding-top: 1.5%; padding-left: 1.5%; }
+#leaderboardWrapper #overunder .headerWrapper.stickybar { top: 50px; }
+#leaderboardWrapper #overunder .headerRowContent { width: 100%; height: 80px; }
+#leaderboardWrapper #overunder .headerRowContent .prior { font-size: 0.7em; width: 3.9%; height: 80px; padding-left: 1.3%; padding-top: 0.3%; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer { width: 88.3%; height: 80px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par { height: 40px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .description, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .description { width: 19.47905%; height: 40px; line-height: 40px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole, #leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole { width: 4.47339%; height: 40px; line-height: 40px; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole9, #leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole9 { width: 4.47339%; }
+#leaderboardWrapper #overunder .headerRowContent .holesContainer .par .hole1, #leaderboardWrapper #overunder .headerRowContent .holesContainer .holes .hole1 { width: 4.47339%; }
+#leaderboardWrapper #overunder .playerRow { font-size: 1.6em; width: 100%; height: 41px; line-height: 41px; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior { height: 41px; }
+#leaderboardWrapper #overunder .playerRow .score .data, #leaderboardWrapper #overunder .playerRow .prior .data { height: 41px; line-height: 41px; }
+#leaderboardWrapper #overunder .playerRow .playerContainer { width: 88.3%; }
+#leaderboardWrapper #overunder .playerRow .score { width: 4.47339%; }
+#leaderboardWrapper #overunder .playerRow .prior { width: 3.9%; }
+#leaderboardWrapper #overunder .playerRow .playerName { width: 19.47905%; height: 41px; }
+#leaderboardWrapper #overunder .playerRow .playerName .data { height: 41px; line-height: 41px; }
+#leaderboardWrapper #overunder .playerRow .rightOption { width: 4%; height: 41px; }
+#leaderboardWrapper #overunder .playerRow .rightOption.live { width: 4%; }
+#leaderboardWrapper #overunder .playerRow .track { width: 3.9%; background: url("/images/leaderboard/leaderboard-track-icons-sm.png") no-repeat 50% 8px; }
+#leaderboardWrapper #overunder .playerRow .track.on { background-position: 50% -23px; }
+#leaderboardWrapper #overunder .playerRow .track.on:hover { background-position: 50% -55px; }
+#leaderboardWrapper #overunder .playerRow .favorite { width: 3.9%; height: 41px; background: url("/images/leaderboard/leaderboard-favorites-icons-r.png") no-repeat 50% 9px; }
+#leaderboardWrapper #overunder .favoritePlayer .favorite, #leaderboardWrapper #overunder .favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-r.png") no-repeat 50% -29px; } }
+/***************************************************************************************************** LARGER ALPHA SIZE AND ABOVE (SKEUMORPHIC) Screen Size >= 1024px and 620 height ***************************************************************************************************/
+@media only screen and (min-width: 64em) and (min-height: 38.75em) { #leaderboardWrapper #overunder .headerWrapper .headerRow { position: absolute; z-index: 5; background: transparent; text-indent: -9999px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent { color: #323232; border: 1px solid #3c3c3b; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .prior { float: left; border-right: 1px solid #3c3c3b; border-right: 1px solid #3c3c3b; border-bottom: 1px solid #3c3c3b; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .prior span { display: inline; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer { float: left; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par { float: left; width: 100%; border-bottom: 1px solid #3c3c3b; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .description, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .description { float: left; letter-spacing: 0.15em; border-right: 3px solid #3c3c3b; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .hole, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .hole { float: left; font-size: 1.1em; letter-spacing: -3px; border-right: 1px solid #3c3c3b; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .hole9, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .hole9 { border-right: 3px solid #3c3c3b; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .rightHeader { float: left; border-right: 1px solid #3c3c3b; border-bottom: 1px solid #3c3c3b; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .rightHeader.fav { border-right: none; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .rightHeader span { display: inline; }
+#leaderboardWrapper #overunder .headerWrapper.stickybar { position: relative; top: 0; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior, #leaderboardWrapper #overunder .playerRow .pos { border-right: 1px solid #3c3c3b; font-weight: normal; position: relative; }
+#leaderboardWrapper #overunder .playerRow .playerContainer { float: left; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior { float: left; text-align: center; position: relative; }
+#leaderboardWrapper #overunder .playerRow .score:before, #leaderboardWrapper #overunder .playerRow .prior:before { content: ""; position: absolute; left: 50%; background-color: #000000; z-index: -1; }
+#leaderboardWrapper #overunder .playerRow .score.preAnimate, #leaderboardWrapper #overunder .playerRow .prior.preAnimate { -moz-perspective: 1000px; -webkit-perspective: 1000px; perspective: 1000px; }
+#leaderboardWrapper #overunder .playerRow .score.preAnimate .data, #leaderboardWrapper #overunder .playerRow .prior.preAnimate .data { -moz-transform-origin: 0% 100% 0; -webkit-transform-origin: 0% 100% 0; transform-origin: 0% 100% 0; -moz-transition: -moz-transform 1s; -o-transition: -o-transform 1s; -webkit-transition: -webkit-transform 1s; transition: transform 1s; -moz-transform-style: preserve-3d; -webkit-transform-style: preserve-3d; transform-style: preserve-3d; }
+#leaderboardWrapper #overunder .playerRow .score.scoreAnimate .data, #leaderboardWrapper #overunder .playerRow .prior.scoreAnimate .data { -moz-transform: rotateX(92deg); -ms-transform: rotateX(92deg); -webkit-transform: rotateX(92deg); transform: rotateX(92deg); -moz-transition: -moz-transform 0.7s; -o-transition: -o-transform 0.7s; -webkit-transition: -webkit-transform 0.7s; transition: transform 0.7s; }
+#leaderboardWrapper #overunder .playerRow .round_score { font-family: 'Single LB'; font-weight: normal; }
+#leaderboardWrapper #overunder .playerRow .hole9 { border-right: 3px solid #3c3c3b; }
+#leaderboardWrapper #overunder .playerRow .score { letter-spacing: -3px; }
+#leaderboardWrapper #overunder .playerRow .playerName { position: relative; }
+#leaderboardWrapper #overunder .playerRow .playerName .data { margin: 3px auto 2px; }
+#leaderboardWrapper #overunder .playerRow .playerName .smaller { font-size: .7em; }
+#leaderboardWrapper #overunder .playerRow .playerName:before { content: ""; position: absolute; left: 50%; margin-left: -110px; top: 3px; width: 220px; height: 28px; background-color: #000000; z-index: -1; }
+#leaderboardWrapper #overunder .playerRow .playerName.preAnimate { -moz-perspective: 1000px; -webkit-perspective: 1000px; perspective: 1000px; }
+#leaderboardWrapper #overunder .playerRow .playerName.preAnimate .data { -moz-transform-origin: 0% 100% 0; -webkit-transform-origin: 0% 100% 0; transform-origin: 0% 100% 0; -moz-transition: -moz-transform 1s; -o-transition: -o-transform 1s; -webkit-transition: -webkit-transform 1s; transition: transform 1s; -moz-transform-style: preserve-3d; -webkit-transform-style: preserve-3d; transform-style: preserve-3d; }
+#leaderboardWrapper #overunder .playerRow .playerName.scoreAnimate .data { -moz-transform: rotateX(88deg); -ms-transform: rotateX(88deg); -webkit-transform: rotateX(88deg); transform: rotateX(88deg); -moz-transition: -moz-transform 0.7s; -o-transition: -o-transform 0.7s; -webkit-transition: -webkit-transform 0.7s; transition: transform 0.7s; }
+#leaderboardWrapper #overunder .playerRow .rightOption { float: left; }
+#leaderboardWrapper #overunder .missedcut, #leaderboardWrapper #overunder .disqualified, #leaderboardWrapper #overunder .withdrawn { width: 100%; border-right: 3px solid #3c3c3b; font-family: 'Player Name'; font-size: 1.0em; text-align: center; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow { background-image: url(/images/leaderboard/leaderboard-header-ou-sm.png); width: 912px; height: 64px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent { width: 100%; height: 64px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .prior { width: 37px; height: 64px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer { width: 810px; height: 64px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par { height: 32px; line-height: 32px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .description, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .description { width: 234px; height: 32px; line-height: 32px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .hole, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .hole { width: 31px; height: 32px; line-height: 32px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .hole9, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .hole9 { width: 36px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .hole1, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .hole1 { width: 35px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .rightHeader { width: 31px; height: 64px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .rightHeader.fav { width: 32px; }
+#leaderboardWrapper #overunder .playerRow { font-size: 2em; width: 100%; height: 33px; line-height: 33px; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior, #leaderboardWrapper #overunder .playerRow .pos { height: 33px; }
+#leaderboardWrapper #overunder .playerRow .score .data, #leaderboardWrapper #overunder .playerRow .prior .data, #leaderboardWrapper #overunder .playerRow .pos .data { height: 33px; line-height: 33px; }
+#leaderboardWrapper #overunder .playerRow .playerContainer { width: 810px; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior { height: 33px; }
+#leaderboardWrapper #overunder .playerRow .score:before, #leaderboardWrapper #overunder .playerRow .prior:before { margin-left: -12px; top: 3px; width: 23px; height: 28px; }
+#leaderboardWrapper #overunder .playerRow .score .data, #leaderboardWrapper #overunder .playerRow .prior .data { height: 28px; line-height: 28px; margin: 3px auto 2px; width: 26px; background: url(/images/leaderboard/leaderboard_bg_score_sm.png) no-repeat center center; background-color: #f7f4f0; }
+#leaderboardWrapper #overunder .playerRow .score.hole9 .data, #leaderboardWrapper #overunder .playerRow .prior.hole9 .data { width: 26px; }
+#leaderboardWrapper #overunder .playerRow .score { width: 31px; }
+#leaderboardWrapper #overunder .playerRow .prior { width: 37px; }
+#leaderboardWrapper #overunder .playerRow .hole9 { width: 36px; }
+#leaderboardWrapper #overunder .playerRow .hole1 { width: 35px; }
+#leaderboardWrapper #overunder .playerRow .playerName { width: 234px; height: 33px; }
+#leaderboardWrapper #overunder .playerRow .playerName .data { height: 28px; line-height: 28px; width: 220px; padding-left: 4px; background: url(/images/leaderboard/leaderboard_bg_name_sm.png) no-repeat center center; background-color: #f7f4f0; }
+#leaderboardWrapper #overunder .playerRow.showScorecard { background-color: white; }
+#leaderboardWrapper #overunder .playerRow.showScorecard .playerName .data, #leaderboardWrapper #overunder .playerRow.showScorecard .score .data, #leaderboardWrapper #overunder .playerRow.showScorecard .prior .data { background-color: white; }
+#leaderboardWrapper #overunder .playerRow .rightOption { width: 31px; height: 33px; }
+#leaderboardWrapper #overunder .playerRow .favorite { width: 32px; height: 33px; } }
+/***************************************************************************************************** LARGER LARGEST SIZE AND ABOVE Screen Size >= 1440px and 820px height ***************************************************************************************************/
+@media only screen and (min-width: 90em) and (min-height: 51.25em) { #leaderboardWrapper #overunder .headerWrapper .headerRow { background-image: url(/images/leaderboard/leaderboard-header-ou-l.png); width: 1146px; height: 82px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent { width: 100%; height: 82px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .prior { width: 44px; height: 82px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer { width: 1021px; height: 82px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par { height: 41px; line-height: 41px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .description, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .description { width: 289px; height: 41px; line-height: 41px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .hole, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .hole { width: 40px; height: 41px; line-height: 41px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .hole9, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .hole9 { width: 43px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .par .hole1, #leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .holesContainer .holes .hole1 { width: 43px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .rightHeader { width: 39.5px; height: 82px; }
+#leaderboardWrapper #overunder .headerWrapper .headerRow .headerRowContent .rightHeader.fav { width: 39px; }
+#leaderboardWrapper #overunder .playerRow { font-size: 2.4em; width: 100%; height: 42px; line-height: 42px; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior, #leaderboardWrapper #overunder .playerRow .pos { height: 42px; }
+#leaderboardWrapper #overunder .playerRow .score .data, #leaderboardWrapper #overunder .playerRow .prior .data, #leaderboardWrapper #overunder .playerRow .pos .data { height: 42px; line-height: 42px; }
+#leaderboardWrapper #overunder .playerRow .playerContainer { width: 1021px; }
+#leaderboardWrapper #overunder .playerRow .score, #leaderboardWrapper #overunder .playerRow .prior { height: 42px; }
+#leaderboardWrapper #overunder .playerRow .score:before, #leaderboardWrapper #overunder .playerRow .prior:before { margin-left: -15px; top: 3px; width: 30px; height: 37px; }
+#leaderboardWrapper #overunder .playerRow .score .data, #leaderboardWrapper #overunder .playerRow .prior .data { height: 37px; line-height: 37px; margin: 3px auto 2px; width: 33px; background: url(/images/leaderboard/leaderboard_bg_score.png) no-repeat center center; background-color: #f7f4f0; }
+#leaderboardWrapper #overunder .playerRow .score.hole9 .data, #leaderboardWrapper #overunder .playerRow .prior.hole9 .data { width: 33px; }
+#leaderboardWrapper #overunder .playerRow .score { width: 40px; }
+#leaderboardWrapper #overunder .playerRow .prior { width: 44px; }
+#leaderboardWrapper #overunder .playerRow .hole9 { width: 43px; }
+#leaderboardWrapper #overunder .playerRow .hole1 { width: 43px; }
+#leaderboardWrapper #overunder .playerRow .playerName { width: 289px; height: 42px; }
+#leaderboardWrapper #overunder .playerRow .playerName .data { height: 37px; line-height: 37px; width: 280px; padding-left: 7px; background: url(/images/leaderboard/leaderboard_bg_name.png) no-repeat center center; background-color: #f7f4f0; }
+#leaderboardWrapper #overunder .playerRow.showScorecard { background-color: white; }
+#leaderboardWrapper #overunder .playerRow.showScorecard .playerName .data, #leaderboardWrapper #overunder .playerRow.showScorecard .score .data, #leaderboardWrapper #overunder .playerRow.showScorecard .prior .data { background-color: white; }
+#leaderboardWrapper #overunder .playerRow .rightOption { width: 39.5px; height: 42px; }
+#leaderboardWrapper #overunder .playerRow .favorite { width: 39px; height: 42px; } }
+/********************************************************************* GLOBAL ********************************************************************/
+#traditional .missedcut, #traditional .disqualified, #traditional .withdrawn { float: left; text-align: center; font-family: 'Player Name'; font-size: 1.0em; }
+#traditional .playerRow .playerName { text-align: left; }
+/************************************************************************************************ LARGE SCREEN SIZE AND BELOW (NON-SKEUMORPHIC) Common styles to all non-skeumorphic views Screen Size <= 1023px **********************************************************************************************/
+@media only screen and (max-width: 63.938em) { #leaderboardWrapper #traditional.content { right: 0; }
+#leaderboardWrapper #traditional .round_score { overflow: hidden; }
+#leaderboardWrapper #traditional .round_score ~ .round_score { border-left: none; }
+#leaderboardWrapper #traditional .score { overflow: hidden; }
+#leaderboardWrapper #traditional .headerWrapper { *zoom: 1; }
+#leaderboardWrapper #traditional .headerWrapper:before, #leaderboardWrapper #traditional .headerWrapper:after { content: ""; display: table; }
+#leaderboardWrapper #traditional .headerWrapper:after { clear: both; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow { font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; background: #333333; float: left; margin: 0px; overflow: hidden; position: relative; text-transform: uppercase; font-weight: bold; color: #AAAAAA; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow div { cursor: pointer; text-align: center; text-transform: uppercase; float: left; border-bottom: none; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer { border-left: none; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer .score, #leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer .round_score { border-right: 0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .sort_item:hover { background-color: #696969; color: #ffffff; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .pos.selected, #leaderboardWrapper #traditional .headerWrapper .headerRow .player.selected, #leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer div.selected { background-color: #696969; color: #ffffff; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player { padding-left: 8px; overflow: hidden; text-align: left; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader { cursor: default; text-decoration: none; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.live { display: none !important; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.fav { padding-top: 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.track { padding-top: 0px; }
+#leaderboardWrapper #traditional .headerWrapper.stickybar { position: fixed; margin: 0; width: 100%; left: 0px; z-index: 10; }
+#leaderboardWrapper #traditional .playerRow { text-align: center; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; }
+#leaderboardWrapper #traditional .playerRow:nth-of-type(2n) { background-color: #F2F2F2; }
+.titleRow ~ #leaderboardWrapper #traditional .playerRow:nth-of-type(2n) { background-color: #ffffff; }
+.titleRow ~ #leaderboardWrapper #traditional .playerRow:nth-of-type(2n+1) { background-color: #F2F2F2; }
+#leaderboardWrapper #traditional .playerRow .score, #leaderboardWrapper #traditional .playerRow .prior { background: block; }
+#leaderboardWrapper #traditional .playerRow div { text-transform: uppercase; float: left; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { border-left: none; }
+#leaderboardWrapper #traditional .playerRow .data { background: block; }
+#leaderboardWrapper #traditional .playerRow .teetime { font-size: 0.85em; }
+#leaderboardWrapper #traditional .playerRow .favorite { cursor: pointer; }
+#leaderboardWrapper #traditional .playerRow .track { pointer-events: none; cursor: default; }
+#leaderboardWrapper #traditional .playerRow .track.on { cursor: pointer; pointer-events: auto; }
+#leaderboardWrapper #traditional .playerRow .track a { display: block; }
+#leaderboardWrapper #traditional .playerRow .live { display: none; } }
+/****************************************************************** Large Non-Skeumorphic Screen Width >= 1024px and Height <= 619px ****************************************************************/
+@media only screen and (min-width: 64em) and (max-height: 38.688em) { #leaderboardWrapper #traditional.content { right: 0; }
+#leaderboardWrapper #traditional .round_score { overflow: hidden; }
+#leaderboardWrapper #traditional .round_score ~ .round_score { border-left: none; }
+#leaderboardWrapper #traditional .score { overflow: hidden; }
+#leaderboardWrapper #traditional .headerWrapper { *zoom: 1; }
+#leaderboardWrapper #traditional .headerWrapper:before, #leaderboardWrapper #traditional .headerWrapper:after { content: ""; display: table; }
+#leaderboardWrapper #traditional .headerWrapper:after { clear: both; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow { font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; background: #333333; float: left; margin: 0px; overflow: hidden; position: relative; text-transform: uppercase; font-weight: bold; color: #AAAAAA; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow div { cursor: pointer; text-align: center; text-transform: uppercase; float: left; border-bottom: none; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer { border-left: none; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer .score, #leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer .round_score { border-right: 0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .sort_item:hover { background-color: #696969; color: #ffffff; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .pos.selected, #leaderboardWrapper #traditional .headerWrapper .headerRow .player.selected, #leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer div.selected { background-color: #696969; color: #ffffff; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player { padding-left: 8px; overflow: hidden; text-align: left; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader { cursor: default; text-decoration: none; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.live { display: none !important; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.fav { padding-top: 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.track { padding-top: 0px; }
+#leaderboardWrapper #traditional .headerWrapper.stickybar { position: fixed; margin: 0; width: 100%; left: 0px; z-index: 10; }
+#leaderboardWrapper #traditional .playerRow { text-align: center; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; }
+#leaderboardWrapper #traditional .playerRow:nth-of-type(2n) { background-color: #F2F2F2; }
+.titleRow ~ #leaderboardWrapper #traditional .playerRow:nth-of-type(2n) { background-color: #ffffff; }
+.titleRow ~ #leaderboardWrapper #traditional .playerRow:nth-of-type(2n+1) { background-color: #F2F2F2; }
+#leaderboardWrapper #traditional .playerRow .score, #leaderboardWrapper #traditional .playerRow .prior { background: block; }
+#leaderboardWrapper #traditional .playerRow div { text-transform: uppercase; float: left; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { border-left: none; }
+#leaderboardWrapper #traditional .playerRow .data { background: block; }
+#leaderboardWrapper #traditional .playerRow .teetime { font-size: 0.85em; }
+#leaderboardWrapper #traditional .playerRow .favorite { cursor: pointer; }
+#leaderboardWrapper #traditional .playerRow .track { pointer-events: none; cursor: default; }
+#leaderboardWrapper #traditional .playerRow .track.on { cursor: pointer; pointer-events: auto; }
+#leaderboardWrapper #traditional .playerRow .track a { display: block; }
+#leaderboardWrapper #traditional .playerRow .live { display: none; } }
+/****************************************************************** MOBILE PORTRAIT Screen Size <= 479px ****************************************************************/
+@media only screen and (max-width: 29.938em) { #leaderboardWrapper #traditional { /* reset width of score colums */ }
+#leaderboardWrapper #traditional .round_score { display: none; }
+#leaderboardWrapper #traditional .score.last { display: none; }
+#leaderboardWrapper #traditional .round_score { width: 0%; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .round_score ~ .round_score { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .score { width: 33.33333%; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .score:nth-of-type(1) { width: 33.33333%; }
+#leaderboardWrapper #traditional .score:nth-of-type(2), #leaderboardWrapper #traditional .score:nth-of-type(3) { width: 33.33333%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow { font-size: 0.9em; width: 100%; height: 40px; line-height: 40px; border-#E0E0E0: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow div { height: 40px; border-bottom: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer { width: 43.125%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player { width: 28.75%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.fav { width: 10.3125%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.track { width: 10.3125%; }
+#leaderboardWrapper #traditional .headerWrapper.stickybar { top: 40px; }
+#leaderboardWrapper #traditional .playerRow { width: 100%; height: 35px; height: 35px; line-height: 35px; font-size: 0.9em; }
+#leaderboardWrapper #traditional .playerRow div { height: 35px; }
+#leaderboardWrapper #traditional .playerRow .playerName { width: 28.75%; }
+#leaderboardWrapper #traditional .playerRow .playerName .data { padding-left: 5px; }
+#leaderboardWrapper #traditional .playerRow .pos { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 43.125%; }
+#leaderboardWrapper #traditional .playerRow .score { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 43.125%; }
+#leaderboardWrapper #traditional .playerRow .data { width: 100%; height: 35px; line-height: 35px; }
+#leaderboardWrapper #traditional .playerRow .live, #leaderboardWrapper #traditional .playerRow .favorite { width: 10.3125%; }
+#leaderboardWrapper #traditional .playerRow .favorite { border-left: 1px solid #E0E0E0; width: 10.3125%; background: url("/images/leaderboard/leaderboard-favorites-icons-sm.png") no-repeat 50% 9px; }
+#leaderboardWrapper #traditional .playerRow .track { width: 10.3125%; background: url("/images/leaderboard/leaderboard-track-icons-sm.png") no-repeat; background-position: 50% 4px; }
+#leaderboardWrapper #traditional .playerRow .track.on { background-position: 50% -26px; }
+#leaderboardWrapper #traditional .playerRow .track.on:hover { background-position: 50% -56px; }
+#leaderboardWrapper #traditional .headerRow .pos, #leaderboardWrapper #traditional .playerRow .pos { width: 7.5%; }
+#leaderboardWrapper #traditional .favoritePlayer .favorite, #leaderboardWrapper #traditional .favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-sm.png") no-repeat 50% -18px; }
+#leaderboardWrapper #traditional .missedcut, #leaderboardWrapper #traditional .disqualified, #leaderboardWrapper #traditional .withdrawn { width: 66.66667%; border-right: 1px solid #E0E0E0; } }
+/****************************************************************** MOBILE LANDSCAPE 480px >= Screen Size >= 719px ****************************************************************/
+@media only screen and (min-width: 30em) and (max-width: 44.9375em) { #leaderboardWrapper #traditional { /* reset width of score colums */ }
+#leaderboardWrapper #traditional .round_score { display: block; }
+#leaderboardWrapper #traditional .score.last { display: block; }
+#leaderboardWrapper #traditional .round_score { width: 9.81848%; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .round_score ~ .round_score { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .score { width: 15.18152%; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .score:nth-of-type(1) { width: 15.18152%; }
+#leaderboardWrapper #traditional .score:nth-of-type(2), #leaderboardWrapper #traditional .score:nth-of-type(3) { width: 15.18152%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow { font-size: 0.9em; width: 100%; height: 41px; line-height: 41px; border-#E0E0E0: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow div { height: 41px; border-bottom: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer { width: 63.125%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player { width: 19.16667%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.fav { width: 5.83333%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.track { width: 6.875%; }
+#leaderboardWrapper #traditional .headerWrapper.stickybar { top: 40px; }
+#leaderboardWrapper #traditional .playerRow { width: 100%; height: 35px; height: 35px; line-height: 35px; font-size: 0.9em; }
+#leaderboardWrapper #traditional .playerRow div { height: 35px; }
+#leaderboardWrapper #traditional .playerRow .playerName { width: 19.16667%; }
+#leaderboardWrapper #traditional .playerRow .playerName .data { padding-left: 3px; }
+#leaderboardWrapper #traditional .playerRow .pos { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 63.125%; }
+#leaderboardWrapper #traditional .playerRow .score { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 63.125%; }
+#leaderboardWrapper #traditional .playerRow .data { width: 100%; height: 35px; line-height: 35px; }
+#leaderboardWrapper #traditional .playerRow .live, #leaderboardWrapper #traditional .playerRow .favorite { width: 5.83333%; }
+#leaderboardWrapper #traditional .playerRow .favorite { border-left: 1px solid #E0E0E0; width: 5.83333%; background: url("/images/leaderboard/leaderboard-favorites-icons-sm.png") no-repeat 50% 11px; }
+#leaderboardWrapper #traditional .playerRow .track { width: 6.875%; background: url("/images/leaderboard/leaderboard-track-icons-sm.png") no-repeat; background-position: 50% 6px; }
+#leaderboardWrapper #traditional .playerRow .track.on { background-position: 50% -23px; }
+#leaderboardWrapper #traditional .playerRow .track.on:hover { background-position: 50% -53px; }
+#leaderboardWrapper #traditional .headerRow .pos, #leaderboardWrapper #traditional .playerRow .pos { width: 5%; }
+#leaderboardWrapper #traditional .favoritePlayer .favorite, #leaderboardWrapper #traditional .favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-sm.png") no-repeat 50% -15px; }
+#leaderboardWrapper #traditional .missedcut, #leaderboardWrapper #traditional .disqualified, #leaderboardWrapper #traditional .withdrawn { width: 30.36304%; border-right: 1px solid #E0E0E0; } }
+/******************************************************************
+* MEDIUM SCREEN SIZE
+* 720px >= Screen Size >= 919px 
+*****************************************************************/
+@media only screen and (min-width: 45em) and (max-width: 57.4375em) { #leaderboardWrapper #traditional { /* reset width of score colums */ }
+#leaderboardWrapper #traditional .round_score { display: block; }
+#leaderboardWrapper #traditional .score.last { display: block; }
+#leaderboardWrapper #traditional .round_score { width: 11.65254%; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .round_score ~ .round_score { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .score { width: 13.34746%; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .score:nth-of-type(1) { width: 13.34746%; }
+#leaderboardWrapper #traditional .score:nth-of-type(2), #leaderboardWrapper #traditional .score:nth-of-type(3) { width: 13.34746%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow { font-size: 1.2; width: 100%; height: 41px; line-height: 41px; border-#E0E0E0: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow div { height: 41px; border-bottom: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer { width: 65.55556%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player { width: 17.5%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.fav { width: 5.69444%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.track { width: 5.69444%; }
+#leaderboardWrapper #traditional .headerWrapper.stickybar { top: 50px; }
+#leaderboardWrapper #traditional .playerRow { width: 100%; height: 41px; height: 41px; line-height: 41px; font-size: 1.2em; }
+#leaderboardWrapper #traditional .playerRow div { height: 41px; }
+#leaderboardWrapper #traditional .playerRow .playerName { width: 17.5%; }
+#leaderboardWrapper #traditional .playerRow .playerName .data { padding-left: 5px; }
+#leaderboardWrapper #traditional .playerRow .pos { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 65.55556%; }
+#leaderboardWrapper #traditional .playerRow .score { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 65.55556%; }
+#leaderboardWrapper #traditional .playerRow .data { width: 100%; height: 41px; line-height: 41px; }
+#leaderboardWrapper #traditional .playerRow .live, #leaderboardWrapper #traditional .playerRow .favorite { width: 5.69444%; }
+#leaderboardWrapper #traditional .playerRow .favorite { border-left: 1px solid #E0E0E0; width: 5.69444%; background: url("/images/leaderboard/leaderboard-favorites-icons-r.png") no-repeat 50% 9px; }
+#leaderboardWrapper #traditional .playerRow .track { width: 5.69444%; background: url("/images/leaderboard/leaderboard-track-icons.png") no-repeat; background-position: 50% 9px; }
+#leaderboardWrapper #traditional .playerRow .track.on { background-position: 50% -25px; }
+#leaderboardWrapper #traditional .playerRow .track.on:hover { background-position: 50% -59px; }
+#leaderboardWrapper #traditional .headerRow .pos, #leaderboardWrapper #traditional .playerRow .pos { width: 5.55556%; }
+#leaderboardWrapper #traditional .favoritePlayer .favorite, #leaderboardWrapper #traditional .favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-r.png") no-repeat 50% -28px; }
+#leaderboardWrapper #traditional .missedcut, #leaderboardWrapper #traditional .disqualified, #leaderboardWrapper #traditional .withdrawn { width: 26.69492%; border-right: 1px solid #E0E0E0; } }
+/************************************************************************************************ LARGE SCREEN SIZE 920px >= Screen Size <= 1023px **********************************************************************************************/
+@media only screen and (min-width: 57.5em) and (max-width: 63.938em) { #leaderboardWrapper #traditional { /* reset width of score colums */ }
+#leaderboardWrapper #traditional .round_score { display: block; }
+#leaderboardWrapper #traditional .score.last { display: block; }
+#leaderboardWrapper #traditional .round_score { width: 11.65254%; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .round_score ~ .round_score { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .score { width: 13.34746%; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .score:nth-of-type(1) { width: 13.34746%; }
+#leaderboardWrapper #traditional .score:nth-of-type(2), #leaderboardWrapper #traditional .score:nth-of-type(3) { width: 13.34746%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow { font-size: 1.4em; width: 100%; height: 41px; line-height: 41px; border-#E0E0E0: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow div { height: 41px; border-bottom: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer { width: 65.55556%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player { width: 17.5%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.fav { width: 5.69444%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.track { width: 5.69444%; }
+#leaderboardWrapper #traditional .headerWrapper.stickybar { top: 50px; }
+#leaderboardWrapper #traditional .playerRow { width: 100%; height: 41px; height: 41px; line-height: 41px; font-size: 1.6em; }
+#leaderboardWrapper #traditional .playerRow div { height: 41px; }
+#leaderboardWrapper #traditional .playerRow .playerName { width: 17.5%; }
+#leaderboardWrapper #traditional .playerRow .playerName .data { padding-left: 5px; }
+#leaderboardWrapper #traditional .playerRow .pos { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 65.55556%; }
+#leaderboardWrapper #traditional .playerRow .score { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 65.55556%; }
+#leaderboardWrapper #traditional .playerRow .data { width: 100%; height: 41px; line-height: 41px; }
+#leaderboardWrapper #traditional .playerRow .live, #leaderboardWrapper #traditional .playerRow .favorite { width: 5.69444%; }
+#leaderboardWrapper #traditional .playerRow .favorite { border-left: 1px solid #E0E0E0; width: 5.69444%; background: url("/images/leaderboard/leaderboard-favorites-icons-r.png") no-repeat 50% 9px; }
+#leaderboardWrapper #traditional .playerRow .track { width: 5.69444%; background: url("/images/leaderboard/leaderboard-track-icons.png") no-repeat; background-position: 50% 10px; }
+#leaderboardWrapper #traditional .playerRow .track.on { background-position: 50% -25px; }
+#leaderboardWrapper #traditional .playerRow .track.on:hover { background-position: 50% -59px; }
+#leaderboardWrapper #traditional .headerRow .pos, #leaderboardWrapper #traditional .playerRow .pos { width: 5.55556%; }
+#leaderboardWrapper #traditional .favoritePlayer .favorite, #leaderboardWrapper #traditional .favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-r.png") no-repeat 50% -28px; }
+#leaderboardWrapper #traditional .missedcut, #leaderboardWrapper #traditional .disqualified, #leaderboardWrapper #traditional .withdrawn { width: 26.69492%; border-right: 1px solid #E0E0E0; } }
+/****************************************************************** Large Non-Skeumorphic Screen Width >= 1024px and Width <= 619px ****************************************************************/
+@media only screen and (min-width: 64em) and (max-height: 38.688em) { #leaderboardWrapper #traditional { /* reset width of score colums */ }
+#leaderboardWrapper #traditional .round_score { display: block; }
+#leaderboardWrapper #traditional .score.last { display: block; }
+#leaderboardWrapper #traditional .round_score { width: 11.65254%; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .round_score ~ .round_score { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .score { width: 13.34746%; border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .score:nth-of-type(1) { width: 13.34746%; }
+#leaderboardWrapper #traditional .score:nth-of-type(2), #leaderboardWrapper #traditional .score:nth-of-type(3) { width: 13.34746%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow { font-size: 1.4em; width: 100%; height: 41px; line-height: 41px; border-#E0E0E0: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow div { height: 41px; border-bottom: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer { width: 65.55556%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player { width: 17.5%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.fav { width: 5.69444%; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.track { width: 5.69444%; }
+#leaderboardWrapper #traditional .headerWrapper.stickybar { top: 50px; }
+#leaderboardWrapper #traditional .playerRow { width: 100%; height: 41px; height: 41px; line-height: 41px; font-size: 1.6em; }
+#leaderboardWrapper #traditional .playerRow div { height: 41px; }
+#leaderboardWrapper #traditional .playerRow .playerName { width: 17.5%; }
+#leaderboardWrapper #traditional .playerRow .playerName .data { padding-left: 5px; }
+#leaderboardWrapper #traditional .playerRow .pos { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 65.55556%; }
+#leaderboardWrapper #traditional .playerRow .score { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { border-right: 1px solid #E0E0E0; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 65.55556%; }
+#leaderboardWrapper #traditional .playerRow .data { width: 100%; height: 41px; line-height: 41px; }
+#leaderboardWrapper #traditional .playerRow .live, #leaderboardWrapper #traditional .playerRow .favorite { width: 5.69444%; }
+#leaderboardWrapper #traditional .playerRow .favorite { border-left: 1px solid #E0E0E0; width: 5.69444%; background: url("/images/leaderboard/leaderboard-favorites-icons-r.png") no-repeat 50% 9px; }
+#leaderboardWrapper #traditional .playerRow .track { width: 5.69444%; background: url("/images/leaderboard/leaderboard-track-icons.png") no-repeat; background-position: 50% 10px; }
+#leaderboardWrapper #traditional .playerRow .track.on { background-position: 50% -25px; }
+#leaderboardWrapper #traditional .playerRow .track.on:hover { background-position: 50% -59px; }
+#leaderboardWrapper #traditional .headerRow .pos, #leaderboardWrapper #traditional .playerRow .pos { width: 5.55556%; }
+#leaderboardWrapper #traditional .favoritePlayer .favorite, #leaderboardWrapper #traditional .favorited .favorite { background: url("/images/leaderboard/leaderboard-favorites-icons-r.png") no-repeat 50% -28px; }
+#leaderboardWrapper #traditional .missedcut, #leaderboardWrapper #traditional .disqualified, #leaderboardWrapper #traditional .withdrawn { width: 26.69492%; border-right: 1px solid #E0E0E0; } }
+/****************************************************************** LARGER ALPHA SIZE AND ABOVE (SKEUMORPHIC) Screen Size >= 1024px and 620 height ****************************************************************/
+@media only screen and (min-width: 64em) and (min-height: 38.75em) { #leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper { clear: both; width: 100%; height: 337px; float: left; overflow: hidden; position: fixed; top: 223px; left: 0; overflow-y: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+html.alert #leaderBoardPlayers-wrapper, html.alert #leaderBoardPlayersTraditional-wrapper { top: 263px; }
+#leaderboardWrapper #traditional { /* applying style except for the first .round_score element */ }
+#leaderboardWrapper #traditional .round_score { display: block; overflow: hidden; border-right: 1px solid #3c3c3b; border-left: 3px solid #3c3c3b; }
+#leaderboardWrapper #traditional .round_score ~ .round_score { border-left: none; border-right: 1px solid #3c3c3b; }
+#leaderboardWrapper #traditional .score { overflow: hidden; border-right: 1px solid #3c3c3b; }
+#leaderboardWrapper #traditional .headerWrapper { *zoom: 1; }
+#leaderboardWrapper #traditional .headerWrapper:before, #leaderboardWrapper #traditional .headerWrapper:after { content: ""; display: table; }
+#leaderboardWrapper #traditional .headerWrapper:after { clear: both; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow { background: transparent; border-right: none; overflow: hidden; position: relative; border: 1px solid #3c3c3b; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow div { text-decoration: underline; cursor: pointer; float: left; text-indent: -9999px; border-bottom: 1px solid #3c3c3b; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .sort_item:hover { background-color: #666666; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .pos.selected, #leaderboardWrapper #traditional .headerWrapper .headerRow .player.selected, #leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer div.selected { background-color: #666666; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .pos .border { display: none; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player { border: none; overflow: hidden; border-right: 3px solid #3c3c3b; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer { background-image: none; border: none; border-right: 3px solid #3c3c3b; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader { cursor: default; border-right: 1px solid #3c3c3b; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.track { display: block !important; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.fav { box-sizing: content-box; }
+#leaderboardWrapper #traditional .headerWrapper.stickybar { position: relative; top: 0; }
+#leaderboardWrapper #traditional .playerRow { text-align: center; }
+#leaderboardWrapper #traditional .playerRow .score, #leaderboardWrapper #traditional .playerRow .prior { background: none; border-right: 1px solid #3c3c3b; }
+#leaderboardWrapper #traditional .playerRow div { text-transform: uppercase; float: left; }
+#leaderboardWrapper #traditional .playerRow .playerName { background: none; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { border-right: 3px solid #3c3c3b; }
+#leaderboardWrapper #traditional .playerRow .data { background: none; }
+#leaderboardWrapper #traditional .playerRow .live { display: block; }
+#leaderboardWrapper #traditional .playerRow .track { display: block; }
+#leaderboardWrapper #traditional .playerRow .teetime { font-size: 1em; }
+#leaderboardWrapper #traditional .playerRow.showScorecard { background-color: white; }
+#leaderboardWrapper #traditional .headerRow .pos, #leaderboardWrapper #traditional .playerRow .pos { border-right: 1px solid #3c3c3b; }
+#leaderboardWrapper .missedcut, #leaderboardWrapper .disqualified, #leaderboardWrapper .withdrawn { font-weight: bold; border-right: 1px solid #3c3c3b; }
+#leaderboardWrapper #traditional { /* applying style except for the first .round_score element */ /* reset width of score colums */ }
+#leaderboardWrapper #traditional .round_score { width: 48px; }
+#leaderboardWrapper #traditional .score { width: 96px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow { font-size: 2em; width: 912px; height: 64px; line-height: 64px; color: #000000; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow div { background-image: url(/images/leaderboard/leaderboard-header-trad-sm.png); height: 64px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .pos.selected, #leaderboardWrapper #traditional .headerWrapper .headerRow .player.selected, #leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer div.selected { background-image: url(/images/leaderboard/leaderboard-header-trad-sm.png); }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .pos { background-position: 3px 0; width: 41px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .pos:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow .pos.selected { background-position: 3px -118px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player { background-position: -37px 0; width: 225px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow .player.selected { background-position: -37px -118px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer { width: 580px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Today { background-position: -266px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Today:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #Today.selected { background-position: -266px -118px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Thru { background-position: -363px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Thru:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #Thru.selected { background-position: -363px -118px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #ToPar { background-position: -459px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #ToPar:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #ToPar.selected { background-position: -459px -118px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R1 { background-position: -560px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R1:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #R1.selected { background-position: -560px -118px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R2 { background-position: -605px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R2:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #R2.selected { background-position: -605px -118px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R3 { background-position: -653px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R3:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #R3.selected { background-position: -653px -118px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R4 { background-position: -699px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R4:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #R4.selected { background-position: -699px -118px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Total { background-position: -747px 0px; width: 97px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Total:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #Total.selected { background-position: -747px -118px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader { height: 64px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.track { width: 32px; background-position: -845px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.fav { width: 31px; border-right: none; background-position: -879px 0px; }
+#leaderboardWrapper #traditional .score { width: 16.55172%; }
+#leaderboardWrapper #traditional .score:nth-of-type(1) { width: 16.55172%; }
+#leaderboardWrapper #traditional .score:nth-of-type(2), #leaderboardWrapper #traditional .score:nth-of-type(3) { width: 16.55172%; }
+#leaderboardWrapper #traditional .playerRow { height: 33px; line-height: 33px; font-size: 2em; }
+#leaderboardWrapper #traditional .playerRow div { height: 33px; }
+#leaderboardWrapper #traditional .playerRow .playerName { width: 225px; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 580px; }
+#leaderboardWrapper #traditional .playerRow .data { background: none; width: 100%; height: 33px; line-height: 33px; }
+#leaderboardWrapper #traditional .playerRow .live { width: 32px; }
+#leaderboardWrapper #traditional .playerRow .track { width: 32px; }
+#leaderboardWrapper #traditional .playerRow .favorite { width: 32px; height: 33px; }
+#leaderboardWrapper #traditional .headerRow .pos, #leaderboardWrapper #traditional .playerRow .pos { width: 41px; }
+#leaderboardWrapper #traditional .missedcut, #leaderboardWrapper #traditional .disqualified, #leaderboardWrapper #traditional .withdrawn { width: 191px; }
+#leaderboardWrapper #traditional .missedcut + .score:nth-of-type(2), #leaderboardWrapper #traditional .disqualified + .score:nth-of-type(2), #leaderboardWrapper #traditional .withdrawn + .score:nth-of-type(2) { width: 16.55172%; } }
+/****************************************************************** LARGER LARGEST SIZE AND ABOVE Screen Size >= 1440px and 820px height ****************************************************************/
+@media only screen and (min-width: 90em) and (min-height: 51.25em) { #leaderboardWrapper #traditional { /* applying style except for the first .round_score element */ /* reset width of score colums */ }
+#leaderboardWrapper #traditional .round_score { width: 60px; }
+#leaderboardWrapper #traditional .score { width: 121px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow { font-size: 2.4em; width: 1146px; height: 82px; line-height: 82px; color: #000000; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow div { background-image: url(/images/leaderboard/leaderboard-header-trad-l.png); height: 82px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .pos.selected, #leaderboardWrapper #traditional .headerWrapper .headerRow .player.selected, #leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer div.selected { background-image: url(/images/leaderboard/leaderboard-header-trad-l.png); }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .pos { background-position: 0 0; width: 46px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .pos:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow .pos.selected { background-position: 0 -164px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player { background-position: -45px 0; width: 288px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .player:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow .player.selected { background-position: -45px -164px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .playerStatContainer { width: 731px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Today { background-position: -332px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Today:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #Today.selected { background-position: -332px -164px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Thru { background-position: -453px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Thru:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #Thru.selected { background-position: -453px -164px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #ToPar { background-position: -574px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #ToPar:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #ToPar.selected { background-position: -574px -164px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R1 { background-position: -703px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R1:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #R1.selected { background-position: -703px -164px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R2 { background-position: -760px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R2:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #R2.selected { background-position: -760px -164px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R3 { background-position: -820px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R3:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #R3.selected { background-position: -820px -164px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R4 { background-position: -882px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #R4:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #R4.selected { background-position: -882px -164px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Total { background-position: -936px 0px; width: 125px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow #Total:hover, #leaderboardWrapper #traditional .headerWrapper .headerRow #Total.selected { background-position: -936px -164px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader { height: 82px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.track { width: 40px; background-position: -1062px 0px; }
+#leaderboardWrapper #traditional .headerWrapper .headerRow .rightHeader.fav { width: 38px; border-right: none; background-position: -1105px 0px; }
+#leaderboardWrapper #traditional .score { width: 16.55267%; }
+#leaderboardWrapper #traditional .score:nth-of-type(1) { width: 16.55267%; }
+#leaderboardWrapper #traditional .score:nth-of-type(2), #leaderboardWrapper #traditional .score:nth-of-type(3) { width: 16.55267%; }
+#leaderboardWrapper #traditional .playerRow { height: 42px; line-height: 42px; font-size: 2.4em; }
+#leaderboardWrapper #traditional .playerRow div { height: 42px; }
+#leaderboardWrapper #traditional .playerRow .playerName { width: 288px; }
+#leaderboardWrapper #traditional .playerRow .playerStatContainer { width: 731px; }
+#leaderboardWrapper #traditional .playerRow .data { background: none; width: 100%; height: 42px; line-height: 42px; }
+#leaderboardWrapper #traditional .playerRow .live { width: 40px; }
+#leaderboardWrapper #traditional .playerRow .track { width: 40px; }
+#leaderboardWrapper #traditional .playerRow .favorite { width: 39px; height: 42px; }
+#leaderboardWrapper #traditional .headerRow .pos, #leaderboardWrapper #traditional .playerRow .pos { width: 46px; }
+#leaderboardWrapper #traditional .missedcut, #leaderboardWrapper #traditional .disqualified, #leaderboardWrapper #traditional .withdrawn { width: 241px; }
+#leaderboardWrapper #traditional .missedcut + .score:nth-of-type(2), #leaderboardWrapper #traditional .disqualified + .score:nth-of-type(2), #leaderboardWrapper #traditional .withdrawn + .score:nth-of-type(2) { width: 16.55267%; } }
+/* actual content area */
+/* playoff */
+/* view seletor for smaller responsive view */
+#playoffViewSelector { font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; font-size: 1em; text-align: center; clear: both; padding-bottom: 10px; }
+#playoffViewSelector a:link, #playoffViewSelector a:visited { color: #999999; text-decoration: none; padding: 0 10px; }
+#playoffViewSelector a.selected { color: #000000; }
+#playoffViewSelector a.selected:hover { color: #000000; }
+#playoffViewSelector a:hover { cursor: pointer; color: #000000; }
+/* skeuomorphic view playoff link */
+#view_playoff { display: none; }
+#leaderboardPlayOff { width: 100%; position: relative; *zoom: 1; clear: left; }
+#leaderboardPlayOff:before, #leaderboardPlayOff:after { content: ""; display: table; }
+#leaderboardPlayOff:after { clear: both; }
+#leaderboardPlayOff .closeButton { display: none; }
+#leaderboardPlayOff .closeButton a .close { display: none; }
+#leaderboardPlayOff #playOffContent { margin-top: -10px; }
+#leaderboardPlayOff .title { display: none; }
+#leaderboardPlayOff .sd { font-size: 1.1em; clear: both; font-family: "Source Sans Pro", Arial, Helvetica, sans-serif; font-weight: normal; position: relative; text-align: center; padding-bottom: 10px; }
+#leaderboardPlayOff .sd:before { content: ""; }
+#leaderboardPlayOff .sd:after { content: ""; }
+#leaderboardPlayOff table { border: 1px solid #E0E0E0; text-transform: uppercase; width: 100%; position: relative; }
+#leaderboardPlayOff table a { text-decoration: none; color: inherit; }
+#leaderboardPlayOff td { height: 30px; line-height: 30px; text-align: center; }
+#leaderboardPlayOff td:first-child { text-align: left; width: 17.54386%; padding-left: 14px; font-size: 1em; color: #323232; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; }
+#leaderboardPlayOff .header td, #leaderboardPlayOff .par td { border-bottom: 1px solid #E0E0E0; background-color: #333333; color: #aaaaaa; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; }
+#leaderboardPlayOff .header td.hole_no, #leaderboardPlayOff .par td.hole_no { color: #aaaaaa; border-left: 1px solid #E0E0E0; }
+#leaderboardPlayOff tr.player:first-child { border-top: none; }
+#leaderboardPlayOff .player td { height: 30px; line-height: 30px; border-top: solid 1px #E0E0E0; }
+#leaderboardPlayOff .player:nth-of-type(2n) { background-color: #F2F2F2; }
+#leaderboardPlayOff .player .hole_no { font-size: 1em; color: #000000; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; border-left: 1px solid #E0E0E0; }
+#leaderboardPlayOff .player .hole_no div { position: relative; }
+#leaderboardPlayOff .hole_no { font-size: 1em; position: relative; z-index: 0; border-left: 1px solid #E0E0E0; }
+/*************************************************************************************** Mobile Landscape and Above Screen Size >= 480px *************************************************************************************/
+@media only screen and (min-width: 30em) { #playoffViewSelector { display: none; } }
+/****************************************************************** MEDIUM SCREEN SIZE AND ABOVE Screen Size >= 720px ****************************************************************/
+@media only screen and (min-width: 45em) { /* playoff */
+/* view seletor for smaller responsive view */
+#playoffViewSelector { display: none; }
+#leaderboardPlayOff #playOffContent { margin-top: 0px; }
+#leaderboardPlayOff .sd { font-size: 1.15385em; }
+#leaderboardPlayOff td { height: 40px; line-height: 40px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+#leaderboardPlayOff td:first-child { width: 20.83333%; font-size: 1.23077em; }
+#leaderboardPlayOff .player td { height: 40px; line-height: 40px; }
+#leaderboardPlayOff .player .hole_no { font-size: 1.23077em; }
+#leaderboardPlayOff .hole_no { font-size: 1.23077em; } }
+/****************************************************************** LARGE SCREEN SIZE AND ABOVE Screen Size >= 920px ****************************************************************/
+@media only screen and (min-width: 57.5em) { /* view seletor for smaller responsive view */
+#playoffViewSelector { display: none; }
+#viewPlayoffMedium { display: inline; }
+#leaderboardPlayOff #playOffContent { margin-top: 0px; } }
+/****************************************************************** LARGER ALPHA SIZE AND ABOVE Screen Size >= 1024px and 620 height ****************************************************************/
+@media only screen and (min-width: 64em) and (min-height: 38.75em) { /* playoff */
+/* skeuomorphic view playoff link */
+#view_playoff { display: block; }
+#viewPlayoffMedium { display: none; }
+#leaderboardPlayOff { width: 554px; min-height: 251px; position: absolute; top: 150px; left: 50%; margin-left: -277px; z-index: 11; background: #FFFFFF; -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.1); -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.1); box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.1); padding: 22px 15px 15px 15px; }
+#leaderboardPlayOff .closeButton { display: block; position: absolute; width: 32px; height: 32px; top: 20px; padding: 0; right: 15px; z-index: 12; }
+#leaderboardPlayOff .closeButton .close { display: block !important; background: url(/images/leaderboard/lb-playoff-close-sm.png) no-repeat 0 0; width: 32px; height: 32px; text-indent: -9999px; }
+#leaderboardPlayOff .title { display: block; font-family: "Source Sans Pro Bold", Arial, Helvetica, sans-serif; font-weight: 700; margin: 0; padding: 0 0 10px 0; text-align: center; font-size: 2.0em; text-transform: uppercase; }
+#leaderboardPlayOff .sd { font-size: 1.3em; font-family: "Source Sans Pro Semibold", Arial, Helvetica, sans-serif; font-weight: 500; position: absolute; top: 30px; right: 73px; padding-bottom: 0; text-transform: uppercase; }
+#leaderboardPlayOff .sd:before { content: "("; }
+#leaderboardPlayOff .sd:after { content: ")"; }
+#leaderboardPlayOff .viewSelector { display: none; }
+#leaderboardPlayOff table { border: 2px solid #000000; background-color: #ffffff; color: #000000; text-transform: uppercase; }
+#leaderboardPlayOff td { height: 40px; line-height: 40px; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+#leaderboardPlayOff td:first-child { text-align: left; width: 199px; padding-left: 14px; font-size: 1.36em; }
+#leaderboardPlayOff .header td, #leaderboardPlayOff .par td { background: #ffffff url(/images/leaderboard/leaderboard-playoff-header-sm.png) no-repeat 0 0; text-indent: -9999px; border-bottom: 1px solid #000000; }
+#leaderboardPlayOff .header td.hole_no { background-position: -205px -41px; border-left-color: #000000; }
+#leaderboardPlayOff .header td.hole10 { background-position: -240px 0; }
+#leaderboardPlayOff .header td.hole18 { background-position: -200px 0; }
+#leaderboardPlayOff .par td.description { background-position: 0 -41px; }
+#leaderboardPlayOff .par td.hole_no { background-position: -240px -41px; border-left-color: #000000; }
+#leaderboardPlayOff .player td { height: 40px; line-height: 40px; border-top: 1px solid #000000; }
+#leaderboardPlayOff .player:nth-of-type(2n) { background-color: #ffffff; }
+#leaderboardPlayOff .player .playerName { font-size: 1.8em; font-family: "Single LB"; font-weight: normal; color: #000000; padding-left: 18px; }
+#leaderboardPlayOff .player .hole_no { font-size: 1.8em; font-family: "Single LB"; font-weight: normal; border-left: 1px solid #000000; }
+#leaderboardPlayOff .hole_no { border-left: 1px solid #000000; width: 41px; } }
+/****************************************************************** LARGER LARGEST SIZE AND ABOVE Screen Size >= 1440px and 820px height ****************************************************************/
+@media only screen and (min-width: 90em) and (min-height: 51.25em) { /* playoff */
+#leaderboardPlayOff { width: 693px; min-height: 308px; top: 150px; left: 50%; margin-left: -346.5px; -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.1); -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.1); box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.1); padding: 27px 20px 20px 20px; }
+#leaderboardPlayOff .closeButton { display: block; width: 39px; height: 39px; top: 25px; right: 20px; }
+#leaderboardPlayOff .closeButton .close { background: url(/images/leaderboard/lb-playoff-close.png) no-repeat 0 0; width: 39px; height: 39px; }
+#leaderboardPlayOff .title { margin: 0; padding: 0 0 10px 0; font-size: 2.7em; }
+#leaderboardPlayOff .sd { font-size: 1.6em; top: 37px; right: 93px; }
+#leaderboardPlayOff td { height: 40px; line-height: 40px; }
+#leaderboardPlayOff td:first-child { width: 249px; padding-left: 14px; font-size: 1.36em; }
+#leaderboardPlayOff .header td, #leaderboardPlayOff .par td { background: #ffffff url(/images/leaderboard/leaderboard-playoff-header.png) no-repeat 0 0; }
+#leaderboardPlayOff .header td.hole_no { background-position: -250px -51px; }
+#leaderboardPlayOff .header td.hole10 { background-position: -300px 0; }
+#leaderboardPlayOff .header td.hole18 { background-position: -250px 0; }
+#leaderboardPlayOff .par td.description { background-position: 0 -51px; }
+#leaderboardPlayOff .par td.hole_no { background-position: -250px -51px; }
+#leaderboardPlayOff .player td { height: 50px; line-height: 50px; }
+#leaderboardPlayOff .player .playerName { font-size: 2.2em; padding-left: 22px; }
+#leaderboardPlayOff .player .hole_no { font-size: 2.2em; }
+#leaderboardPlayOff .hole_no { width: 52px; } }
+#leaderboardPlayOff .eagle:before, #leaderboardPlayOff .eagle span.outer { box-sizing: content-box; content: ' '; position: absolute; top: 50%; left: 50%; height: 0; width: 22px; padding-bottom: 22px; margin: -13px 0 0 -12px; border: 1px solid #1c6344; border-radius: 50%; }
+#leaderboardPlayOff .eagle:after, #leaderboardPlayOff .eagle span.inner { box-sizing: content-box; content: ' '; position: absolute; top: 50%; left: 50%; height: 0; width: 16px; padding-bottom: 16px; margin: -10px 0 0 -9px; border: 1px solid #1c6344; border-radius: 50%; }
+#leaderboardPlayOff .birdie:before, #leaderboardPlayOff .birdie span.outer { box-sizing: content-box; content: ' '; position: absolute; top: 50%; left: 50%; height: 0; width: 22px; padding-bottom: 22px; margin: -13px 0 0 -12px; border: 1px solid #1c6344; border-radius: 50%; }
+#leaderboardPlayOff .bogey:before { box-sizing: content-box; content: ' '; position: absolute; top: 50%; left: 50%; height: 0; width: 22px; padding-bottom: 22px; margin: -13px 0 0 -12px; border: 1px solid #1c6344; }
+#leaderboardPlayOff .dbl_bogey:before { box-sizing: content-box; content: ' '; position: absolute; top: 50%; left: 50%; height: 0; width: 22px; padding-bottom: 22px; margin: -13px 0 0 -12px; border: 1px solid #1c6344; }
+#leaderboardPlayOff .dbl_bogey:after { box-sizing: content-box; content: ' '; position: absolute; top: 50%; left: 50%; height: 0; width: 16px; padding-bottom: 16px; margin: -10px 0 0 -9px; border: 1px solid #1c6344; }
+#leaderboardPlayOff .video { cursor: pointer; background: #faeebf; }
+#leaderboardPlayOff .video a { text-decoration: none; color: #000000; display: block; }
+@media only screen and (min-width: 45em) { #leaderboardPlayOff .hole_no .eagle:before, #leaderboardPlayOff .hole_no .eagle span.outer, #leaderboardPlayOff .hole_no .eagle:after, #leaderboardPlayOff .hole_no .eagle span.inner, #leaderboardPlayOff .hole_no .birdie:before, #leaderboardPlayOff .hole_no .birdie span.outer, #leaderboardPlayOff .hole_no .birdie:after, #leaderboardPlayOff .hole_no .birdie span.inner, #leaderboardPlayOff .hole_no .bogey:before, #leaderboardPlayOff .hole_no .bogey span.outer, #leaderboardPlayOff .hole_no .bogey:after, #leaderboardPlayOff .hole_no .bogey span.inner, #leaderboardPlayOff .hole_no .dbl_bogey:before, #leaderboardPlayOff .hole_no .dbl_bogey span.outer, #leaderboardPlayOff .hole_no .dbl_bogey:after, #leaderboardPlayOff .hole_no .dbl_bogey span.inner { border-width: 2px; border-color: #1c6344; }
+#leaderboardPlayOff .eagle:before, #leaderboardPlayOff .eagle span.outer { width: 26px; padding-bottom: 26px; margin: -15px 0 0 -15px; }
+#leaderboardPlayOff .eagle:after, #leaderboardPlayOff .eagle span.inner { width: 20px; padding-bottom: 20px; margin: -12px 0 0 -12px; }
+#leaderboardPlayOff .birdie:before, #leaderboardPlayOff .birdie span.outer { width: 26px; padding-bottom: 26px; margin: -15px 0 0 -15px; }
+#leaderboardPlayOff .bogey:before { width: 26px; padding-bottom: 26px; margin: -15px 0 0 -15px; }
+#leaderboardPlayOff .dbl_bogey:before { width: 26px; padding-bottom: 26px; margin: -15px 0 0 -15px; }
+#leaderboardPlayOff .dbl_bogey:after { width: 20px; padding-bottom: 20px; margin: -12px 0 0 -12px; } }
+@media only screen and (min-width: 64em) and (min-height: 41.75em) { #leaderboardPlayOff .eagle:before, #leaderboardPlayOff .eagle span.outer { width: 29px; padding-bottom: 29px; margin: -16px 0 0 -16px; }
+#leaderboardPlayOff .eagle:after, #leaderboardPlayOff .eagle span.inner { width: 21px; padding-bottom: 21px; margin: -12px 0 0 -12px; }
+#leaderboardPlayOff .birdie:before, #leaderboardPlayOff .birdie span.outer { width: 29px; padding-bottom: 29px; margin: -16px 0 0 -16px; }
+#leaderboardPlayOff .bogey:before { width: 29px; padding-bottom: 29px; margin: -16px 0 0 -16px; }
+#leaderboardPlayOff .dbl_bogey:before { width: 29px; padding-bottom: 29px; margin: -16px 0 0 -16px; }
+#leaderboardPlayOff .dbl_bogey:after { width: 21px; padding-bottom: 21px; margin: -12px 0 0 -12px; } }
+@media only screen and (min-width: 90em) and (min-height: 51.25em) { #leaderboardPlayOff .eagle:before, #leaderboardPlayOff .eagle span.outer { width: 36px; padding-bottom: 36px; margin: -21px 0 0 -20px; }
+#leaderboardPlayOff .eagle:after, #leaderboardPlayOff .eagle span.inner { width: 28px; padding-bottom: 28px; margin: -17px 0 0 -16px; }
+#leaderboardPlayOff .birdie:before, #leaderboardPlayOff .birdie span.outer { width: 36px; padding-bottom: 36px; margin: -21px 0 0 -20px; }
+#leaderboardPlayOff .bogey:before { width: 36px; padding-bottom: 36px; margin: -21px 0 0 -20px; }
+#leaderboardPlayOff .dbl_bogey:before { width: 36px; padding-bottom: 36px; margin: -21px 0 0 -20px; }
+#leaderboardPlayOff .dbl_bogey:after { width: 28px; padding-bottom: 28px; margin: -17px 0 0 -16px; } }
+#leaderboardPlayOff + .legend { width: 100%; text-align: center; }
+#leaderboardPlayOff + .legend img { margin: 20px auto; width: 276px; }
+/****************************************************************** LARGER LARGER SIZE AND ABOVE Screen Size >= 1024px and 668 height NORMAL smaller Skeuomorphic view (no Nexus 10 case) inherit most of the styles _from lblargeralpha ****************************************************************/
+@media only screen and (min-width: 64em) and (min-height: 41.75em) { /* LEADERS */
+section.page-wrap { min-height: 80%; }
+#leaderboardWrapper #leaderboardLowContainer { margin: 20px 0 0 0; }
+#leaderboardWrapper #leaderboardLowContainer #header { width: 100%; height: 53px; }
+#leaderboardLow { margin-top: 53px; }
+#leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper { top: 259px; }
+html.alert #leaderBoardPlayers-wrapper, html.alert #leaderBoardPlayersTraditional-wrapper { top: 299px; } }
+/****************************************************************** LARGER LARGEST SIZE AND ABOVE Screen Size >= 1440px and 820px height ****************************************************************/
+@media only screen and (min-width: 90em) and (min-height: 51.25em) { /* entire score board width */
+/* actual content area */
+/* LEADERS */
+/* header row + scores */
+/* score section only - scrolling content area */
+#leaderboardWrapper { width: 1180px; margin: 0px auto; /* common classes */ /* Leaderboard base - in the green area on the score board */ }
+#leaderboardWrapper #leaderboardLowContainer { margin: 69px 0 0 0; padding-bottom: 83px; }
+#leaderboardWrapper #leaderboardLowContainer #header { width: 100%; height: 63px; }
+#leaderboardWrapper #leaderboardLowContainer #leaderboardBg { display: block !important; z-index: 0; width: 1180px; height: 656px; }
+#leaderboardWrapper #leaderboardLowContainer #leaderboardBg #largeSkeuomorphicBg { display: block !important; }
+#leaderboardWrapper #leaderboardLowContainer #leaderboardBg #smallSkeuomorphicBg { display: none !important; }
+#leaderboardWrapper .triplebottomborder { border-bottom: solid 3px #3c3c3b !important; }
+#leaderboardWrapper .tripleheight { height: 45px !important; }
+#leaderboardWrapper .titleRow, #leaderboardWrapper .noplayers, #leaderboardWrapper .missedcutHeader, #leaderboardWrapper .cutline { background: transparent url(/images/leaderboard/titleRow-text-l.png) no-repeat 0 0; height: 42px; line-height: 42px; font-size: 2.2em; }
+#leaderboardWrapper .favoritesTitle { background-position: 0 -8px; }
+#leaderboardWrapper .allPlayersTitle { background-position: 0 -52px; }
+#leaderboardWrapper .noplayers { background-position: 0 -138px; }
+#leaderboardWrapper .cutline { font-size: 2.4em; background-position: 0 -98px !important; }
+#leaderboardWrapper #leaderboardLow { width: 1180px; height: 507px; margin-top: 63px; padding: 0px 17px; }
+#leaderboardWrapper #leaderboardLow div.content { padding: 0 16px; /*overrides style.scss */ }
+#leaderboardWrapper #leaderBoardPlayers-wrapper, #leaderboardWrapper #leaderBoardPlayersTraditional-wrapper { width: 100%; height: 426px; top: 336px; left: 0; }
+#leaderboardWrapper #leaderBoardPlayersContent, #leaderboardWrapper #leaderBoardPlayersTraditionalContent { float: left; width: 1146px; padding-bottom: 0; }
+#leaderboardWrapper #leaderBoardPlayersFavContent, #leaderboardWrapper #leaderBoardPlayersTraditionalFavContent { width: 1146px; }
+#leaderboardWrapper .leaderBoardContent { width: 1146px; margin: 0; opacity: 0; }
+#leaderboardWrapper .leaderBoardContent .note { display: none; }
+#leaderboardWrapper #leaderboardFooterBase { top: 565px; width: 1180px; height: 84px; padding: 0 17px; /* left cell */ /* center cell */ /* right cell */ }
+#leaderboardWrapper #leaderboardFooterBase .right_cell { width: 260px; }
+#leaderboardWrapper #leaderboardFooterBase .learn_more { margin-top: 32px; font-size: 1.167em; }
+#leaderboardWrapper #leaderboardFooterBase .learn_more a:before { width: 71px; height: 23px; background-position: 48px 0px; }
+#leaderboardWrapper #leaderboardFooterBase .learn_more a:hover:before { background-position: 48px -23px; }
+#leaderboardWrapper #leaderboardFooterBase .popout { margin-top: 32px; font-size: 1.167em; }
+#leaderboardWrapper #leaderboardFooterBase .round_selector #conCurrentRound { font-size: 1.167em; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer { height: 86px; }
+#leaderboardWrapper #leaderboardFooterBase .messageContainer .messageContent { padding-top: 0; }
+#leaderboardWrapper #leaderboardFooterBase #conCurrentRoundText, #leaderboardWrapper #leaderboardFooterBase .message, #leaderboardWrapper #leaderboardFooterBase .allTimes, #leaderboardWrapper #leaderboardFooterBase #view_playoff, #leaderboardWrapper #leaderboardFooterBase #splittee { font-size: 1.167em; }
+html.alert #leaderboardWrapper #leaderBoardPlayers-wrapper, html.alert #leaderboardWrapper #leaderBoardPlayersTraditional-wrapper { top: 376px; }
+/* Leader Board Page Footer - in the black nav bar */
+#leaderboardLowFooter { width: 1146px; } }
+/*# sourceMappingURL=leaderboard_low.css.map */

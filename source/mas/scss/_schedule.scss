@@ -1,0 +1,129 @@
+@import "rwd_helpers";
+
+.full-schedule {
+  @include sourcesans;
+  h2 {
+    font-size: 16px; text-align: center; @include sourcesans(bold); text-transform: uppercase;  margin: 0 0 20px 0;
+    @include breakpoint(medium) {
+      font-size: 18px;   margin: 40px 0 22px 0;
+    }
+  }
+  > h3 { display: none; margin: 0 margin-width($mobile-columns)*2;
+    @include breakpoint(medium) {
+      width: 100% - margin-width()*4; max-width: 792px; display: block; margin: 0 auto;
+      display: block; text-align: center; font-weight: normal; background: #f5f5f5;
+      font-size: 24px; height: 40px; line-height: 40px; margin-bottom: -41px;
+    }
+  }
+  .androidonly, .iosonly { display: none; }
+  .day-nav{ margin: 0 margin-width($mobile-columns)*2;
+    @include breakpoint(medium, max) {
+      margin-bottom: 22px; font-size: 0.75em;
+      .day-container { overflow: hidden; font-size: 1.333em; line-height: 2.375em; text-transform: uppercase; display: none; position: relative; text-align: center; cursor: pointer;
+        @include breakpoint(small, max) { font-size: 1em; line-height: 3.1667em;
+          &.selected { padding-right: 10px; }
+        }
+        &:hover { background-color: $white; color: $black; }
+        &.selected { display: block; color: $white; background: $black; }
+        &.selected, &:first-child {
+          &:after { content: " "; position: absolute; right: 10px; top: 50%; margin-top: -3px; width: 10px; height: 6px; background: url('/images/now/filter_arrow_sprite.png') no-repeat 0 0; }
+        }
+
+        .day, .date, .description { display: inline-block; }
+        .day {
+          &:after { content: ",\0000a0"; }
+        }
+        .date {
+          &:before { content: 'April '; }
+        }
+        .description {
+          &:before { content: "\0000a0- "; }
+        }
+      }
+
+      &.open {
+        .day-container { display: block; color: $white; background-color: $black; text-align: center; border: 1px solid #303030; border-top: none; line-height: 2.4375em;
+          &.clone { line-height: 2.375em; }
+          &:hover { background-color: $white; color: $black;  }
+          &.selected { background:#333333;
+            &:after { display: none; content: "  "; }
+            &:hover { color: $white; }
+          }
+          &:first-child:after { display: block; background-position: -40px -40px; margin-top: -5px; content: "  "; }
+
+          @include breakpoint(small,max) { line-height: 3.1667em;
+            &.selected { padding-right: 0; }
+            &.clone {
+              padding-right: 10px; line-height: 3.1667em;
+            }
+          }
+
+        }
+      }
+    }
+
+    @include breakpoint(medium) {
+      width: 100% - margin-width()*4; max-width: 792px; display: block; margin: 0 auto;
+      display: table; border: 1px solid #999999; margin-bottom: 15px; padding-top: 40px;
+      .day-container { text-decoration: none; color: #666666;
+        display: table-cell; text-transform: uppercase; height: 178px; width: percentage(1/7); border-left: 1px solid #999999; border-top: 1px solid #999999; text-align: center;
+        &:first-child { border-left: 0; }
+        .day {
+          font-size: 16px; width: auto; margin-top: 11px; float: none;  padding: none;
+        }
+        .date {
+            font-size: 48px; color: #666666; margin-top: 7px; float: none; padding: none;
+        }
+        .description {
+          font-size: 16px; float: none; padding: none;
+          &.day3 {
+            line-height: 16px; width: 100%; text-align: inherit;; margin-top: 0px;
+          }
+        }
+        &.selected { background: #333333; color: #ffffff;
+          .date { color: #ffffff; }
+        }
+        &:hover { background: #f5f5f5; color: #333333; cursor: pointer;
+          .date { color: #333333; }
+          &.selected { background: #333333; color: #ffffff;
+            .date { color: #ffffff; }
+          }
+        }
+      }
+    }
+  }
+  .schedule { @include center-column(12); max-width: 792px;
+    p { font-size: 12px; margin: 0;
+      @include breakpoint(large) {
+        font-size: 18px;
+      }
+      &.centered { text-align: center; margin-bottom: 1em; }
+      &.footnote { margin-top: 40px; font-size: 16px; }
+    }
+    h3 { @include sourcesans(bold); font-size: 16px; margin: 30px 0 15px 0; text-transform: uppercase;  text-align: center;
+      @include breakpoint(large) {
+        font-size: 18px; margin: 60px 0 15px 0;
+      }
+      + div.row { border-top: 1px solid #e1e1e1; }
+      + p + div.row {  border-top: 1px solid #e1e1e1; }
+    }
+    .row {
+      height: 3em; line-height: 3em; border-bottom: 1px solid #e1e1e1; clear: both; font-size: 14px;
+      @include breakpoint (large) {
+        font-size: 18px;
+      }
+      dt { float: left;
+        @include breakpoint(large) {
+          text-transform: uppercase;
+        }
+      }
+      dd { float: right; }
+      span {  margin-left: 5px;}
+    }
+    h4 { font-weight: bold; font-size: 16px;  margin: 35px 0 0;
+      @include breakpoint(large) {
+        font-size: 20px;
+      }
+    }
+  }
+}

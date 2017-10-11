@@ -1,0 +1,1226 @@
+@import "rwd_helpers";
+
+@function lbcp($width, $content_width: $lb_content_width) { @return cp($width, $content_width); }
+@function hcp($width, $holes_container_width: $lb_holes_container_width) { @return cp($width, $holes_container_width); }
+@function pscp($width, $trad_player_stat_width: $lb_trad_player_stat_width) { @return cp($width, $trad_player_stat_width); }
+@mixin tableborder($width, $side: '', $border_color: $lb_border_color) {
+  @if $side == '' {
+    border: $width solid $border_color;
+  } @else {
+    border-#{$side}: $width solid $border_color;
+ }
+}
+
+/*********** CONSTANTS ***********/
+$LB_BACKGROUND_COLOR: #F9F6F1;
+$LB_PANEL_DEFAULT_TOTAL_WIDTH: 347px; 
+$LB_PANEL_HORIZONTAL_PADDING:6px;
+$LB_PANEL_VERTICAL_PADDING:15px;
+$LB_PANEL_DEFAULT_WIDTH: $LB_PANEL_DEFAULT_TOTAL_WIDTH - ($LB_PANEL_HORIZONTAL_PADDING * 2); //box-sizing is content-box
+$LB_PANEL_DEFAULT_HEIGHT: 340px; //default 340px;
+$LB_DEFAULT_PLAYER_ROW_HEIGHT: 32px;
+$LB_DEFAULT_FONT_COLOR: #383838;
+$LB_DEFAULT_POSITION_TOP: 60px;
+$LB_DEFAULT_POSITION_RIGHT: 10px;
+$LB_UNDER_SCORE_COLOR: #BF0000;
+$LB_OVER_SCORE_COLOR:#14543E;
+$SCROLLBAR_COLUMN_WIDTH:15px;
+$PLAYER_ROW_ON_HOVER_BG_COLOR: #e4ecdb;
+$PLAYER_NAME_ON_HOVER_COLOR: #339933;
+
+/******* End of Constants ********/
+
+//Skeumorphic background border for data cells
+@mixin data-cell-skeumorphic-border($player_row_height, $padding-horizontal, $padding-vertical) {
+  border:1px solid #C2C0BE;
+  box-shadow: inset 0 0 2px #C2C0BE;
+  height:$player_row_height - ($padding-vertical * 2);
+  width: 100% - ($padding-horizontal * 2);
+  margin-top: $padding-vertical;
+  margin-left: $padding-horizontal;
+}
+
+@mixin skeumorphic-trad-table-responsive(
+  $display_round_scores_and_total_columns, 
+  $display_track_column,
+  $display_fav_column,
+  $display_today_column,
+  $content_width, //pos_width + player_name_width + player_stat_width + track_width + fav_width
+  $player_name_width,
+  $player_name_padding_left,
+  $player_stat_width, //scores_width + round_scores_width
+  $pos_width,
+  $scores_width,
+  $round_scores_width,
+  $track_width,
+  $fav_width,
+  $row_font_size,
+  $missed_cut_font_size) {
+    #traditional {
+      @if $display_round_scores_and_total_columns == false {
+        .round_score { display:none }; //round score columns
+        .score { &.last { display: none;} } //total column for round scores
+      } 
+
+      @if $display_track_column == false {
+        .track { display:none; }
+      }
+
+      @if $display_fav_column == false {
+        .fav, .favorite { display: none; }
+      }
+
+      @if $display_today_column == false {
+        #Today, .score[attr="today3"] { display:none; } //today column
+        
+        //missed cut/disqualified/withdrawn should also occupy the full width of
+        //succeeding column's container (total column), which should be empty
+        .playerStatContainer {
+          .missedcut, .disqualified, .withdrawn {
+            + .score[attr="topar"]  { display:none; }
+          }
+        }
+      }
+
+      
+      /* reset width of score colums */
+      .score:nth-of-type(1){ width: pscp($scores_width, $player_stat_width); }
+      .score:nth-of-type(2), .score:nth-of-type(3){ width: pscp($scores_width, $player_stat_width); }
+
+      //----------  Table Header ---------- 
+      .headerWrapper {
+        .headerRow { 
+          .sort_item { 
+            &:hover, &.selected {
+              background-color: #666666; color:white;
+              border-bottom:2px solid black;
+            }
+          }
+
+
+          .playerStatContainer { width: lbcp($player_stat_width, $content_width);}
+          .player { width: lbcp($player_name_width,  $content_width);}
+          .rightHeader { 
+            &.fav { width: lbcp($fav_width, $content_width); }
+          }
+        }
+      }
+      //--------  End of Table Header -------- 
+
+
+      //--------  Table Rows-------- 
+      .playerRow { 
+        font-size: $row_font_size;
+        .playerName { width: lbcp($player_name_width, $content_width); 
+          .data { padding-left: $player_name_padding_left }
+        }
+        .playerStatContainer { width: lbcp($player_stat_width, $content_width);}
+
+        .playerStatContainer { width: lbcp($player_stat_width, $content_width); }
+        .favorite { width: lbcp($fav_width, $content_width);}
+      }
+      //--------  End of Table Rows -------- 
+      
+      //---- Common to Table Header and Rows ----
+      .headerRow, .playerRow {
+        .pos { width: lbcp($pos_width, $content_width); }
+        .round_score { width: pscp($round_scores_width, $player_stat_width);}
+        .score { width: pscp($scores_width, $player_stat_width); }
+        .track { width: lbcp($track_width, $content_width); }
+      }
+      //------- End of Common ------
+
+
+      .missedcut, .disqualified, .withdrawn { width: pscp($scores_width * 2, $player_stat_width); font-size: $missed_cut_font_size; }
+    }
+}
+
+// Common styles to traditional non-skeumorphic views across all breakpoints
+@mixin skeumorphic-trad-table-responsive-common() {
+    $border_color: #333333;
+    $player_row_height: $LB_DEFAULT_PLAYER_ROW_HEIGHT;
+    $data_cell_vertical_padding: 3px;
+    $header_row_height: 20px;
+    $header_font_size: 10px;
+    $title_row_font_size: 13px; //all players, favorites, and projected cut
+
+
+    #traditional {
+      //---- Set row & column borders ----
+      .pos, .score, .round_score { text-align: center; @include tableborder(1px, left, $border_color); }
+      .track { @include tableborder(2px, left, $border_color); }
+      .fav, .favorite {  @include tableborder(1px, left, $border_color); }
+      .playerName { @include tableborder(1px, left, $border_color); @include tableborder(1px, right, $border_color);}
+      .round_score[attr="r1"] { @include tableborder(2px, left, $border_color); }
+      //---- end of set row & column borders ----
+
+      &.content { right: 0; }
+      .round_score { overflow: hidden;}
+      .score { overflow: hidden; }
+
+
+      .headerWrapper { @include clearfix;
+        @include tableborder(2px, bottom, $border_color);
+        position:relative;
+        height: $header_row_height;
+        .headerRow { 
+          @include sourcesans(bold); 
+          @include tableborder(1px, right, $border_color);
+          font-size: $header_font_size; line-height: $header_row_height; float:left;
+          width:100%; 
+          // width:calc(100% - #{$SCROLLBAR_COLUMN_WIDTH});
+          div { height: $header_row_height; cursor: pointer; text-align: center; text-transform: uppercase; float: left; border-bottom: none;}
+          .player { padding-left: 8px; overflow: hidden; text-align: left;}
+          .rightHeader { cursor: default; text-decoration: none;
+            &.fav { padding-top: 0px; }
+            &.track { padding-top: 0px; }
+          }
+        }
+
+        // Padding to align table header with body, which has a scrollbar.
+        .scrollbar-column { 
+          @include tableborder(2px, bottom, #989795); 
+          width:$SCROLLBAR_COLUMN_WIDTH;
+          float:right;
+          background-color:#E5E3DF;
+          height:$header_row_height; 
+
+          //set the width of its sibling headerRow to make space for this padding
+          + .headerRow {width:calc(100% - #{$SCROLLBAR_COLUMN_WIDTH});}
+
+          &.hide {
+            display:none;
+            + .headerRow {width:100%; }
+          } 
+        }
+          
+      }
+
+      
+      //Table Body
+      .leaderBoardContent {
+        position:absolute;
+        width:100%;
+        height: calc(100% - #{$header_row_height} - 2px);
+        // overflow:hidden;
+        outline:none;
+
+        .playerRow { 
+          @include wh(100%,$player_row_height);
+          @include tableborder(1px, right, $border_color);
+          @include tableborder(1px, bottom, $border_color);
+
+          &.triplebottomborder { border-bottom: solid 2px $border_color; }
+          
+          height: $player_row_height; 
+          line-height: $player_row_height - ($data_cell_vertical_padding * 2); 
+          clear: left;float: left; 
+          div { height:$player_row_height; float: left; }
+
+          .under { color: $LB_UNDER_SCORE_COLOR !important; } //override !important in lb_widget.scss
+          .over { color: $LB_OVER_SCORE_COLOR !important; } //override !important in lb_widget.scss
+
+          // Highlight Row when Hovered upon
+          &.hoverable:hover { background: $PLAYER_ROW_ON_HOVER_BG_COLOR;
+            .playerName { color: $PLAYER_NAME_ON_HOVER_COLOR;  }
+          }
+
+          // Hide Rows - Used During Search or Filter
+          &.hidden { display: none; }
+
+          .playerName { 
+            font-family: 'Player Name';
+            color: #333333; cursor:pointer;
+            .smaller { font-size: .7em; }
+          }   
+
+          .pos, .score, .round_score { font-family: 'Single LB';}
+
+          //------ Add skeumoprhic border to data cells: player name, score, pos and round score ------
+          .playerName {
+           .data { 
+              @include data-cell-skeumorphic-border($player_row_height, 1%, $data_cell_vertical_padding);
+            }
+          }
+          .score {
+            .data {
+              @include data-cell-skeumorphic-border($player_row_height, 2%, $data_cell_vertical_padding);
+            }
+          }
+         .pos, .round_score  {
+            .data {
+              @include data-cell-skeumorphic-border($player_row_height, 5%, $data_cell_vertical_padding);
+            }
+          }
+          //------ End of add skeumorphic border ------
+
+
+          //Favorite Icon
+          .favorite {
+            background: url('/images/leaderboard/leaderboard-favorites-icons-skeu-sm.png') no-repeat 50% 7px; cursor: pointer;
+          }
+
+          //Favorited Player Icon
+          &.favoritePlayer, &.favorited {
+            .favorite { background: url('/images/leaderboard/leaderboard-favorites-icons-skeu-sm.png') no-repeat 50% -26px; }
+          }    
+
+           //----- Track Icons -----
+          .track {
+            pointer-events: none;
+            cursor: default;
+            background: url('/images/leaderboard/leaderboard-track-icons-sm.png') no-repeat 50% 3px;cursor: pointer;
+            &.on { background-position: 50% -27px; cursor: pointer; pointer-events: auto;
+              &:hover { background-position: 50% -57px; }
+            }
+            a { display:block; } //track link should occuply full cell
+          }
+          //--- End of Track Icons ---
+        }
+
+        .missedcut, .disqualified, .withdrawn { font-family: 'Player Name'; text-align:center; @include tableborder(1px, left, $border_color); line-height: $player_row_height;}
+
+
+        .titleRow, .noplayers, .missedcutHeader, .cutline { 
+          @include tableborder(1px, bottom, $border_color);
+          @include tableborder(1px, right, $border_color);
+          @include tableborder(1px, left, $border_color);
+          @include sourcesans(bold); 
+          height: $player_row_height; line-height: $player_row_height;text-align:center; text-transform:uppercase;float:left;width: 100%;font-size:$title_row_font_size;
+        }
+
+        // ---------------- Projected Cut ----------------
+        .cutline {
+          .hr-line {
+            border-bottom: 1px solid black;
+            margin-bottom:$player_row_height / 2; height: $player_row_height / 2; //vertically center the hr line
+            span {
+              height: $player_row_height; background: $LB_BACKGROUND_COLOR; padding:0px 10px;
+            }
+          }
+        }
+        //---------- end of projected cut ----------
+
+      } //End of Table Body
+
+    }
+}
+
+// Common styles to skeumorphic overunder views
+@mixin skeumorphic-ou-table-responsive-common() {
+  $border_color: #333333;
+  $header_row_height: 55px;
+  $header_vertical_title_font_size: 9px;
+  $title_row_font_size: 15px;
+  $player_row_height: $LB_DEFAULT_PLAYER_ROW_HEIGHT;
+  $track_background: url('/images/leaderboard/leaderboard-track-icons-sm.png') no-repeat;
+  $data_cell_vertical_padding: 3px;
+
+  #overunder { 
+    // Header Row
+    .headerWrapper {
+      @include tableborder(2px, bottom, $border_color);
+      position:relative;
+      height: $header_row_height;
+      .headerRow { 
+        float:left;
+        width:100%;
+        // width:calc(100% - #{$SCROLLBAR_COLUMN_WIDTH});
+        .headerRowContent { 
+          color: black; 
+          text-transform: uppercase; 
+          // overflow: hidden;
+
+          .center-vertical-text {
+              margin:auto;
+              width:$header_vertical_title_font_size - 1px;
+              text-align:center;
+              word-wrap: break-word;  
+              position:relative;
+              top: 49.5%;
+              transform: translateY(-50%);
+          }
+
+          .prior { 
+            @include tableborder(1px, right, $border_color); 
+            @include tableborder(1px, left, $border_color); 
+            font-size: $header_vertical_title_font_size;
+            float:left; 
+            font-weight:bold;
+            height: $header_row_height;
+          }
+
+          .holesContainer { 
+            font-family: 'Helvetica Neue LT Medium';
+            float: left; 
+            height: $header_row_height;
+            //Hole & Par Titles
+            .holes .description, .par .description { 
+              @include tableborder(2px, right, $border_color); 
+              font-weight:bold;
+              height:($header_row_height/2); 
+              line-height: ($header_row_height/2); 
+              float: left;
+            }
+
+            .holes, .par {
+              @include tableborder(1px, bottom, $border_color);
+              height: $header_row_height/2; 
+              float: left; 
+              text-align: center;
+              width: 100%; line-height: 40px; 
+              .hole {
+                @include tableborder(1px, right, $border_color); 
+                height:($header_row_height/2); 
+                line-height: ($header_row_height/2); 
+                float: left; 
+              }
+              .hole9 {
+                @include tableborder(2px, right, $border_color);
+              }
+
+            } 
+          }
+
+          //track & fav
+          .rightHeader { 
+            @include tableborder(1px, right, $border_color); 
+            font-size: $header_vertical_title_font_size;
+            font-weight:bold;
+            height:$header_row_height;
+            float:left; 
+            word-wrap: break-word; 
+            letter-spacing: 40px; 
+            span { display: block; padding-left: 5%;}
+          }
+
+        }
+      }
+      // Padding to align table header with body, which has a scrollbar.
+      .scrollbar-column { 
+        @include tableborder(2px, bottom, #989795); 
+        width:$SCROLLBAR_COLUMN_WIDTH;float:right;
+        background-color:#E5E3DF;
+        height:$header_row_height; 
+
+        + .headerRow {width:calc(100% - #{$SCROLLBAR_COLUMN_WIDTH});} 
+        &.hide {
+          display:none;
+          + .headerRow {width:100%; }
+        }         
+      }
+
+    }
+    // Table Body
+    .leaderBoardContent {
+      position:absolute;
+      width:100%;
+      height: calc(100% - #{$header_row_height} - 1px);
+      // overflow:hidden;
+      outline: none;
+
+      //Player Rows
+      .playerRow { 
+        @include tableborder(1px, left, $border_color);
+        @include tableborder(1px, right, $border_color);
+        @include tableborder(1px, bottom, $border_color);
+        @include wh(100%,$player_row_height); 
+        line-height: $player_row_height - ($data_cell_vertical_padding * 2); 
+        clear: left;float: left; 
+
+        .under { color: $LB_UNDER_SCORE_COLOR !important; } //override !important in lb_widget.scss
+        .over { color: $LB_OVER_SCORE_COLOR !important; } //override !important in lb_widget.scss
+
+        //thicker bottom border for every third row
+        &.triplebottomborder { border-bottom: solid 2px $border_color; }
+
+        // Hide Rows - Used During Search or Filter
+        &.hidden { display: none; }
+
+        //------ Add skeumoprhic border to data cells: player name, score, pos and round score ------
+        .playerName {
+          font-family: 'Player Name';
+         .data { 
+            @include data-cell-skeumorphic-border($player_row_height, 2%, $data_cell_vertical_padding);
+          }
+        }
+        .score .data, .prior > .data {
+          @include data-cell-skeumorphic-border($player_row_height, 10%, $data_cell_vertical_padding);
+        }
+        //------ End of add skeumorphic border ------
+
+
+        // Highlight Row when Hovered upon
+        &.hoverable:hover { background: $PLAYER_ROW_ON_HOVER_BG_COLOR;
+          .playerName { color: $PLAYER_NAME_ON_HOVER_COLOR;  }
+        }
+
+
+        .score, .prior {
+          font-family: 'Single LB';
+          @include tableborder(1px, right, $border_color);
+          float:left;
+          text-align:center;
+          height: $player_row_height;
+        }
+        .playerContainer { float: left;  
+          .playerName { 
+            @include tableborder(2px, right, $border_color);
+            float: left; 
+            height: $player_row_height;
+            cursor:pointer;
+            color: #333333; 
+            .data { padding-left: 5px; }
+          }
+
+          .hole9 {
+            @include tableborder(2px, right, $border_color);
+          }
+
+        }
+        .rightOption {
+          float: left;
+          height: $player_row_height;
+        }
+        .track { 
+          pointer-events: none;
+          cursor: default;
+          @include tableborder(1px, right, $border_color); 
+          background: $track_background;
+          background-position: 50% 3px;
+          &.on { 
+            background-position: 50% -27px;
+            cursor: pointer; pointer-events: auto;
+            &:hover { background-position: 50% -57px; }
+          }          
+          a { display:block; } //track link should occupy full cell
+        }
+
+        .favorite { 
+          height:$player_row_height; 
+          background: url('/images/leaderboard/leaderboard-favorites-icons-skeu-sm.png') no-repeat 50% 7px; cursor: pointer;
+        }
+
+        //Favorited Player Icon
+        &.favoritePlayer, &.favorited {
+          .favorite { background: url('/images/leaderboard/leaderboard-favorites-icons-skeu-sm.png') no-repeat 50% -26px; }
+        }    
+      }
+
+      .missedcut, .disqualified, .withdrawn {font-family: 'Player Name'; text-align:center; @include tableborder(2px, right, $border_color); line-height: $player_row_height;}
+
+      .titleRow, .noplayers, .missedcutHeader, .cutline { 
+        @include tableborder(1px, bottom, $border_color);
+        @include tableborder(1px, right, $border_color);
+        @include tableborder(1px, left, $border_color);
+        @include sourcesans(bold); 
+        height: $player_row_height; 
+        line-height: $player_row_height;
+        text-align:center; 
+        text-transform:uppercase;float:left;width: 100%;font-size:$title_row_font_size;
+      }
+
+      // ---------------- Projected Cut ----------------
+      .cutline {
+        .hr-line {
+          border-bottom: 1px solid black;
+          margin-bottom:$player_row_height / 2; height: $player_row_height / 2; //vertically center the hr line
+          span {
+            height: $player_row_height; background: $LB_BACKGROUND_COLOR; padding:0px 10px;
+          }
+        }
+      }
+      //---------- end of projected cut ----------
+
+    } //End of Table Body
+
+
+
+
+
+  }
+
+}
+
+
+
+// Variable values in this mixin should only be set by passing them as parameters
+@mixin skeumorphic-ou-table-responsive(
+  $content_width, // prior_width + holes_container_width + track_width + fav_width
+  $holes_container_width, //scores_width * 18
+  $menu_header_height, //Height of the top menu. used to set fixed position of leaderboard header
+  //Header Row
+  $header_font_size, 
+  //Player Rows
+  $player_row_font_size,
+  $prior_width,
+  $player_name_width,
+  $scores_width,
+  $fav_width, 
+  $track_width) {
+    $header_row_height:55px;
+    #overunder { 
+      // Header Row
+      .headerWrapper {
+        .headerRow { font-size: $header_font_size;
+          .rightHeader { width: lbcp($track_width, $content_width); 
+            &.fav { width: lbcp($fav_width, $content_width); 
+            }
+          }
+        }
+      }
+
+      .headerRowContent { 
+        .prior { 
+          width: lbcp($prior_width, $content_width);
+        }
+        .holesContainer { width: lbcp($holes_container_width, $content_width);
+          .holes .description, .par .description { width: hcp($player_name_width, $holes_container_width);}
+          .holes .hole, .par .hole { width:hcp($scores_width, $holes_container_width);}
+          .par .hole9, .holes .hole9 { width:hcp($scores_width, $holes_container_width); }
+          .par .hole1, .holes .hole1 { width: hcp($scores_width, $holes_container_width); }
+        }
+      }
+
+      //Player Rows
+      .playerRow { 
+        font-size: $player_row_font_size;
+        .playerContainer { width: lbcp($holes_container_width, $content_width); }
+        .score { width: hcp($scores_width, $holes_container_width); }
+        .prior { width: lbcp($prior_width, $content_width); }
+        .playerName { width: hcp($player_name_width, $holes_container_width); }
+        .rightOption { width: lbcp($header_row_height/2, $content_width); }
+        .track { width: lbcp($track_width, $content_width); }
+        .favorite { width: lbcp($fav_width, $content_width);}
+      }
+    }
+}
+
+
+
+
+@mixin leaderboard_panel {
+  $pole-width: 8px;
+  $footer-height:42px;
+  $header-height:35px;
+  $finial-height:15px;
+  $border_color: #333333;
+
+
+  .lb-panel {  
+    color:$LB_DEFAULT_FONT_COLOR;
+    width:100%; 
+    height:100%;
+    margin:0 auto;
+    position:relative;
+
+    .skeumorphic-panel {
+      width:100%;
+      height: calc(100% - #{$footer-height});
+
+      img.finial {
+        position:absolute;
+        top:15px;
+        width:15px;
+        height:15px;
+        &.left { left:-3px }
+        &.right { right:-3px; }
+      }
+
+      img.pole {
+        $pole-top-margin: 30px;
+        position:relative;display:inline-block;float:left;
+        top:$pole-top-margin;
+        width:$pole-width;
+        height:calc(100% - #{$pole-top-margin});
+      }
+
+      .lb-scores-panel {
+        float:left;
+        display:inline-block;
+        width: calc(100% - #{$pole-width * 2});
+        height:100%;
+        .lb-header {
+            position:relative;
+            height:$header-height; 
+            border-bottom:1px solid $border_color;
+            img { width:100%; height:100%; }
+            .title {
+                @include helveticaneue(medium);
+                text-align: center;
+                width:100%;
+                position:absolute;
+                top:4px;
+                font-size:24px;
+                font-weight: bold;                
+            }
+        }
+        .lb-body {
+          background-color:$LB_BACKGROUND_COLOR;
+          height: calc(100% - #{$header-height});
+          position:relative;
+          width:100%;
+
+          //hide both views by default
+          #traditional, #overunder {
+            display:none;
+            height:100%;
+            &.selected {
+              display:block;
+            }
+          }
+        
+
+        }
+      }
+    }
+    .lb-footer {
+      position:relative;
+      // border:1px solid blue;
+      height:$footer-height;
+      .footer-wrapper { 
+        // border:1px solid orange;
+        position:absolute; 
+        // height:100%;
+        width: 100%;
+        text-align:center;
+        .lbe-menu-link { display:none; }
+        .round { color:white; @include sourcesans(regular); font-size:15px; display:inline-block; text-transform: uppercase; margin-top:10px; }
+        .lbe_player_search {
+          position:absolute; left:15px; cursor:pointer; margin-top:7px;
+          input#searchField { visibility: hidden; width: 0; @include transition(width 200ms linear);}
+          &.collapsed {
+            $darkgreen: #253F25;
+            border: 1px solid $darkgreen;
+            border-radius:50%;
+            @include wh(30px,28px); background: url(/images/leaderboard/lb_everywhere_search_icon.png) no-repeat center/16px 16px; display: inline; position: absolute;
+            background-color: $darkgreen;
+            // border:1px solid red;
+          }
+  
+          &.expanded {
+            #lbSearchButton {
+              @include wh(30px,28px); background: url(/images/leaderboard/lb_everywhere_search_icon.png) no-repeat center/16px 16px; display: inline; position: absolute;left: 0px;
+            }
+
+            .lbClearButton {
+              @include wh(20px,20px); background: url(/images/leaderboard/lb_panel_search_x.png) no-repeat center/10px 10px; display: inline; position: absolute; top:4px; right: 2px; cursor:pointer;
+            }
+
+            input#searchField {
+              visibility: visible;
+              font-family: 'Player Name';
+              width:164px;
+              height: 26px;
+              color:white;
+              background: rgb(221, 221, 221); /* Fallback for older browsers without RGBA-support */
+              background: rgba(221, 221, 221, 0.5);
+              border-radius:5px;
+              padding-left:30px;
+              padding-right:30px;
+              font-size:15px;
+              border:0;
+              
+              *:focus {
+                outline:none;
+              }
+
+              @include placeholder(white);
+            }
+          }
+
+        }
+
+        input:focus {
+          outline: none;
+            -webkit-box-shadow: none;
+
+        }
+      }
+      img { width: 100%; height:100%; }            
+    }
+  }    
+}
+
+
+@mixin placeholder($color){
+  &::-webkit-input-placeholder { color: $color; }
+  &:-moz-placeholder { color: $color; }
+  &::-moz-placeholder { color: $color; }
+  &:-ms-input-placeholder { color: $color; }
+}
+
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+      -ms-transition: $transition;
+          transition: $transition;
+}
+
+@mixin setPlayerSearchFieldWidth($width) {
+  .lb-footer .footer-wrapper .lbe_player_search.expanded input#searchField { width:$width; } 
+}
+@mixin alignRoundToTheRightOfFooter() {
+  .lb-footer .footer-wrapper {  
+    text-align:right;
+    .round { margin-right: 15px; } 
+  }  
+}
+
+#leaderboard_everywhere {
+  @include background-rgba($black, .6);
+  padding:$LB_PANEL_VERTICAL_PADDING $LB_PANEL_HORIZONTAL_PADDING;
+  border-radius:5px;
+  position: fixed !important;
+  z-index: z($elements, lbeverywhere);
+  width:$LB_PANEL_DEFAULT_WIDTH;
+  height: $LB_PANEL_DEFAULT_HEIGHT;
+  box-sizing:content-box; //needs to use content-box to prevent jQuery Resizable plugin from decreasing width when triggered
+  color: #FFFFFF;
+  display: none;
+
+  //custom jscroll pane
+  .jspVerticalBar {
+    width:$SCROLLBAR_COLUMN_WIDTH;
+    .jspTrack {
+      background-color:#D7D6D4;
+      .jspDrag { margin-left:3px;
+        border-radius:5px;
+        width:9px;
+        background-color:white;
+      }
+    }
+  }
+
+  &.show {
+    top:$LB_DEFAULT_POSITION_TOP;
+    right:$LB_DEFAULT_POSITION_RIGHT;
+    display: block;
+    position: fixed;
+  }
+    
+
+  $resize-handle-visible-triangle: 11px solid rgba(#FFFFFF, .6);
+  $resize-handle-transparent-triangle: 11px solid transparent;
+  $resize-handle-margin: 3px; //margin from the sides
+
+  .draggable-background {
+    height:100%;position: absolute;width:100%;top:0;left:0;
+  }
+
+  .draggable-handle {
+    cursor:move;
+  }
+
+
+  .closePanel {
+    cursor:pointer;
+    position: absolute;
+    right: 4px;
+    top: 3px;
+    padding: 4px;
+    img { width:12px; height:12px;}
+  }
+
+  .resizeHandle {
+    position: absolute;
+    &#nwHandle {
+      left:0;
+      top:0;
+      .ui-resizable-handle {
+        border-top: $resize-handle-visible-triangle;
+        border-right: $resize-handle-transparent-triangle;
+        margin-left: $resize-handle-margin;
+        margin-top: $resize-handle-margin;
+        &:hover {
+            cursor: nwse-resize;
+        }
+      }
+    }
+
+    &#swHandle {
+      left:0;
+      bottom:0;
+      .ui-resizable-handle {
+        border-bottom: $resize-handle-visible-triangle;
+        border-right: $resize-handle-transparent-triangle;
+        margin-left: $resize-handle-margin;
+        margin-bottom: $resize-handle-margin;
+        &:hover {
+            cursor: nesw-resize;
+        }
+      }
+    }
+
+    &#seHandle {
+      right:0;
+      bottom:0;
+      .ui-resizable-handle {
+        border-bottom: $resize-handle-visible-triangle;
+        border-left: $resize-handle-transparent-triangle;
+        margin-right: $resize-handle-margin;
+        margin-bottom: $resize-handle-margin;
+        &:hover {
+            cursor: nwse-resize;
+        }
+      }
+    }
+  }
+
+  // Controls for favorites show/hide ------------------------------------
+  .lbe-players-wrapper {
+    &.showFav {
+      //'favorites' title row
+      #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditionalFavContent { display: block;
+        .titleRow { display: block; }
+      }
+
+      //'all players' title row
+      #leaderBoardPlayersContent .titleRow, #leaderBoardPlayersTraditionalContent .titleRow { display: block; }
+    }
+    &.hideFav {
+      //'favorites' title row
+      #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditionalFavContent { display: none;
+        .titleRow { display: none; }
+      }
+
+      //'all players' title row
+      #leaderBoardPlayersContent .titleRow, #leaderBoardPlayersTraditionalContent .titleRow { display: none; }
+    }
+  }
+  // End Controls for favorites show/hide ------------------------------------
+
+  /******************************************************************
+   * GLOBAL 
+   *****************************************************************/
+  @include leaderboard_panel;
+  @include skeumorphic-trad-table-responsive-common;
+  @include skeumorphic-ou-table-responsive-common;
+  .content { padding:0 !important; }
+  input#searchField { text-transform: uppercase;}
+
+  /******************************************************************
+   * TRADITONAL ONLY
+   * Pos, Player Name, Thru, Total
+   * LB Everywhere Panel Width <= 286px 
+   *****************************************************************/
+  &.lb-col-4 {
+    @include setPlayerSearchFieldWidth(90px);
+    @include alignRoundToTheRightOfFooter;
+
+    $args: (
+      display_round_scores_and_total_columns: false,
+      display_track_column: false,
+      display_fav_column: false,
+      display_today_column: false,
+      content_width: 209px,
+      player_name_width: 86px,
+      player_name_padding_left: 3px,
+      player_stat_width: 92px,
+      pos_width: 31px,
+      scores_width: 46px, 
+      round_scores_width: 0px, 
+      track_width: 0px, 
+      fav_width: 0px,
+      row_font_size: 13px,
+      missed_cut_font_size: 11px 
+    );
+    @include skeumorphic-trad-table-responsive($args...); 
+  }
+
+  /******************************************************************
+   * TRADITIONAL ONLY
+   * Pos, Player Name, Today, Thru, Total
+   * 287px >= Screen Size <= 346px 
+   *****************************************************************/
+  &.lb-col-5 {
+    @include setPlayerSearchFieldWidth(90px);
+    @include alignRoundToTheRightOfFooter;
+
+
+    $args: (
+      display_round_scores_and_total_columns: false,
+      display_track_column: false,
+      display_fav_column: true,
+      display_today_column: false,
+      content_width: 243px,
+      player_name_width: 100px,
+      player_name_padding_left: 3px,
+      player_stat_width: 76px,
+      pos_width: 29px,
+      scores_width: 38px, 
+      round_scores_width: 0px, 
+      track_width: 0px, 
+      fav_width: 38px,
+      row_font_size: 13px,
+      missed_cut_font_size: 11px
+    );
+    @include skeumorphic-trad-table-responsive($args...); 
+  }
+
+  /******************************************************************
+   * TRADITIONAL ONLY
+   * Pos, Player Name, Today, Thru, Total, Track, Fav
+   * 347px >= LB Everywhere Panel Width <= 567px 
+   *****************************************************************/
+  &.lb-col-7 {
+    @include setPlayerSearchFieldWidth(90px);
+    @include alignRoundToTheRightOfFooter;
+
+    $args: (
+      display_round_scores_and_total_columns: false,
+      display_track_column: true,
+      display_fav_column: true,
+      display_today_column: true,
+      content_width: 305px,
+      player_name_width: 99px,
+      player_name_padding_left: 3px,
+      player_stat_width: 114px,
+      pos_width: 29px,
+      scores_width: 38px, 
+      round_scores_width: 0px,
+      track_width: 35px, 
+      fav_width: 28px,
+      row_font_size: 13px, 
+      missed_cut_font_size: 11px
+    );
+    @include skeumorphic-trad-table-responsive($args...); 
+  }
+
+
+  /******************************************************************
+   * TRADITIONAL & OVERUNDER
+   * All Columns
+   * LB Everywhere Panel Width >= 568px 
+   *****************************************************************/
+  &.lb-col-all {
+    .lb-footer {
+      .footer-wrapper {
+        //only display trad and ou links when all columns are showing
+        .lbe-menu-link { 
+          // border:1px solid red;
+          display:inline-block;      
+          // margin:0 auto;
+          @include sourcesans(regular);
+          font-size:15px;
+          color:white;
+          padding: 10px 10px;
+          cursor:pointer;
+          &.selected {
+            color:#F1E530;
+          }
+        }
+        .round {position:absolute; right:15px; color:#ADB6AF;}
+      }
+    }
+
+
+
+
+    /**************************************************
+     * SMALL LEADERBOARD
+     *  568px >= LB Everywhere Panel Width  <= 800px
+     **************************************************/
+    &.lb-size-small {
+      @include setPlayerSearchFieldWidth(90px);
+
+      //Traditional
+      $args: (
+        display_round_scores_and_total_columns: true,
+        display_track_column: true,
+        display_fav_column: true,
+        display_today_column: true,
+        content_width: 568px,
+        player_name_width: 112px,
+        player_name_padding_left: 5px,
+        player_stat_width: 360px, 
+        pos_width: 30px,
+        scores_width: 59px, 
+        round_scores_width: 31px, 
+        track_width: 37px, 
+        fav_width: 29px,
+        row_font_size: 13px,
+        missed_cut_font_size: 15px 
+      );
+     @include skeumorphic-trad-table-responsive($args...); 
+
+      //Overunder
+      $args: (
+        content_width: 568px,
+        holes_container_width: 493px, // player_name_width + (scores_width * 18) 
+        menu_header_height: 50px, //Height of the top menu. used to set fixed position of leaderboard header
+        //Header Row
+        header_font_size: 15px,
+        //Player Rows
+        player_row_font_size: 13px,
+        prior_width: 23px,
+        player_name_width: 115px,
+        scores_width: 21px,
+        fav_width: 23px,
+        track_width: 29px
+      );
+      @include skeumorphic-ou-table-responsive($args...);
+
+    }
+
+
+    /**************************************************
+     * LARGE LEADERBOARD
+     * LB Everywhere Panel Width >= 801px
+     **************************************************/
+    &.lb-size-large {
+      //Traditional
+      $args: (
+        display_round_scores_and_total_columns: true,
+        display_track_column: true,
+        display_fav_column: true,
+        display_today_column: true,
+        content_width: 806px,
+        player_name_width: 195px,
+        player_name_padding_left: 5px,
+        player_stat_width: 508px, 
+        pos_width: 33px,
+        scores_width: 86px, 
+        round_scores_width: 41px, 
+        track_width: 35px, 
+        fav_width: 35px,
+        row_font_size: 15px,
+        missed_cut_font_size: 15px 
+      );
+     @include skeumorphic-trad-table-responsive($args...); 
+
+
+      //Overunder
+      $args: (
+        content_width: 806px,
+        holes_container_width: 719px, // player_name_width + (scores_width * 18) 
+        menu_header_height: 50px, //Height of the top menu. used to set fixed position of leaderboard header
+        //Header Row
+        header_font_size: 20px,
+        //Player Rows
+        player_row_font_size: 15px,
+        prior_width: 25px,
+        player_name_width: 125px,
+        scores_width: 33px,
+        fav_width: 31px,
+        track_width: 31px
+      );
+      @include skeumorphic-ou-table-responsive($args...);
+    }
+  }
+}
+
+/************************************************
+ * ABOVE MOBILE LANDSCAPE
+ * Screen Size >= 720px 
+ *****************************************************************/
+@include lbbreakpoint(lbmedium)  {
+  #leaderboard_everywhere > .lbe_player_search { display:none;}
+}
+
+
+/************************************************
+ * MOBILE LANDSCAPE AND BELOW
+ * Screen Size <= 719px 
+ *****************************************************************/
+@include lbbreakpoint(lbsmall, max)  {
+  $player_search_height: 40px;
+  $margin_between_player_search_and_panel: 10px;
+  #leaderboard_everywhere {
+    width:100% !important;
+    height:100% !important;
+    box-sizing:border-box;
+    border-radius:0;
+    padding-top: 0;
+    padding-bottom:0;
+
+    &.show {
+      top:0 !important;
+      left:0 !important;
+      z-index: z($elements, lightbox);
+    }
+    
+    .resizeHandle { display:none !important; } //disable resizing. override jQuery Resize's inline display:block style
+    .draggable-handle { cursor:default; } //disable draggable    
+
+    .lb-panel .lb-footer .footer-wrapper .lbe_player_search { 
+      &.collapsed, &.expanded { display:none; }
+    }
+
+    .closePanel { top: 9px; right:20px; 
+      img { width: 15px; height: 15px; }
+    }
+
+    .draggable-background {display:none; }
+
+     // Player Search Field
+    .lbe_player_search {
+      height:40px;
+      margin-bottom: $margin_between_player_search_and_panel;
+      background-color:black;
+      #lbSearch {
+        position:relative;
+        margin:0 auto;
+        width:160px;  
+
+        #lbSearchButton {
+          position: absolute;
+          top:4px;
+          left:5px;
+          position:absolute;
+          @include wh(30px,28px); background: url(/images/leaderboard/lb_everywhere_search_icon.png) no-repeat center/16px 16px; display: inline;          
+        }
+
+        input#searchField {
+          height:26px;
+          width: 100%; 
+          color: white; 
+          background-color:black; border:0; 
+          font-size: 15px;
+          box-sizing:border-box;
+          padding-left:36px;
+          padding-right:30px;
+          margin-top:5px;
+          border-radius:5px;
+          font-family: 'Player Name';
+        }
+
+        *:focus {
+          outline:none;
+        }
+
+        &.active {
+          .lbClearButton {
+            @include wh(24px,24px); background: url(/images/leaderboard/lb_panel_search_x.png) no-repeat center/10px 10px; display: inline; position: absolute; top:6px; right: 2px; cursor:pointer;
+          }
+
+          input#searchField {
+            visibility: visible;
+            color:white;
+            background: rgb(221, 221, 221); /* Fallback for older browsers without RGBA-support */
+            background: rgba(221, 221, 221, 0.5);
+            border:0;
+            font-size:14px;
+            font-family: 'Source Sans Pro';
+            @include placeholder(white);
+          }
+        }
+      }
+    }
+
+    .lb-panel {
+      .skeumorphic-panel {
+        width:100%;
+        height: calc(100% - #{$footer-height} - #{$player_search_height} - #{$margin_between_player_search_and_panel * 2});
+        img.finial {
+          top:15px;
+        }
+      }
+
+
+    }
+
+  }
+
+}
+

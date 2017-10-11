@@ -1,0 +1,402 @@
+$lb_content_width: 912px; /* actual content area */
+$playoff_player_row_height: 30px;
+$playoff_player_name_width: 160px;
+
+$playoff_responsive_border_color: #E0E0E0;
+$playoff_skeuomorphic_border_color: $black;
+
+/* playoff */
+/* view seletor for smaller responsive view */
+#playoffViewSelector { @include sourcesans(bold); font-size: (13/13)*1em; text-align: center; clear: both; padding-bottom: 10px;
+  a:link, a:visited { color: #999999; text-decoration: none; padding: 0 10px; }
+  a.selected { color: $black;
+    &:hover { color: $black; }
+  }
+  a:hover { cursor: pointer; color: $black; }
+}
+/* skeuomorphic view playoff link */
+#view_playoff { display: none; }
+
+#leaderboardPlayOff { width:100%; position:relative; @include clearfix; clear: left;
+
+  .closeButton { display: none;
+    a .close { display: none;}
+  }
+
+  #playOffContent { margin-top: -10px; }
+
+  .title { display: none; }
+  .sd { font-size: 1.1em; clear: both; @include sourcesans; position: relative; text-align: center; padding-bottom: 10px;
+    &:before { content: ""; }
+    &:after { content: ""; }
+   }
+
+  table { border: 1px solid $playoff_responsive_border_color; text-transform: uppercase; width: 100%; position: relative;
+    a { text-decoration: none; color: inherit; }
+  }
+  td { height: $playoff_player_row_height; line-height: $playoff_player_row_height; text-align:center;
+    &:first-child { text-align: left; width: lbcp($playoff_player_name_width); padding-left: 14px; font-size: (13/13)*1em; color: #323232; @include sourcesans(bold); }
+  }
+  //.spacer { width: 1px; border-left: 1px solid #E5E5E5; padding: 0; }
+  .header td, .par td { border-bottom: 1px solid $lb_border_color; background-color: #333333; color: #aaaaaa; @include sourcesans(bold);
+    &.hole_no { color: #aaaaaa; border-left: 1px solid $lb_border_color; }
+  }
+  tr.player:first-child { border-top: none; }
+  .player {
+    td { height: $playoff_player_row_height; line-height: $playoff_player_row_height; border-top: solid 1px $playoff_responsive_border_color; }
+
+    &:nth-of-type(2n) { background-color: #F2F2F2; }
+    // IE8
+    //&.odd { background-color: #FAFAFA; }
+    .hole_no { font-size: (13/13)*1em; color: #000000; @include sourcesans(bold); border-left: 1px solid $playoff_responsive_border_color;}
+  }
+
+  .hole_no { font-size: (13/13)*1em; position: relative; z-index: 0; border-left: 1px solid $playoff_responsive_border_color; }
+}
+
+/***************************************************************************************
+ * Mobile Landscape and Above 
+ * Screen Size >= 480px
+ **************************************************************************************/ 
+@include lbbreakpoint(lbMobileLandscape) {
+  #playoffViewSelector { display: none; }
+}
+
+
+
+/******************************************************************
+ * MEDIUM SCREEN SIZE AND ABOVE
+ * Screen Size >= 720px
+ *****************************************************************/ 
+$playoff_player_row_height: 40px;
+$playoff_player_name_width: 190px;
+
+@include lbbreakpoint(lbmedium) {
+  /* playoff */
+  /* view seletor for smaller responsive view */
+  #playoffViewSelector { display: none; }
+
+  #leaderboardPlayOff {
+    #playOffContent { margin-top: 0px; }
+    .sd { font-size: (15/13)*1em; }
+    td { height: $playoff_player_row_height; line-height: $playoff_player_row_height; @include box-sizing(border-box);
+      &:first-child { width: lbcp($playoff_player_name_width); font-size: (16/13)*1em; }
+    }
+    .player {
+      td { height: $playoff_player_row_height; line-height: $playoff_player_row_height; }
+      .hole_no { font-size: (16/13)*1em; }
+    }
+    .hole_no { font-size: (16/13)*1em; }
+  }
+
+
+}
+
+
+
+
+/******************************************************************
+ * LARGE SCREEN SIZE AND ABOVE
+ * Screen Size >= 920px
+ *****************************************************************/ 
+@include lbbreakpoint(lblarge) {
+	/* view seletor for smaller responsive view */
+	#playoffViewSelector { display: none; }
+	#viewPlayoffMedium { display: inline; }
+
+	#leaderboardPlayOff {
+	  #playOffContent { margin-top: 0px; }
+	}
+
+
+
+}
+
+
+/******************************************************************
+ * LARGER ALPHA SIZE AND ABOVE
+ * Screen Size >= 1024px and 620 height
+ *****************************************************************/ 
+$playoff_border_color: $black;
+$playoff_container_width : 554px;
+$playoff_min_height: 251px;
+
+$playoff_player_row_height: 30px;
+$playoff_player_name_width: 199px;
+$playoff_hole_width: 41px;
+$playoff_close_button_width: 32px;
+$playoff_close_button_height: 32px;
+@include lbbreakpoint(lblargeralpha) {
+
+  /* playoff */
+  /* skeuomorphic view playoff link */
+  #view_playoff { display: block; }
+  #viewPlayoffMedium { display: none; }
+  #leaderboardPlayOff { width: $playoff_container_width; min-height: $playoff_min_height; position: absolute; top: 150px; left: 50%; margin-left:-1*($playoff_container_width / 2); z-index:11; background: #FFFFFF;
+    @include single-box-shadow(4px, 6px, 5px, 0px, rgba(#000000,.1)); padding: 22px 15px 15px 15px;
+
+    .closeButton { display: block; position:absolute; width:$playoff_close_button_width; height:$playoff_close_button_height; top:20px; padding:0; right: 15px; z-index:12;
+      .close {  display: block!important; background: url(/images/leaderboard/lb-playoff-close-sm.png) no-repeat 0 0; @include wh($playoff_close_button_width,$playoff_close_button_height); text-indent: -9999px; }
+    }
+
+    .title { display: block; @include sourcesans(bold); margin:0; padding:0 0 10px 0; text-align:center; font-size: 2.0em; text-transform: uppercase; }
+    .sd { font-size: 1.3em; @include sourcesans(semibold); position: absolute; top: 30px; right: 73px; padding-bottom: 0; text-transform: uppercase;
+      &:before { content: "("; }
+      &:after { content: ")"; }
+    }
+
+    .viewSelector { display: none; }
+
+    table { border: 2px solid $playoff_border_color; background-color: $white; color: $black; text-transform: uppercase;}
+    td { height: 40px; line-height: 40px; text-align:center; @include box-sizing(border-box);
+      &:first-child { text-align: left; width: $playoff_player_name_width; padding-left: 14px; font-size: 1.36em; }
+    }
+
+    //.spacer { width: 1px; border-left: 1px solid $playoff_border_color; padding: 0; }
+    .header td, .par td { background: $white url(/images/leaderboard/leaderboard-playoff-header-sm.png) no-repeat 0 0; text-indent: -9999px; border-bottom: 1px solid $playoff_border_color; }
+    .header td {
+      &.hole_no { background-position: -205px -41px; border-left-color: $black;}
+      &.hole10 { background-position: -240px 0; }
+      &.hole18 { background-position: -200px 0; }
+    }
+    .par td {
+      &.description { background-position: 0 -41px; }
+      &.hole_no { background-position: -240px -41px; border-left-color: $black; }
+    }
+    .player {
+      td { height: 40px; line-height: 40px; border-top: 1px solid $playoff_border_color; }
+
+      &:nth-of-type(2n) { background-color: $white; }
+      // IE8
+      //&.odd { background-color: #FAFAFA; }
+      .playerName {font-size: 1.8em; font-family: "Single LB"; font-weight: normal; color: $black; padding-left: 18px; }
+      .hole_no { font-size: 1.8em; font-family: "Single LB"; font-weight: normal; border-left: 1px solid $playoff_border_color;}
+    }
+
+    .hole_no { border-left: 1px solid $playoff_border_color; width: $playoff_hole_width; }
+  }
+
+
+}
+
+
+
+
+/******************************************************************
+ * LARGER LARGEST SIZE AND ABOVE
+ * Screen Size >= 1440px and 820px height
+ *****************************************************************/ 
+ $playoff_container_width : 693px;
+ $playoff_min_height: 308px;
+
+  $playoff_player_row_height: 40px;
+  $playoff_player_name_width: 249px;
+  $playoff_hole_width: 52px;
+  $playoff_close_button_width: 39px;
+  $playoff_close_button_height: 39px;
+
+@include lbbreakpoint(lblargest) {
+  /* playoff */
+  #leaderboardPlayOff { width: $playoff_container_width; min-height: $playoff_min_height; top: 150px; left: 50%; margin-left:-1*($playoff_container_width / 2);
+    @include single-box-shadow(4px, 6px, 5px, 0px, rgba(#000000,.1)); padding: 27px 20px 20px 20px;
+
+    .closeButton { display: block; width:$playoff_close_button_width; height:$playoff_close_button_height; top:25px; right: 20px;
+      .close { background: url(/images/leaderboard/lb-playoff-close.png) no-repeat 0 0; @include wh($playoff_close_button_width,$playoff_close_button_height); }
+    }
+
+    .title { margin:0; padding:0 0 10px 0; font-size: 2.7em; }
+    .sd { font-size: 1.6em; top: 37px; right: 93px; }
+
+    td { height: $playoff_player_row_height; line-height: $playoff_player_row_height;
+      &:first-child { width: $playoff_player_name_width; padding-left: 14px; font-size: 1.36em; }
+    }
+
+    //.spacer { width: 1px; border-left: 1px solid $playoff_border_color; padding: 0; }
+    .header td, .par td { background: $white url(/images/leaderboard/leaderboard-playoff-header.png) no-repeat 0 0; }
+    .header td {
+      &.hole_no { background-position: -250px -51px;}
+      &.hole10 { background-position: -300px 0; }
+      &.hole18 { background-position: -250px 0; }
+    }
+    .par td {
+      &.description { background-position: 0 -51px; }
+      &.hole_no { background-position: -250px -51px;}
+    }
+    .player {
+      td { height: 50px; line-height: 50px;  }
+
+      .playerName {font-size: 2.2em; padding-left: 22px; }
+      .hole_no { font-size: 2.2em; }
+    }
+
+    .hole_no { width: $playoff_hole_width; }
+  }
+}
+
+
+
+
+@mixin score_line($pos : outer, $circle : no) {
+  box-sizing: content-box; content: ' '; position: absolute; top: 50%; left: 50%;
+  height: 0; @include score_line_size($pos);
+  border: 1px solid #1c6344;
+  @if($circle != no) {
+    border-radius: 50%;
+  }
+}
+@mixin score_line_size($pos : outer) {
+  $size: -1;
+  $margin: -1;
+  $margin-left: -1;
+  $margin-top: -1;
+  @if($pos == outer) {
+    $size : 36px;
+    $margin-top : -21px;
+    $margin-left: -20px;
+  } @else if($pos == inner) {
+    $size : 28px;
+    $margin-top : -17px;
+    $margin-left: -16px;
+  } @else if($pos == outer_large) {
+    $size : 29px;
+    $margin-top : -16px;
+    $margin-left: -16px;
+  } @else if($pos == inner_large) {
+    $size : 21px;
+    $margin-top : -12px;
+    $margin-left: -12px;
+  } @else if($pos == outer_medium) {
+    $size : 26px;
+    $margin : -15px;
+  } @else if($pos == inner_medium) {
+    $size : 20px;
+    $margin : -12px;
+  } @else if($pos == outer_small) {
+    $size : 22px;
+    $margin-top : -13px;
+    $margin-left: -12px;
+  } @else if($pos == inner_small) {
+    $size : 16px;
+    $margin-top : -10px;
+    $margin-left: -9px;
+  }
+
+  @if($margin-left == -1) {
+    $margin-left: $margin;
+  }
+  @if($margin-top == -1) {
+    $margin-top: $margin;
+  }
+  width: $size; padding-bottom: $size; margin: $margin-top 0 0 $margin-left;
+}
+#leaderboardPlayOff {
+
+  .eagle {
+    // span.outer, span.inner for IE8 polyfill
+    &:before, span.outer { @include score_line(outer_small,yes); }
+    &:after, span.inner { @include score_line(inner_small,yes); }
+  }
+  .birdie {
+    &:before, span.outer { @include score_line(outer_small,yes); }
+    // &:before { content: ' '; position: absolute; top: 0; left: 0; width: 80%; height: 80%; margin: 10% 0 0 10%; border: 1px solid #1c6344; border-radius: 50%; }
+  }
+  .bogey {
+    &:before { @include score_line(outer_small); }
+    // &:before { content: ' '; position: absolute; top: 0; left: 0; width: 90%; height: 80%; margin: 10% 0 0 5%; border: 1px solid #1c6344; }
+  }
+  .dbl_bogey {
+    &:before { @include score_line(outer_small); }
+    &:after { @include score_line(inner_small); }
+    // &:before { content: ' '; position: absolute; top: 0; left: 0; width: 90%; height: 80%; margin: 10% 0 0 5%; border: 1px solid #1c6344; }
+    // &:after { content: ' '; position: absolute; top: 0; left: 0; width: 70%; height: 64%; margin: 18% 0 0 15%; border: 1px solid #1c6344; }
+  }
+  .video { cursor: pointer; background: $video;
+      &:before { z-index: -1; }
+    }
+  .video a { text-decoration: none; color: $black; }
+
+  @include lbbreakpoint(lbmedium) {
+    .hole_no {
+        &.eagle, &.birdie, &.bogey, &.dbl_bogey {
+          &:before, span.outer, &:after, span.inner { border-width: 2px; border-color: #1c6344;}
+        }
+      }
+    .eagle {
+        &:before, span.outer { @include score_line_size(outer_medium); }
+        &:after, span.inner { @include score_line_size(inner_medium); }
+      }
+      .birdie {
+        &:before, span.outer { @include score_line_size(outer_medium); }
+        // &:after { content: ' '; position: absolute; top: 0; left: 0; width: 80%; height: 80%; margin: 10% 0 0 10%; border: 1px solid #1c6344; border-radius: 50%; }
+      }
+      .bogey {
+        &:before { @include score_line_size(outer_medium); }
+      }
+      .dbl_bogey {
+        &:before { @include score_line_size(outer_medium); }
+        &:after { @include score_line_size(inner_medium); }
+      }
+    .video {
+      &:before, span.outer { @include score_line(outer_medium); margin: -14px 0 0 -14px; border-color: #CCCCCC; }
+        &.eagle, &.birdie, &.bogey, &.dbl_bogey {
+          &:before, span.outer { margin: -15px 0 0 -15px; }
+        }
+      }
+  }
+
+  @include lbbreakpoint(lblarger) {
+    .eagle {
+        &:before, span.outer { @include score_line_size(outer_large); }
+        &:after, span.inner { @include score_line_size(inner_large); }
+      }
+      .birdie {
+        &:before, span.outer { @include score_line_size(outer_large); }
+        // &:after { content: ' '; position: absolute; top: 0; left: 0; width: 80%; height: 80%; margin: 10% 0 0 10%; border: 1px solid #1c6344; border-radius: 50%; }
+      }
+      .bogey {
+        &:before { @include score_line_size(outer_large); }
+      }
+      .dbl_bogey {
+        &:before { @include score_line_size(outer_large); }
+        &:after { @include score_line_size(inner_large); }
+      }
+    .video { cursor: pointer;
+        &:before { background: $video; z-index: -1; }
+
+        &:before, span.outer { @include score_line(outer_large); margin: -15px 0 0 -15px; border-color: #CCCCCC; }
+        &.eagle, &.birdie, &.bogey, &.dbl_bogey {
+          &:before, span.outer { margin: -16px 0 0 -16px; }
+        }
+      }
+
+  }
+
+  @include lbbreakpoint(lblargest) {
+    .eagle {
+        &:before, span.outer { @include score_line_size(outer); }
+        &:after, span.inner { @include score_line_size(inner); }
+      }
+      .birdie {
+        &:before, span.outer { @include score_line_size(outer); }
+        // &:after { content: ' '; position: absolute; top: 0; left: 0; width: 80%; height: 80%; margin: 10% 0 0 10%; border: 1px solid #1c6344; border-radius: 50%; }
+      }
+      .bogey {
+        &:before { @include score_line_size(outer); }
+      }
+      .dbl_bogey {
+        &:before { @include score_line_size(outer); }
+        &:after { @include score_line_size(inner); }
+      }
+
+      .video {
+      &:before, span.outer { @include score_line(outer); margin: -20px 0 0 -19px; border-color: #CCCCCC; }
+      &.eagle, &.birdie, &.bogey, &.dbl_bogey {
+        &:before, span.outer { margin: -21px 0 0 -20px; }
+      }
+    }
+  }
+
+  + .legend { width: 100%; text-align: center;
+    img { margin: 20px auto; width: 276px; }
+  }
+}

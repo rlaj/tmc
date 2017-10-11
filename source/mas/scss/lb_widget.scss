@@ -1,0 +1,82 @@
+@import "rwd_helpers";
+// @import "../fonts.scss";
+
+.leaders { color: $white; width: 100%; margin: 0 auto; position: relative; overflow:hidden;
+  // #rightNow { position: fixed; left: 50%; margin: -40px 0 0 -30px;  @include breuerbold; font-size: 1.2em; text-align: center; color: $white; text-transform: uppercase; font-weight: bold; display: block;}
+  .title { padding-bottom: 3px; border-bottom: 1px solid $white; display: block; text-align: center;
+    text-transform: uppercase; @include sourcesans(light); font-size: 1.5em;
+    span{ @include sourcesans(semibold); }
+  }
+  .scoresHeaders { width: 100%; margin: 0 auto; padding: 1em 0 0 0; display: block; @include clearfix;
+    text-align: center; font-size: (11em/12); text-transform: uppercase; @include sourcesans(bold);
+    .scoresPos, .scoresPlayer, .scoresToday, .scoresThru, .scoresTotal { color: $white; }
+  }
+  .scoreboardList { width: 100%; margin: 0 auto; color: $white; }
+  .scoreboardListContent { @include float(left); width: 100%; text-transform: uppercase; @include sourcesans;
+    .scoresPos { @include sourcesans(bold); }
+  }
+  .row { @include clearfix; display: block; text-align: center; padding:0.2em 0; font-size: 1.33em; line-height: 1.3em;
+    &.nav {display: none;}
+  }
+  .scoresPos { @include float(left); width: 14%; padding-right: 7px; }
+  .scoresPlayer { @include float(left); width: 44%; text-align: left;
+    &.smaller { font-size: .8em; /*line-height:9px;*/}
+  }
+  .scoresToday { @include float(left); width: 14%; }
+  .scoresThru, .scoresTotal { @include float(left); width: 14%; }
+  .scoresTotal { width: 13%; }
+}
+
+.over { color: $new_over_color!important; }
+.under { color: $new_under_color!important; }
+
+@include breakpoint(medium) {
+  .leaders {
+    .title { font-size: 2.42em; @include sourcesans;
+      span { @include sourcesans(bold); }
+    }
+    // .scoreboardListContent { font-size: 1.4em; }
+    .row { font-size: 1.42em; }
+    // .scoresPos { font-size: 1em; }
+    // .row .scoresPlayer { font-size: 1.06em; }
+  }
+}
+
+.nav.leaders { width: 83%; min-height: 10em; margin: 1.667em auto 0 auto;
+  @include clearfix; @include single-transition(all, 0.3s, ease-out);
+  &.active { } // for menu toggle
+
+  .title { font-size: 1em; line-height: 2em; padding: 0; text-align: center; border-bottom-color: rgba($white, .25); border-top: 1px solid $white; border-top-color: rgba($white, .25); }
+  .scoresHeaders { font-size: (10em/12); }
+  .row { font-size: (10em/12); line-height: 2em; padding: 0;
+    &.nav { display: block;}
+  }
+  .scoreboardListContent .scoresPos { @include sourcesans; }
+  .scoresToday { width: 17%; }
+  .scoresThru { width: 13%; }
+  .scoresTotal { width: 12%; }
+
+  dl { @include clearfix; text-align: left; text-transform: uppercase; line-height: 2em; padding-top: 1em;
+    dt { @include sourcesans(bold); @include float(left); clear: left;
+      line-height: 1.9em; // fixes weird alignment issues
+    }
+    dd { @include sourcesans;
+      // &:before { content: ": "; font-weight: 700;}
+    }
+  }
+}
+@include breakpoint(medium) { /* equivalent of 600px - hide this from over tablet screen */
+  .nav.leaders { width: 84.6%;
+    .title { font-size: 1.33em; }
+    .row { font-size: 1.33em; }
+    .scoresPos { width: 8%; padding-right: 0; }
+    .scoresPlayer { width: 50%; }
+    .scoresToday { width: 19%; }
+    .scoresThru { width: 12%; }
+    .scoresTotal { width: 11%; }
+
+    dl { font-size: 1.0833em;
+      dt { line-height: 2em; }
+    }
+  }
+}

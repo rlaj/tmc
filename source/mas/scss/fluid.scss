@@ -1,0 +1,163 @@
+@import "rwd_helpers";
+
+@import 'reset.scss';
+@import 'fonts';
+
+
+/* note: breakpoints in em ----------------------------
+   base font size to determine breakpoints - 16px
+   useful pixel to em converter
+   http://bradfrostweb.com/demo/ish/
+-----------------------------------------------------*/
+
+//////////
+// GRID //
+//////////
+
+// // Specify the number of columns and set column and gutter widths
+// $columns: 14;
+// $column-width: 85px;
+// $gutter-width: 30px;
+
+// // Make the layout fluid
+// $total-width: 100%;
+
+////////////
+// LAYOUT //
+////////////
+
+body {
+  width: 100%;
+  @include clearfix();
+}
+
+/* wrapper config ---------------------------------------------------
+		.wrapperFull -- container that doesn't change the layout
+		.wrapperHalf -- container that shrinks to half based on devices
+--------------------------------------------------------------------*/
+
+/* wrappers --------------------- */
+section.body { max-width: 1440px; min-height: 100%; @include clearfix; margin: 0 auto; padding: 0; }
+.content-padding { padding: 0 margin-width($mobile-columns); }
+.half-content-padding { padding: 0 margin-width($mobile-columns)/2; }
+
+// test purposes only
+// section.content > div { border: 1px solid black; background-color: transparent;
+//   * { visibility: hidden; }
+// }
+
+.wrapperFull { @include column($mobile-columns,$mobile-columns); position: relative; @include clearfix; }
+.wrapperHalfFull { @include float(left); width: 100%; margin: 0; position: relative; @include clearfix;
+	.wrapperHalf { height: 100%; }
+}
+.wrapperHalf {  @include column($mobile-columns,$mobile-columns); position: relative; }
+.wrapperSingle { @include column(1); position: relative; background: #ccc; height: 100px; }
+.wrapperThird { @include column($mobile-columns,$mobile-columns); position: relative; }
+
+.wrapper { overflow: hidden; display: none;
+  &.visible, &.no_content { display: block; }
+}
+
+.navWrapper, .tabWrapper { @include column($mobile-columns,$mobile-columns); padding: 0 margin-width($mobile-columns); position: relative; }
+
+/* containers config ---------------------------------------------------
+ per WF Pg. 9
+		.containerA -- Photo (covers A) -- enlarge or shrink. smaller view = hide photo credit, larger view = show photo credit and place caption right next to the label.
+		.containerB -- Video (covers B) -- just to enlarge or shrink. no layout changes
+		.containerC -- Article with photo or video (covers C & D) -- smaller view = half container size (half width format). top image or video. bottom with article, larger view = side by side
+		.containerE -- Data Vizuallization - smaller view = image on top and text bottom (stack view), larger view = side by side. place image on the right and text on the left
+		.containerF -- Social media quote - just to enlarge or shrink. no layout changes
+		.containerG -- Breaking news - just to enlarge or shrink. no layout changes
+		.containerX -- Headline (not present on Pg9. ref: Pg10) -- reverse of .containerC. -- smaller view = side by side, larger view = half container size (half width format). top image or video. bottom with article
+--------------------------------------------------------------------*/
+
+/* containers --------------------- */
+/* default view is phone view -----*/
+
+/* Photo (covers A) -- just to enlarge or shrink. no layout changes */
+.containerPhoto, .containerInsight { position: relative;
+  .ie8 .wrapper & { position: static; }
+	.image img { width: 100%; display: block; }
+  .label { }
+  .caption { display: block; clear: both; }
+}
+
+/* Video (covers B) -- just to enlarge or shrink. no layout changes */
+.containerVideo { position: relative;
+  .ie8 .wrapper & { position: static; }
+	.image img { width: 100%; display: block; }
+	.label { @include float(left); }
+	.caption { display: block; clear: both; }
+}
+/* Article with photo or video (covers C & D) */
+.containerArticle { overflow: hidden;
+	.label { @include float(left); }
+	.image {
+		img { width: 100%; display: block; }
+	}
+}
+/* Data Vizuallization (covers E) */
+.containerStats { overflow: hidden;
+	// .contentWrapper { @include column(14); }
+}
+/* Social media quote (covers F) - just to enlarge or shrink. no layout changes */
+/* Breaking news (covers G) - just to enlarge or shrink. no layout changes */
+.containerSocial, .containerBreaking {
+	.content { min-height: (172em/12); }
+	.label { @include float(left); }
+	.username { padding-top: 0.5em;}
+}
+/* Headline (not present on Pg9. ref: Pg10) -- reverse of .containerC */
+.containerX { @include row(7); overflow: hidden;
+	.contentWrapper { }
+	.label { @include float(left); }
+	.image { @include column(3.5,7); @include float(left);
+		img { width: 100%; margin: 1em 0 0 1em;}
+	}
+	.contentWrapper { @include column(3.5,7); @include float(left); }
+}
+
+@include breakpoint(xsmall) { /* equivalent of 320px - based on 16px body base font size. */
+	.wrapperHalf { @include column($mobile-columns,$mobile-columns); }
+}
+@include breakpoint(medium) { /* equivalent of 600px - based on 16px body base font size. nexus 7 doesn't recognize it if the min-width is set to more than 600px */
+	.content-padding { padding: 0 margin-width(); }
+  .half-content-padding { padding: 0 margin-width()/2; }
+  .wrapperFull { @include column(14); }
+  .wrapperHalf { @include column(7); }
+  .wrapperThird { @include column(4.66); }
+  .navWrapper, .tabWrapper { @include column(14); }
+  /* .containerA -- caption comes next to the label. show photo credit */
+	.containerPhoto, .containerVideo, .containerInsight {
+		.image img { width: 100%; display: block; }
+		.label { @include float(left); }
+		.caption { display: inline-block; vertical-align: bottom; }
+	}
+
+	/*.containerC -- side by side layout */
+	.containerArticle {  /* nesting requires row(grid num of parents container, in this case .wrapperHalf) */
+		.image { /* column(gridNum, totalRowNum) */
+			img { width: 100%; display: block;}
+		}
+	}
+
+	/*.containerE -- side by side layout, graph/image float right */
+	.containerStats { @include row(14); overflow: hidden;
+		// .data { @include column(7,14); @include float(right);}
+		// .contentWrapper { @include column(7,14);  }
+	}
+
+  .containerSocial, .containerBreaking {
+    .contentWrapper {
+      img { width: 100%; display: block; }
+    }
+  }
+
+	/*.containerX -- top bottom stack layout - opposite to containerC */
+	.containerX { @include column(14);
+		.image { width: 100%; margin: 0.5em 0 0 0;
+			img { margin: 0;}
+		}
+		.contentWrapper { @include column(14); }
+	}
+}

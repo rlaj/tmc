@@ -1,0 +1,829 @@
+@import "rwd_helpers";
+// @import "../fonts.scss";
+
+/* note: breakpoints in em ----------------------------
+   base font size to determine breakpoints - 12px
+   useful pixel to em converter
+   http://bradfrostweb.com/demo/ish/
+-----------------------------------------------------*/
+
+html { @include wh(100%,100%); font-size: 0.75em;
+  -webkit-text-size-adjust: none; /* Prevent font scaling in landscape while allowing user zoom */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; // http://jaydenseric.com/blog/css-font-smoothing-for-firefox-mac
+}
+body {  @include wh(100%,100%); background:$black; font-family:Arial, Verdana, Helvetica, sans-serif; margin: 0; padding: 0;  }
+
+.outer-wrap, section.app-wrap { position: relative; width: 100%; overflow-x: hidden;
+  @include breakpoint(medium) { height: 100%; overflow: visible; }
+}
+
+section.nav-wrap { width: $mobile_nav_width; float: left; position: fixed; top: 0; bottom: 0; visibility: hidden; min-height: 100%; overflow-x: hidden; overflow-y: auto; z-index: 0;
+  background: #222222;
+  @include translate(-100%,0);
+  @include nav_transition(transform visibility);
+  @include breakpoint(medium) {
+    @include no_transition;
+  }
+  @include landscape_nav_breakpoint {
+    width: $ls_mobile_nav_width;
+  }
+  html.oldie & {
+    left: -280px;
+    @include breakpoint(medium) { left: 0; }
+  }
+}
+@include breakpoint(medium) {
+  section.nav-wrap { min-height: 0; bottom: auto; width: 100%; float: none; visibility: visible; overflow: visible; z-index: z($elements, mainmenu);
+    text-align: center; background:$black;
+    @include transform(none);
+  }
+}
+
+section.hero-wrap { position: relative; width: 100%; height: calc(100% - #{$mobile_header_height}); margin-top: $mobile_header_height; z-index: z($elements, hero);
+  .alert & { margin-top: 0; }
+  @include breakpoint(medium) {
+    margin-top: 0; height: calc(100% - #{$header_height});
+  }
+}
+
+section.page-wrap { position: relative; width: 100%; z-index: z($elements, page); min-height: 80%;
+  background-repeat: no-repeat; background-size: 100% auto; background-position: center bottom; padding-bottom: 45%;
+
+  @include breakpoint(medium) {
+    padding-bottom: 30%;
+  }
+
+  &:first-child { margin-top: $mobile_header_height;
+    @include breakpoint(medium) {
+      margin-top: 0;
+    }
+  }
+}
+div.content-wrap { height: 100%; }
+
+.js-nav {
+  .outer-wrap { overflow: hidden; min-height: 100%; }
+  section.hero-wrap { left: 0; }
+  section.page-wrap { left: 0; position: relative; }
+  section.nav-wrap { visibility: visible; @include translate(0,0); }
+
+  &.oldie {
+    &.active {
+      header#top { left: $mobile_nav_width; }
+      section.hero-wrap { left: $mobile_nav_width; }
+      section.page-wrap { left: $mobile_nav_width; }
+      section.nav-wrap { left: 0; }
+      #background { left: $mobile_nav_width; }
+    }
+  }
+}
+
+.outer-wrap > * { @extend %body_nav_translation; }
+// upon navigation, remove transition to avoid content loading in while menu is sliding back into place
+.js-navigate {
+  .outer-wrap > * { @include no_transition; }
+}
+/* navigation ----------------------------------------------*/
+nav[role=navigation] {
+  ul { margin-top: 45px; }
+  li { list-style: none; color: $white; text-transform: uppercase; font-size: 1.33em; line-height: 2em; @include sourcesans(bold); text-align: left;
+    a { padding: 0 8.5% 0 8.5%;
+      color: $white; text-decoration: none;
+      &:hover { color: $selected_color; }
+      &.selected { @extend a.selected; }
+    }
+  }
+  span.live { padding: 0.2em 0.5em; margin-left: 0.5em; }
+}
+nav#submenu {
+  ul { margin-top: 0; }
+  li { @include sourcesans; }
+
+  .footer { width: 83%; margin: 3em auto 5%; text-align: left;
+    color: $white; @include sourcesans; font-size: .833em;
+    .app_store { margin-top: 1.5em;
+      img { display: inline; }
+    }
+    a { color: #999999; }
+    a:hover { color: $selected_color; }
+  }
+}
+
+@include breakpoint(medium) { /* equivalent of 600px */
+  nav.mainmenu {
+    header#top & { display: block; }
+    &.active { max-height: 0!important; min-height: $header_height!important; /* with the mobile menu shown, if the window is changed, class .active still exists. set the height for tablet view to show the tablet menu */ }
+    ul { margin: 0; border: 0; height: $header_height; }
+    li { display: inline-block; margin: 0; font-size: 1.3em; line-height: $header_height; @include sourcesans;
+      &::before { content: "\00b7"; @include sourcesans(bold); float:left; display: inline; }
+      a { background: none; border: 0; padding: 0 0.3em 0 0.4em; float: left; }
+      &:first-child::before { content: ""; display: none; }
+    }
+    span.live { padding: 0.2em 0.5em; margin-left: 0.3em; line-height: 16px; margin-top: -2px; display: inline-block; }
+  }
+  nav#submenu { display: none; position: absolute; top: $header_height; left: 0;
+    width: 386px; @include chromescrollfix; background-color:#222222;
+    &.active { display: block; top: $header-height; }
+    ul { margin-top: 60px + 15; }
+    li { font-size: 1.33em; line-height: 2em;
+      a { display: block; padding: 0 7.7%; }
+    }
+
+    .footer { margin-top: 1.5em; font-size: 1em; width: 84.6%;
+      .app_store { display: none; }
+    }
+  }
+}
+
+/* header -------------------------------------------------*/
+header#top { position: fixed; top: 0; height: $mobile_header_height; background: $black; width: 100%; /*position: fixed; top: 0; z-index: 5; - commenting out to make it slide down menu until the navigatoin decision is made */
+  z-index: z($elements, header);
+  &.active { /*position: absolute; overflow-y: auto; */ position: relative; }
+}
+a.menu-link {
+  $menu-link-width: 25px;
+  padding: 0px 0px 0px 22px; position: absolute; top: 12px; left: 10px; text-decoration: none; text-transform: uppercase; color: $white; @include sourcesans;cursor:pointer;width:$menu-link-width;
+  height: 20px; // [2px (line bar height) * 3] + [7px (distance between line bars) * 2]
+
+  span {
+    &, &:before, &:after { position: absolute; height: 2px; width: $menu-link-width; background:$white; display: block; content: " "; left: 0; top: 7px;}
+    &:before { top: -7px; }
+    &:after { top: 7px; }
+  }
+  &:hover { color: $selected_color;
+    span {
+      &, &:before, &:after { background:$selected_color; }
+    }
+  }
+}
+a.fav-link { display: none; }
+.sponsors { position: absolute; right: 10px; top: 9px; display: block;
+  div { display: none;
+    &:nth-child(2) {
+      img { display: none;
+        & + img { display: block; }
+      }
+    }
+  }
+  img { }
+}
+.divider { display:none; }
+.leaderboardEverywhereIcon {
+  cursor:pointer;
+  position:absolute; top:11px;width:32px;height:22px;display:block; left: 44px;
+  background: url('/images/nav/lb_everywhere_icon.png') no-repeat; background-size: 23px 16px; background-position: 5px 2px;
+  &.active {
+    background-image: url('/images/nav/lb_everywhere_icon_active.png');
+  }
+
+  &.hidden { display:none; }
+}
+
+#eventLogo { background: url(/images/now/masters_logo.png) no-repeat 0px 6px; background-size: 104px 27px; @include wh(112px,$mobile_header_height); margin: 0 auto;
+  a { display: block;  @include wh(112px,$mobile_header_height); text-indent: -9999px; }
+  &.popout { float: left; margin-left: 5px; }
+}
+
+@include breakpoint(medium) { /* equivalent of 600px. make the menu fixed on the tablet and above */
+  a.menu-link { position: fixed; top: 0; left: 0; z-index: z($elements, header); height: $header_height; width: 50px; padding: 28px 12px 0;
+
+    span { top: 23px; left: 12px; }
+    &:after { content: ""; height: $header_height - 8px - 8px; top: 8px; right: 0; width: 1px; border-right: 1px solid #4D4D4D; position: absolute; }
+    &.active { background:#222222;
+      &:after { display: none; }
+    }
+  }
+  #eventLogo { position: fixed; z-index: z($elements, header); top: 0; left: 55px; @include wh(132px,$header_height); background-position: 10px 8px;
+    a { height: $header_height; width: 132px; }
+  }
+  a.fav-link { position: fixed; z-index: z($elements, header); right: 0; top: 0; height: $header_height; width: 54px; padding-top: 32px;
+    display: block; text-align: center; text-transform: uppercase; color: $white; text-decoration: none; font-size: 10px; @include sourcesans(semibold);
+
+    &:before { content: ""; position: absolute; top: 8px; left: 0; right: 0; margin: 0 auto;
+      width: 24px; height: 24px; background: url('/images/misc/favorite_star_sm_sprite.png') no-repeat 0 0;
+    }
+
+    &:after { content: ""; height: $header_height - 8px - 8px; top: 8px; left: 1px; width: 1px; border-left: 1px solid #4D4D4D; position: absolute; }
+    &:hover { color: #FFF000;
+      &:before { background-position: -24px -24px; }
+    }
+    &.active { background:#333333; color: #FFF000; @include chromescrollfix; border-bottom: 1px solid #333333;
+      &:before { background-position: -24px -24px; }
+      &:after { display: none; }
+    }
+  }
+  .sponsors { z-index: z($elements, header); top: 15px; right:0;float:right; position:relative; margin-right:10px; width: 54px;
+    div:nth-child(2) {
+      img { display: block;
+        & + img { display: none; }
+      }
+    }
+  }
+
+  .leaderboardEverywhereIcon { position:relative; left:0; float:right;cursor:pointer; top:15px;margin-right:26px; }
+  .leaderboardEverywhereIcon:after {
+    content: ''; border:1px solid #333333; height:30px; position: absolute; right: -12px; top:-5px;
+  }
+  header#top { position: static; height: $header_height; width: 100%; text-align: center; /* over tablet devices - make the header fixed */
+    .rightNavHeader {position:fixed; right:0; float:right;z-index: z($elements, header); }
+  }
+}
+
+/* search ------------------------------------------------*/
+// #footerSearch { position: relative; width: 100%; height: $footer_height; padding-left: 15px; margin: 1em auto; padding: 1em 0; border-top: solid 1px #ccc;  -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;  transition: all 0.3s ease-out; overflow: hidden; max-height: 0;
+//   &.active { min-height: $footer_height; display: block;  /* make this visible on the mobile menu */ }
+//   input { outline: none; }
+// }
+#searchBox { position: absolute; top: 0; left: 50%; margin-left: -45%; margin-top: 10px; width: 90%; @include clearfix; background-color: #111111;
+  form { opacity: .5; }
+}
+#searchBoxCorners { display: none; }
+.search-button { position: absolute; right: 10px; top: 50%; margin-top: -6px; width: 13px; height: 13px; }
+#words { @include float(left); width:100%; height: $footer_height/2; margin: 0.2em 0; padding: 0 25px 0 7px; border: none; @include box-sizing(border-box);
+  background-color: transparent; color: #FFFFFF; font-size: 1.33em; line-height: $footer_height/2; @include sourcesans; text-transform: uppercase;
+}
+
+@include breakpoint(medium) { /* equivalent of 600px, hide search box from tablet and above view */
+  #searchBox { margin-top: 20px; }
+  .search-button { width: 17px; height: 17px; margin-top: -8px; }
+  #words { padding-right: 30px; padding-left: 11px; margin: 0.5em 0; }
+  // #footerSearch {display: none!important; max-height: 0!important; }
+}
+
+// div.fav-list { display: none;
+//   @include breakpoint(medium) {
+//     #fav-link.active + & { display: block; }
+
+//     width: 370px; padding: 10px; background: #333333; position: fixed; top: $header_height; right: 0; z-index: 10;
+
+//     .panel-stub { color: $white; @include sourcesans; font-size: (16/12)*1em; line-height: (24/16); padding: 30px 20px 20px;
+//       p { margin-bottom: 1em; }
+//       .holder { display: inline-block; width: 24px; height: 24px; position: relative; }
+//       span.favorite { position: absolute; top: 4px; left: 0; cursor: default; width: 24px; height: 24px; background-image: url("/images/misc/favorite_star_sm_sprite.png");}
+//     }
+
+//     .header { display: block; @include sourcesans(bold); background-color: #292929; text-transform: uppercase; font-size: (14/12) * 1em; color: $white; height: 29px; line-height: 29px; }
+//     .search { padding: 14px 16px 16px; position: relative; background: #222222;
+//       .header { }
+//       .input-field { position: relative; }
+//       input[type=text] { width: 100%; background:#DDDDDD; border: 0; height: 26px; box-sizing: border-box;
+//         line-height: 26px; font-size: 1em; @include sourcesans(light); text-transform: uppercase; color: #000000; padding: 0 1em;
+//         @include input-placeholder { color: #000000; }
+//         &::-ms-clear { display: none; width: 0; height: 0; }
+//       }
+//       input[type=submit] { background:url('/images/leaderboard/leaderboard-search-icons.png') no-repeat 0 0; border: 0; text-indent: -9999px;
+
+//       }
+//       &.active {
+//         & input[type=submit] { background-position: 0 -20px; }
+//         & + .search_results { display: block; }
+//       }
+//     }
+
+//     .info-bar { text-align: center; color: $white; margin-top: 8px;
+//       > span { display: inline-block;
+//         &:first-child { text-transform: uppercase; @include sourcesans; font-size: (14/12) * 1em; margin-right: 15px;
+//           &:after { content: attr(data-round); }
+//         }
+//       }
+//       > span + span { @include sourcesans(light); font-size: 1.333em;
+//         &.tie span:first-child {
+//           &:after { content: "s"; }
+//         }
+//         span + span { @include sourcesans; }
+//       }
+
+//       &.stub {
+//         > span { display: none; }
+//         .info_stub { @include sourcesans; font-size: (14/12)*1em; }
+//       }
+//     }
+
+//     .scores { margin-top: 20px; color: $white; text-transform: uppercase;
+//       &.no_faves { display: none; }
+//       &.show_results { display: block;
+//         .fav-container { display: none; }
+//         .result-container { display: block; }
+//       }
+//     }
+//     .table-row { display: table-row; width: 100%;
+//       > div { display: table-cell; }
+//       .pos { width: 38px; }
+//       .player { width: 120px; text-align: left; padding-left: 9px; white-space: nowrap; }
+//       .today { width: 68px; }
+//       .thru { width: 40px; }
+//       .total { width: 44px; }
+//       .fav { width: 40px; }
+//     }
+//     .player-row { @include sourcesans; font-size: (16/12)*1em; line-height: 39px; background: #222222;
+//       .fav {
+//         .favorite { display: inline-block; vertical-align: middle;
+//           width: 20px; height: 20px; background: url('/images/misc/favorite_star_sm_sprite.png') no-repeat 0 0; background-size: 200%;
+//           &.hoverable:hover, &.selected { background-position: -20px -20px; }
+//         }
+//       }
+//     }
+//     .table-header { @include sourcesans(semibold); font-size: (11/12) * 1em; line-height: 24px; background: transparent;
+//       .player { padding-left: 5px; }
+//     }
+//     .result-container { display: none; }
+//     .text-row { text-transform: none; font-size: (14/12)*1em;
+//       a { color: $white; }
+//     }
+//   }
+// }
+
+div.alert_bar { width: 100%; min-height: 40px; background-color: $white; margin-top: 40px;
+  text-align: center; line-height: 1.25em; padding: 10px margin-width()*2; @include sourcesans;
+  position: relative; z-index: z($elements, alertbar);
+  a { color: #999999; }
+  @include breakpoint(medium) {
+    font-size: 1.333em; margin-top: 0;
+  }
+  @include lbbreakpoint(lblargeralpha) {
+    & ~ .page-wrap {
+      #leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper { top: 262px; }
+    }
+  }
+  @include lbbreakpoint(lblarger) {
+    & ~ .page-wrap {
+      #leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper { top: 299px; }
+    }
+  }
+  @include lbbreakpoint(lblargest) {
+    & ~ .page-wrap {
+      #leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper { top: 376px; }
+    }
+  }
+}
+
+/* common classes ----------------------------------------*/
+.contentWrapper { padding: 0; margin: 0; position: relative; }
+div.content { padding: 1em; }
+.text { clear: both; padding: 0; @include sourcesans; @include clearfix;
+  p { padding-bottom: 0.5em;}
+  em { font-style: italic; }
+  strong { @include sourcesans(semibold); }
+  section.full-width + & { padding-top: 0.5em; }
+  a { @include sourcesans(semibold); color: #333333;
+    &.linktag{
+      text-decoration:none;
+      @include sourcesans(bold);
+      &.chevron { position: relative; }
+    }
+    &.link_txt_small { font-size: 0.9em; }
+  }
+  h2 { font-size: 1.833em; line-height: 1.818em; color:$gray; padding-bottom:0.3em + 0.3em; padding-top: 0.3em; }
+  h3 { color:$gray; padding-bottom:0.8em; line-height:1.8em; @include sourcesans(bold);}
+
+  &.centered, .centered {
+    max-width: 998px; @include center-column(12); @include clearfix;
+  }
+  &.extra_spacing{
+    ul, ol { padding-left:2em; color:$gray; line-height: 1.8em; padding-bottom: 1.8em;
+      ul, ol { padding-bottom: 0; }
+    }
+    p {
+      padding-bottom:1.8em;
+      line-height:1.8em;
+      color:$gray;
+      &.h_subtxt{text-align: center; font-weight:bold; color: #333333; font-size: 1.125em;text-transform: uppercase;}
+      &.pullquote{
+        padding-bottom:.5em;
+        &:last-child {padding-bottom:1em;}
+      }
+      &.p_font1{font-size: 1.500em; font-weight: bold; padding-top:10px;}
+      &.p_font2{font-size: 1.000em;}
+      &.p_4font3{}
+    }
+    section.full-width + & { padding-top: 1.8em; }
+    hr { margin-bottom:1.8em; }
+    &.top_spacing{
+      padding-top: 40px;
+    }
+
+  }
+  p.pullquote {
+    font-size: 2em;
+    line-height: 1.29em;
+    &:first-letter { margin-left: -0.4em; }
+  }
+  @include breakpoint(large) {
+    p.pullquote {
+      // font-size: 2em;
+      padding-left: 16px;
+    }
+    &.extra_spacing {
+      p, ul, ol { line-height: 1.667em; padding-bottom: 1.667em; }
+    }
+  }
+}
+.para { clear:both;
+  h3{@include sourcesans('semibold'); font-size:1.00em;}
+  @include breakpoint(medium) {
+    h3{ font-size:1.13em;}
+  }
+  .text.extra_spacing & {
+    h2{ text-align:center; }
+  }
+}
+// .credit { position: absolute; top: 1em; right: 1em; display: block; }
+// use 8px for font size here to override minimium allowable size by Safari when using em's
+.label { position: absolute; top: 15px; left: 15px; margin: 0 10px 0 0;
+  &.text { font-size: 9px; line-height: 1.5em; background: #FFF000; color: #333333; @include sourcesans(semibold); font-size: 9px; line-height: 1.5em; padding: 0.5em 0.75em; text-transform: uppercase; }
+  &.icon { top: auto; bottom: 0; left: 0; margin-left: 10px; margin-bottom: 11px; width: 18px; height: 18px; background-repeat: no-repeat; background-color: transparent; background-size: 100%;
+    @include breakpoint(small) { width: 26px; height: 26px; }
+  }
+  $type_list: news photo gallery video radio track link;
+  @each $type in $type_list {
+    &.#{$type} { @include resizable_icon('/images/now/icon_#{$type}.png'); }
+  }
+}
+.headerlink { position: absolute; top: 15px; left: 15px;  color: #FFFFFF; @include sourcesans(bold); font-size: 1.1667em; z-index: z($elements, headerlink); text-transform: uppercase; text-decoration: none; }
+.caption { position: absolute; left: 0px; bottom: 5px; padding: 0 10px; width: 100%;
+  @include sourcesans(); font-size: (14/12)*1em; color: $white;
+  // background:transparent url('/images/now/container_shadow_btm.png') repeat-x left bottom;
+}
+.caption_row { position: absolute; bottom: 0; left: 0; width: 100%; }
+.label.icon + .caption { position: static; bottom: 0; padding: 0 10px 0 0; margin-bottom: 10px; width: auto; margin-left: 38px; }
+.centered_icon { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; background:transparent no-repeat center center;
+// .centered_icon { position: absolute; top: 50%; left: 50%; background:transparent no-repeat center center;
+  @include centered_icon_size(45px);
+
+  @include breakpoint(small) { @include centered_icon_size(54px); }
+  @include breakpoint(xlarge) { @include centered_icon_size(70px); }
+
+  &.play { @include resizable_icon('/images/now/btn_play.png'); }
+  &.grid { @include resizable_icon('/images/now/btn_grid.png'); }
+  &.radio { @include resizable_icon('/images/misc/radio_notplaying.png'); }
+}
+img { display: block; border: 0; }
+.image {
+  span { display: none; }
+  &:before, span { content: " "; width: 100%; height: 50px; max-height: 100%; position: absolute; left: 0; bottom: 0; background:transparent url('/images/now/container_shadow_btm.png') repeat-x left bottom; background-size: 100% 50px;}
+  &.no_gradient:before { display: none; background: transparent; }
+  &.offair {
+    &:before, span {
+      @include background-rgba($black,.6);
+      background-image: none;
+      background-size: 100% 100%;
+      height: 100%;
+    }
+  }
+  .wrapper & { min-height: 100px; }
+}
+span, .label {
+  &.live { background: $live_color; color: $white; text-transform: uppercase; vertical-align: middle; }
+  &.offair { background: #cccccc; color: #333333; text-transform: uppercase; vertical-align: middle; }
+}
+a.selected { color: $selected_color; }
+.no_gradient{
+  &:before{ background: none; }
+}
+.share { cursor: pointer; }
+
+.moreWrapper { width: 100%; height: 35px; text-align: center; text-transform: uppercase;
+  &:after, span { content: " "; position: absolute; bottom: 0; left: 50%; margin-left: -13px; width: 25px; height: 13px;
+    @include resizable_icon("/images/now/more_arrow.png");
+    background-size: 100% 100%;
+  }
+  .text { color: $white; @include sourcesans(bold); font-size: (10em/12);}
+}
+
+/* overarching class for any chevrons that appear around text
+  also include left/right, white/black, and specific attached class for custom sizes */
+.chevron {
+  &.left { padding-left: 8px;
+    @include breakpoint(medium) { padding-left: 15px; }
+    &:before, span { content: " "; position: absolute; left:0; top: 0; bottom: 0; margin-top: auto; margin-bottom: auto; background: no-repeat left top transparent; background-size: 100% 100%;
+    }
+    // custom sizes start
+
+    &.headerlink{ padding-left: 8px + 6px;
+
+
+      @include breakpoint(large) { padding-left: 15px + 9px; }
+
+      &:before, span { width: 6px; height: 10px;
+        @include breakpoint(large) {  width: 9px; height: 14px; }
+      }
+    }
+
+    &.linktag{ padding-left: 8px + 6px;
+      @include breakpoint(medium) { padding-left: 15px + 9px;}
+      &:before, span { left: 9px 6px; width: 5px; height: 9px;
+        @include breakpoint(medium) { width: 7px; height: 11px; }
+      }
+
+    }
+    &.footerlink{ padding-left: 10px;
+      @include breakpoint(small) { padding-left: 15px; }
+      @include breakpoint(large) { padding-left: 24px; }
+      @include breakpoint(xlarge) { padding-left: 30px; }
+      &:before, span {
+        width: 5px; height: 10px;
+        @include breakpoint(small) { width: 8px; height: 14px; }
+        @include breakpoint(large) { width: 11px; height: 17px; }
+        @include breakpoint(xlarge) { width: 12px; height: 19px; min-height: -11px; }
+      }
+    }
+
+    // custom sizes end
+    &.white {
+
+      &:before, span { @include resizable_icon('/images/misc/chevron_left_white.png'); }
+
+      &.tournav_custom {
+        top: -3px;
+        visibility:hidden;
+        font-size: 16px;
+      }
+
+
+      @include breakpoint(medium) {
+          &.tournav_custom {
+          visibility:visible;
+        }
+      }
+
+    //classes for the About pages
+      &.tournav_custom2 {
+        top: 7px;
+        visibility:hidden;
+        font-size: 16px;
+      }
+
+
+      @include breakpoint(medium) {
+          &.tournav_custom2 {
+          visibility:visible;
+        }
+      }
+
+    }
+    &.black {
+     &:before, span { @include resizable_icon('/images/misc/chevron_left_black.png');
+      @include breakpoint(large) { @include resizable_icon('/images/misc/chevron_left_black_lrg.png'); }
+     }
+    }
+  }
+
+  &.right { padding-right: 0; width: auto;
+    &:after, span { content: " "; position: absolute; top: 0; bottom: 0; margin-top: auto; margin-bottom: auto; background: no-repeat left top transparent; background-size: 100% 100%;}
+    // custom sizes start
+    &.caption {
+      &:after, span { right: -9px - 7px; width: 7px; height: 12px;
+        @include breakpoint(medium) { right: -20px - 14px; width: 14px; height: 24px; }
+      }
+    }
+    &.players {
+      &:after, span { right: -9px - 7px; width: 7px; height: 12px;
+        // @include breakpoint(medium) { right: -20px - 14px; width: 14px; height: 24px; }
+      }
+    }
+    &.linktag {
+      &:after, span { right: -9px - 6px; width: 5px; height: 9px;
+        @include breakpoint(medium) { width: 7px; height: 11px;}
+      }
+    }
+    &.livetag{
+      &:after, span {
+        width: 8px; height: 13px; margin-left: 15px;margin-left: 15px;
+
+        @include breakpoint(medium, max) { width: 6px; height: 9px; margin-left: 8px;}
+      }
+    }
+    &.smsocialtag{
+      &:after, span {
+        right: -10px; width: 7px; height: 11px;
+      }
+    }
+
+    &.footerlink{ padding-right: 10px;
+      @include breakpoint(small) { padding-right: 15px; }
+      @include breakpoint(large) { padding-right: 24px; }
+      @include breakpoint(xlarge) { padding-right: 30px; }
+     &:after, span { right: 0px; width: 5px; height: 10px;
+        @include breakpoint(small) { width: 8px; height: 14px; }
+        @include breakpoint(large) { width: 11px; height: 17px; }
+        @include breakpoint(xlarge) { width: 12px; height: 19px; }
+      }
+    }
+
+    // custom sizes end
+    &.white {
+      &:after, span { @include resizable_icon('/images/misc/chevron_right_white.png'); }
+    }
+    &.black {
+      &:after, span { @include resizable_icon('/images/misc/chevron_right_black.png');
+        @include breakpoint(large) { @include resizable_icon('/images/misc/chevron_right_black_lrg.png'); }
+      }
+    }
+
+  }
+}
+
+/* hero image definitions */
+.background { background: transparent no-repeat center center; background-size: cover;
+  // mobile os support for background-attachment: fixed is flaky and inconsistent at best
+}
+// TODO: not sure these two are needed anymore
+.standard { background: transparent no-repeat center center; }
+
+.standard_gradient { background: transparent no-repeat center center; }
+/* end */
+
+// vod page back button - hide under 520px
+.back-button {
+  .headerlink{ display: none; }
+}
+
+@include breakpoint(small) {
+  .label {
+    &.icon { margin-bottom: 10px; margin-left: 12px; }
+  }
+  .caption { padding: 0 15px; bottom: 10px; font-size: (20/12)*1em;
+    .label.icon + & { margin-left: 47px; padding-right: 15px; }
+  }
+}
+@include breakpoint(medium) {
+  .label {
+    .wrapperFull &.icon { margin-bottom: 13px; }
+    .wrapperThird &.icon { margin-bottom: 10px; }
+  }
+  .caption { font-size: (26/12)*1em; padding: 0 20px;
+    .wrapperHalf &, .wrapperThird & { font-size: (20/12)*1em; }
+  }
+  .background { background-attachment: fixed;
+    &.not_fixed {
+      background-attachment: scroll;
+    }
+  }
+  .moreWrapper { height: 38px;
+    &:after, span { width: 32px; height: 17px; margin-left: -16px; }
+    .text { @include opacity(.75); font-size: (13em/12); }
+  }
+  .text {
+    // &.centered { @include center-column(12); }
+    &.extended-width { width:cp(1060px); max-width: 1060px; }
+    a {
+       &.link_txt_small { font-size: 1.0em; }
+    }
+  }
+
+  .back-button {
+    .headerlink{ display: block; }
+  }
+}
+@include breakpoint(large) {
+  .headerlink { font-size: 1.333em; }
+  .label.text { font-size: 1.333em; line-height: 1.125em; }
+  // .caption { font-size: 2.333em; line-height: 1.071em;
+  //   .wrapperHalf & { font-size: 1.833em; }
+  // }
+  .image:before { height: 60px; background-size: 100% 60px;
+    // .wrapperFull & { height: 214px; background-size: 100% 214px; }
+  }
+}
+@include breakpoint(xlarge) {
+  .caption { font-size: (32/12)*1em; line-height: 1.155em;
+    .wrapperHalf &, .wrapperThird & { font-size: 2.1667em; }
+  }
+  .image:before { height: 80px; background-size: 100% 80px; }
+}
+
+.scroll_content, .jscroll-inner { @include clearfix; }
+a.loading { display: block; text-align: center; @include clearfix;
+  img { margin: 50px auto; }
+}
+
+
+/* styles for jScrollPane Vertical scroll bars */
+.jspContainer { position: relative; overflow: hidden; -ms-touch-action: pinch-zoom; z-index: 1; outline: none; }
+.jspPane { position: absolute; }
+.jspCap { display: none; }
+.jspTrack { background: #F0F0F0; position: relative; }
+.jspDrag { background: #BEBEBE; position: relative; top: 0; left: 0; cursor: pointer; }
+.jspArrowUp { background-position: 0px 0px; }
+.jspArrowDown { background-position: 0px -10px !important; }
+.jspArrowLeft { background-position: 0px 0px; }
+.jspArrowRight { background-position: -10px 0px !important; }
+.jspArrow:focus { outline: none; }
+.jspCorner { background: #eeeef4; @include float(left); height: 100%; }
+.jspVerticalBar *, .jspHorizontalBar * { margin: 0; padding: 0; }
+.jspVerticalBar { position: absolute; top: 0; right: 0; width: 10px; height: 100%; background: #FFFFFF;
+  .jspArrow { background: url(/images/misc/scroll_arrows.png) no-repeat; text-indent: -20000px; display: block; cursor: pointer; height: 10px;
+    &:hover { background: url(/images/misc/scroll_arrows_hover.png) no-repeat; }
+    &.jspDisabled { background: url(/images/misc/scroll_arrows_disabled.png) no-repeat; cursor: default; }
+  }
+}
+.jspHorizontalBar { position: absolute; bottom: 0; left: 0; height: 10px; width: 100%; background: $white; }
+
+/** global lightbox overlay styles **/
+#lightIntro, #light, #fade { display: none; }
+.white_content { position: absolute; background: #000000; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; overflow: visible; text-align: left; }
+#background_video { position: relative; width: 100%; height: 100%; overflow: hidden; top: 0px; left: 0px; /*z-index:8;*/ z-index: -8; text-align: left; background: #222222; }
+#light { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: left; z-index: z($elements, lightbox);
+  .overlay_panel { z-index: 2; }
+}
+#fade { position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; text-align: left; background-color: #000000; @include opacity(.8); z-index: 1; }
+
+#overlayShare { position: fixed; top: 90px; left: 0; right: 0; margin: 0 auto; width: 100%; max-width: 305px; height: 173px;
+  .socialOverlay { @include background-rgba(#FFFFFF, 1);
+    .social_box { width: 180px; padding-top: 10px; }
+  }
+  @include breakpoint(small) {
+    top: 140px;
+  }
+  @include breakpoint(medium) {
+    top: 0; bottom: 0; margin: auto; max-width: 422px; height: 234px;
+    .socialOverlay {
+      .social_box { width: 310px; }
+    }
+  }
+  @include breakpoint(large) {
+    .socialOverlay {
+      .header { font-size: 2.333em; }
+    }
+  }
+}
+
+#newbox{ position: fixed; width: 100%; height: 75%; z-index: z($elements, lightbox); top: 45px;
+  .content{ width: 60%; background-color:rgba(0,0,0,0.6); border: solid 1px $white; position: relative;  left: 0px; right: 0px; margin: 20px auto;
+    &.bottom{ bottom: 0px; margin-bottom: 25px;}
+    &.hide{ display: none; }
+  }
+  .close{ padding-bottom: 5px; float: right;}
+  .message{ width: 100%; height: 100%; color: $white; text-align: center; @include sourcesans(light); font-size: 15px; display: inline-block;
+    img{ display: inline;}
+    .newArrows{ padding: 5px 10px; margin: 0px auto;
+      &.right{ float: right; margin: 0px;}
+      &.left{ float: left; margin: 0px;}
+    }
+  }
+
+  @include breakpoint(medium){ margin-top: 0px; width: 100%; height: 75%;
+    .content{ position: absolute; width: 265px; margin-left: 20px; left: inherit; right: inherit;
+      &.right{ right: 0px; margin-right: 25px;}
+      &.center{ margin: 20px auto; left: 0px; right: 0px; }
+    }
+  }
+}
+
+@keyframes ease-from-top {
+    0% { transform: translate3d(0,-100%,0); }
+    100% { transform: translate3d(0,0,0); }
+}
+
+@keyframes ease-from-left {
+    0% { transform: translate3d(-110%,0,0); }
+    100% { transform: translate3d(0,0,0); }
+}
+
+#notifications{ position: fixed; z-index: z($elements, notifications);  top: $mobile_header_height;
+  width: 100%; height: auto; background-color: $white; border: solid 1px $black;left: 0; right: 0; padding: 15px 10px;
+    -webkit-box-shadow: 0px 0px 10px -2px $black;
+    -moz-box-shadow: 0px 0px 10px -2px $black;
+    box-shadow: 0px 0px 10px -2px $black;
+
+  &.right{ right: 0px; margin-right: 25px;}
+  &.bottom{ bottom: 0px; margin-bottom: 25px;}
+  &.hide{ display: none; }
+  &.visible, &.close {
+    animation: ease-from-top 0.5s normal linear;
+  }
+  &.close {
+    animation-direction: reverse;
+  }
+
+  .close{ position: absolute; top: 10px; right: 5px;
+    a { display: block; padding: 5px; }
+  }
+  .message{ width: 75%; width: calc(100% - #{58px + 15px}); height: 100%;  display: inline-block;  padding: 0px 5px;
+    a{ text-decoration: none; }
+    .text{ color: $black; text-align: left; @include sourcesans; font-size: 14px;}
+    .link{ color: #1c6344; @include sourcesans(bold); display: inline-block; padding: 5px 0px;
+      .icon{ display: inline-block; padding-left: 5px; vertical-align: middle;
+        &.video{
+          img{background: url('/images/misc/play_btn_green.png') no-repeat; width: 13px; height: 13px; background-size: 13px 13px; }
+        }
+      }
+    }
+    .channels{ @include sourcesans(bold); font-size: 16px; color: $black; text-align: left;
+      .live{ padding: 2px; margin-right: 5px; }
+    }
+    .title{ @include sourcesans(bold); font-size: 14px; color:#1c6344; }
+  }
+  .logo{ width: 38px; margin-left: 10px; margin-right: 10px; height: 48px; float: left;
+  }
+
+  @include breakpoint(medium) {
+    top: $header_height;
+    width: 320px; padding: 15px 10px; right: auto; margin-top: 10px; left: 0; margin-left: 10px;
+    &.visible, &.close {
+      animation-name: ease-from-left;
+    }
+  }
+
+}

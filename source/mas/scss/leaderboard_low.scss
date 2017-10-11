@@ -1,0 +1,885 @@
+@import 'rwd_helpers';
+
+
+@function lbcp($width, $content_width: $lb_content_width) { @return cp($width, $content_width); }
+@function hcp($width, $holes_container_width: $lb_holes_container_width) { @return cp($width, $holes_container_width); }
+@function pscp($width, $trad_player_stat_width: $lb_trad_player_stat_width) { @return cp($width, $trad_player_stat_width); }
+@mixin tableborder($width, $side: '', $border_color: $lb_border_color) {
+  @if $side == '' {
+    border: $width solid $border_color;
+  } @else {
+    border-#{$side}: $width solid $border_color;
+ }
+}
+
+
+/***************************************************************************
+ * Global 
+ ***************************************************************************/
+
+$lb_header_row_height: 30px;
+$lb_player_row_height: 35px;
+$lb_border_color: #E0E0E0;
+$lb_row_hover_color: #e4ecdb;
+
+
+body { font-family: Arial, sans-serif; background: $white; }
+
+section.page-wrap { padding-bottom: 0 !important; min-width: 320px; }
+
+section.hero-wrap {
+  &.half-standard-height { height: auto;
+    .hero-content { height: auto;
+      &:before { display: none; }
+      > img { display: block; width: 100%; margin-left: auto; margin-right: auto; }
+      .contentWrapper { position: absolute; width: 100%; top: 0; left: 0; }
+      .title { display:none; }
+    }
+  }
+}
+.navWrapper {
+  .filter {
+    .option { text-align: center; }
+    &.open {
+      .options { margin-top: -5px;}
+      .currentRound { color: $white!important; }
+    }
+  }
+}
+
+//popout LB - Full Leader Board Link at the bottom of the page 
+#lbpopbodybottom {
+  @include wh(100%,30px);
+  background: #000000;
+  bottom: 0;
+  position: fixed;
+  z-index: 5;
+
+  #allScoresButton {
+    text-align: center;
+    a {
+      color: $white;
+      cursor: pointer;
+      line-height: 30px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+// Top container for Leaderboard Panel
+#leaderboardWrapper { width: 100%; margin: 0px; @include clearfix;
+  #leaderboardLowContainer { @include clearfix; background: $white; width: 100%; margin: 0; float: left; text-align: left; position: relative;
+    #header { display: none;
+      h1 { text-indent: -9999em; }
+     }
+     /* holds score board bg in img tag due to the filtering weirdness on webkit browsers, no background: method is used */
+    #leaderboardBg { display: none; }
+  }
+  // Container for Leaderboard Body
+  #leaderboardLow { float: left; position: relative; width: 100%; padding: 0px; margin-top: 0px;
+    .comments { width: 884px !important; height: 22px; text-align: right; color: #000000; padding-right: 21px;
+      span { display: none; }
+    }
+    .content { display:none; position: relative;
+      &.selected { display: block; }
+      &.hidden { display: none; }
+    }
+    .jspPane { left: 0px; }
+    div.content { padding: 20px 0 0 0; /*overrides style.scss */}
+  }
+}
+
+
+// Leaderboard base - in the green area on the score board (in skeuomorphic view)
+#leaderboardFooterBase { position: relative; width: 320px; padding: 0; margin: 0 auto; @include clearfix;
+  .footer_cell { float: left; text-align: left; }
+  .left_cell {  width: 92.18%; }
+  .center_cell { width: 92.18%; height: 100%; text-align: center; }
+  .right_cell { width: 92.18%; }
+
+  /* left cell */
+
+  /* center cell */
+  .round_selector { text-align: center; position:relative; height: 100%; cursor: pointer;
+    .leftRound { position: relative; padding-right: 5px;}
+    .rightRound { position: relative;  padding-left: 20px;}
+    #conCurrentRound { @include sourcesans(bold); font-size: 1em; color: #c2c2c2; text-transform: uppercase;
+      .selected { color: $black;
+        &:hover { color: $black; }
+      }
+      &.hide { display: none; }
+      a:hover { color: $black; }
+      }
+    }
+
+    /* right cell */
+    .messageContainer {  width: 100%; color: #333333; @include sourcesans(light); font-size: 1.167em; text-transform: none; text-align: center;
+      .messageContent { text-align: center; padding-top: 12px;
+        span { display: block;
+          &.hide { display: none; }
+        }
+        #view_playoff { display: none; }
+        #conCurrentRoundText, .message, .allTimes, #view_playoff, #splittee { text-transform: none; padding: 0;
+          &.hide { display: none; }
+        }
+      }
+    }
+}
+// Leader Board Page Footer - in the black nav bar 
+#leaderboardLowFooterWrapper { background: none; position: relative; width: 100%; }
+
+//Top Menu Bar
+#leaderboardLowFooter {  width: /*$lb_content_width*/100%; margin: 0 auto; padding: 0; overflow: visible; color: $black; font-size: 1.1em;
+  .footer_cell { text-align: left; }
+  .left_cell {  width: 295px; margin: 0 auto; clear: left; @include clearfix; }
+  .center_cell { width: 295px; margin: 0 auto; text-align: center; clear: left;  @include clearfix;}
+  .right_cell {  width: 295px; margin: 0 auto; position:relative; clear: left; @include clearfix; }
+  .currentRound { font-size: 1.167em; color: $black; @include sourcesans(light); text-transform: uppercase; }
+
+  /* left cell */
+  .view_selector { display: none; margin: 0 auto; @include sourcesans(light); text-transform: uppercase;
+    a, a:visited  { padding: 0 1em; color: $white; text-decoration: none; white-space: nowrap;
+      &.selected { color: $selected_color; cursor: default; }
+    }
+  }
+  #roundSelectorContainer { @include clearfix;
+    // making the round selector dropdown pushdown
+    &.navWrapper {
+      .filter {
+        .options { position: relative;}
+      }
+      .date { display: none;}
+    }
+  }
+
+  /* center cell */
+  .misc { width: 100px; @include float(right); text-align: right;
+    .radio, .popout { @include float(right); text-decoration: none; text-transform: uppercase; font-size: .9em; overflow: visible; height: 14px; cursor: pointer;
+      > div { @include float(left);
+        &.text { height: 12px; }
+        &.icon { margin-left: 2px; }
+      }
+    }
+    .radio { margin-bottom: 5px; font-style: italic;
+      &.offair { cursor: default; }
+      &.onair span { font-style: normal; color: #FFFFFF;
+        &:before { content: " "; }
+      }
+    }
+    .popout {
+      .icon { margin-top: 1px; }
+    }
+  }
+  .round_selector { clear: left; text-align: center; position:relative; cursor: pointer;
+    .concurrentRoundWrapper { padding-bottom: 20px; }
+    .leftRound { position: relative; padding-right: 5px;}
+    .rightRound { position: relative;  padding-left: 20px;}
+    #conCurrentRound { @include sourcesans(bold); font-size: 1.167em; color: #c2c2c2; text-transform: uppercase;
+      .selected { color: $black;}
+      }
+    }
+
+  /* right cell */
+  .player_search_cell { position: relative; float: left; margin-right: 2px;
+    #lbSearch { @include sourcesans(light); text-transform: uppercase; position: relative; @include wh(145px,30px); margin-right: 2px;
+      &.hidden { display: none; height: 0px;
+        #searchField { height: 0px; }
+        #lbSearchButton { height: 0px; }
+      }
+      #searchField { @include box-sizing(border-box); @include wh(145px,30px); margin-right:2px; }
+      input { background: #dddddd; color: #333333; border: none; @include sourcesans(bold); text-transform: uppercase; padding-left: 25px; padding-right: 15px; }
+      #lbSearchButton { @include wh(30px,28px); background: url(/images/leaderboard/leaderboard-search-icons.png) no-repeat 5px 5px; display: inline; padding:0.5em 0.8em; position: absolute; top:3px; left: 0px; cursor: pointer;
+        &.on { background-position: 5px -16px; }
+      }
+    }
+  }
+  .player_filter_cell { position: relative; float: left;
+    #playerSelector {  @include wh(145px,30px); background:#333333 url('/images/leaderboard/leaderboard-select-icons.png') no-repeat 98% 7px; position: relative; cursor: pointer;
+      &:hover { background-color: $black; }
+      &.open { background-position: 98% -13px; }
+      &.hidden { display: none; height: 0px;}
+      .selectedContainer { width: 100%; height: 30px; display: block;
+        a.selected_option {
+          @include wh(100%,30px);
+          @include sourcesans;
+          color: $white;
+          font-size: 0.8em;
+          line-height: 31px;
+          padding: 0px 10px;
+          text-decoration: none;
+          text-transform: uppercase;
+        }
+      }
+    }
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      //#playerSelector { top: 10px; }
+    }
+
+    .filter { width: 100%; text-align: left; margin: 0 auto; position: relative; cursor: pointer;
+      .options { margin-top: -1px; display: none; z-index: 4; width: 145px; position: relative;}
+      .option { text-decoration: none; color: #333333; line-height: 31px;
+        @include sourcesans; font-size: 0.8em; text-transform: uppercase; padding: 0px 5px 0 10px;
+        border-top: 1px solid #1F1F1F; display: block; }
+      &.open {
+        .option{ background-color:$black; color: $white; border: solid 1px $black;
+          &:hover { background: $white; color: $black; }
+          &.selected, &.selected:hover { color: $white; background: #333333; }
+        }
+        .options { display: block; }
+        &:after { background-position: 7px 7px; }
+      }
+      button { display: none; }
+
+    } /* ends filter */
+  }
+}
+
+//Common classes used inside traditional and overunder panels ------------------
+
+#leaderboardWrapper {
+.titleRow, .noplayers, .missedcutHeader, .cutline { float: left; width: 100%; height: $lb_player_row_height; line-height: $lb_player_row_height;
+  @include tableborder(1px, top); @include tableborder(1px, left); @include tableborder(1px, right);
+  text-align: center; @include sourcesans(bold); font-size: 1.2em; text-transform: uppercase; color: #333333; background: #DBDBDB; }
+
+  .cutline { font-size: 1.4em; color: $black; background: url(/images/leaderboard/leaderboard-cutline-only-sm.png) repeat-x center center;
+    span { background: $white; padding: 0 10px; }
+    &:hover {
+      span { background: #efefef; }
+    }
+  }
+
+  // Common Styles Between OU and Trad Player Rows for both Skeumorphic and Non-Skeumorphic Views -----------------
+  .playerRow {
+    @include tableborder(1px, '', $lb_border_color); color: #383838; clear: left; float: left; border-bottom: none;cursor:pointer;
+
+    // adding border-bottom to last row - only applies to non-skeumorphic views
+    &.lastrow { @include tableborder(1px, bottom, $lb_border_color); }
+
+    // Highlight Row when Hovered upon
+    &.hoverable:hover { background: $lb_row_hover_color;
+      .playerName { color: #339933; }
+    }
+    
+    // Hide Rows - Used During Search or Filter
+    &.hidden { display: none; }
+
+    .playerName { 
+      @include tableborder(1px, right, $lb_border_color); color: #383838; 
+      .data { padding-left: 5px; }
+      .smaller { font-size: .7em; }
+    }
+
+    // Not sure where under and over are used
+    .under { color: $under_color!important; }
+    .over { color: $over_color!important; }
+
+
+  }//end of playerRow
+
+}
+
+.outer-wrap { overflow: visible; /* used everything but xlarge view. style.css override*/ }
+.triplebottomborder { @include tableborder(0px, bottom); /* overrides only in xlarge view */}
+.tripleheight { height:$lb_player_row_height; /* overrides only in xlarge view */ }
+.score.last { border-right: 0px!important; }
+.clear { clear: both; }
+.desktopShow { display: none; }
+.desktopHide { display: block; }
+.tips { display: none; }
+
+.leaderboardBracket{ display: none;}
+.leaderboardPole{ display: none; }
+
+// Empty rows for overunder and traditional displayed during search
+.searchEmptyRow {
+  &.playerRow {
+    .score, .prior { background: none; }
+    .playerName { cursor: none; }
+    .rightOption {
+      &.live { background: none;}
+      &.live.on { background: none;}
+    }
+    .track { background: none; }
+    .favorite { background: none; cursor: none;
+      &.hoverable:hover { background: none; cursor: none; }
+    }
+  }
+}
+
+//End of Common Classes  ------------------------------------------------------
+
+
+//Common styles for OU (leaderBoardPlayers-wrapper) and Trad (leaderBoardPlayersTraditional-wrapper)
+#leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper {
+  clear: both; width: 100%; float: left; overflow: hidden; position: relative;
+  .headerWrapper.stickybar + & { margin-top: $lb_header_row_height; }
+}
+
+
+#leaderBoardPlayersFavContent, #leaderBoardPlayersTraditionalFavContent {
+  width: 100%;
+}
+
+#leaderboardWrapper {
+  .leaderBoardContent { width: 100%; margin: 0; background: #ffffff; opacity: 1;
+    .note {
+      width: 320px; margin: 0 auto; padding: 20px 0; @include sourcesans; font-size: 1.0em; color: #333333; text-align: center;
+      span {  text-transform: uppercase; }
+      .pike { color: #cccccc; padding-left: 5px; padding-right: 5px; }
+      .about { padding-top: 20px;
+        a, a:visited { color: #333333; text-decoration: none;
+          &:after { content: "\00a0 \00a0 \00a0 >"; }
+          &:hover { color: #999999; }
+        }
+      }
+    }
+  }
+}
+
+// Controls for favorites show/hide ------------------------------------
+#leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper {
+  #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditionalFavContent { display: none;
+    .titleRow { display: none; }
+  }
+  &.showFav {
+    #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditionalFavContent { display: block;
+      .titleRow { display: block; }
+    }
+    #leaderBoardPlayersContent .titleRow, #leaderBoardPlayersTraditionalContent .titleRow { display: block; }
+  }
+  &.hideFav {
+    #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditionalFavContent { display: none;
+      .titleRow { display: none; }
+    }
+    #leaderBoardPlayersContent .titleRow, #leaderBoardPlayersTraditionalContent .titleRow { display: none; }
+  }
+  &.searchShown { // used when the Find a Player serach result is displayed
+    #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditionalFavContent { display: none;
+      .titleRow { display: none; }
+    }
+    #leaderBoardPlayersContent .titleRow, #leaderBoardPlayersTraditionalContent .titleRow { display: none; }
+  }
+}
+
+// End Controls for favorites show/hide ------------------------------------
+
+
+
+
+
+
+
+/***************************************************************************************
+ * Mobile Landscape and Above 
+ * Screen Size >= 480px
+ **************************************************************************************/ 
+@include lbbreakpoint(lbMobileLandscape) {
+  #leaderboardLowFooter {
+    // Display OU/Trad Navigation Links 
+    .center_cell { width: 400px;
+      .view_selector { font-size: (12/12) * 1em; display: block; padding-bottom: 20px; @include sourcesans(bold);
+        a, a:visited  { color: #999999;
+          &.selected { color: $black; }
+        }
+        a:hover { color: $black;
+          &.selected { color: $black; }
+        }
+      }
+    }
+  } 
+}
+
+
+
+
+
+/******************************************************************
+ * MEDIUM SCREEN SIZE AND ABOVE
+ * Screen Size >= 720px
+ *****************************************************************/ 
+
+$lb_medium_player_row_height: 41px;
+
+@include lbbreakpoint(lbmedium) {
+  .popout header#top { position: fixed; }
+
+  section.hero-wrap {
+    &.half-standard-height { height: auto; background:$white;
+      .hero-content { height: auto;
+        &:before { display: none; }
+        > img { display: block; width: 100%; }
+        .contentWrapper { position: absolute; width: 100%; top: 0; left: 0;
+          &:before { max-height: 60px;
+            @include breakpoint(large) { max-height: 80px; }
+          }
+          .title { display: block; }
+        }
+      }
+    }
+  }
+
+  section.page-wrap{ background: $white; background-image: none; }
+
+  .navWrapper { // style.scss override
+    height: auto; min-height: 4em;
+  }
+
+  #roundSelectorContainer {
+    .filter { position: absolute; z-index: 10; }
+  }
+
+  #leaderboardLowFooter {
+    .player_filter_cell {
+      .filter { position: absolute; z-index: 8;}
+    }
+  }
+  #leaderboardLowFooter {
+    .left_cell {  width: 500px; }
+  }
+
+  #leaderboardWrapper {
+    .titleRow, .noplayers, .missedcutHeader, .cutline { height: $lb_medium_player_row_height; line-height: $lb_medium_player_row_height; @include tableborder(1px, top); @include tableborder(1px, left); font-size: 1.4em;}
+    .cutline { font-size: 1.6em; }   
+  }
+
+  #leaderboardLowFooter {
+    // Display OU/Trad Navigation Links 
+    .center_cell { width: 400px;
+      .view_selector { font-size: (14/12) * 1em; }
+    }
+  } 
+
+}
+
+
+/******************************************************************
+ * LARGE SCREEN SIZE AND ABOVE
+ * Screen Size >= 920px
+ *****************************************************************/ 
+@include lbbreakpoint(lblarge) {
+  .navWrapper {
+  .filter {
+    .selected_container { font-size: 2.0em; }
+    }
+  }
+  // concurrent round text and selector override
+  #leaderboardFooterBase { width: 350px;
+    .messageContainer {
+      .messageContent {
+        .round_selector {padding-top: 10px; }
+      }
+    }
+  }  
+}
+
+
+/******************************************************************
+ * LARGER ALPHA SIZE AND ABOVE
+ * Screen Size >= 1024px and 620px height
+ * 
+ * Nexus 10 case... height restriction to be 620px
+ * smaller Skeuomorphic view
+ * reset the view_selector height, font-size, icons
+ * reset teetime font size
+ * hide popout LB bottom fixed Full Leader Board link
+ * move the view selector (Par 3 Contest | Over/under | Traditional) to the top
+ * adjust the styles for the Search and Filter Players
+ *****************************************************************/ 
+
+@include lbbreakpoint(lblargeralpha) {
+  $lb_large_width: 940px; /* entire score board width */
+  $lb_content_width: 912px; /* actual content area */
+  $lb_holes_container_width: 810px;
+  $lb_header_title_height: 53px; /* LEADERS */
+  $lb_player_row_height: 33px;
+  $lb_border_color: #3c3c3b;
+  $lb_player_row_height: 33px;
+  $lb_right_option_width: 31px;
+  $lb_player_name_width: 108px;
+  $lb_content_height: 468px; /* header row + scores */
+
+  .popout header#top { position: static; }
+
+  .desktopShow { display: inline; /* display: block causes alignment issue in the footer Par 3 link */ }
+  .desktopHide { display: none; }
+
+  .lastrow { @include tableborder(1px, bottom); }
+
+  section.hero-wrap {
+    &.half-standard-height { display: none; }
+  }
+
+  .outer-wrap { overflow: hidden; }
+  section.nav-wrap, section.page-wrap { background-size: cover; /* overrides style.css */}
+  section.page-wrap { min-height: 100%; }
+
+  #leaderboardWrapper { width: $lb_large_width; margin: 0 auto;
+    #leaderboardLowContainer { background: none!important; margin: -15px 0 0 0;position: relative; width: 100%;
+    #header { display: block; position: fixed; @include wh(100%,$lb_header_title_height);
+      h1 { text-indent: -9999em; }
+     }
+      #leaderboardBg { display: block!important; position:absolute; z-index:0; @include wh($lb_large_width,522px); top: 0px;
+        img { display: block !important; }
+        #largeSkeuomorphicBg { display: none !important; }
+        #smallSkeuomorphicBg { display: block !important; }
+      }
+     }
+
+    /* common classes */
+    .triplebottomborder { border-bottom: solid 2px $lb_border_color!important; }
+    .tripleheight { height:($lb_player_row_height + 3px)!important; }
+    .titleRow, .noplayers, .missedcutHeader, .cutline { background: transparent url(/images/leaderboard/titleRow-text-sm.png) no-repeat 0 0; height: $lb_player_row_height; line-height: $lb_player_row_height; @include tableborder(1px, top, $lb_border_color); @include tableborder(1px, right, $lb_border_color); @include tableborder(1px, left, $lb_border_color); font-size: 2.0em; color: #000000; text-indent: -9999px; }
+    .favoritesTitle { background-position: 0 0;  }
+    .allPlayersTitle { background-position: 0 -37px; }
+    .noplayers { background-position: 0 -110px; }
+    .cutline { font-size: 2.2em; background-position: 0 -76px!important;
+      span { background: #f7f4f0; }
+    }
+
+    #leaderboardLow {
+      @include wh($lb_large_width,$lb_content_height); margin-top: $lb_header_title_height; padding: 0px 15px;
+      .fade { position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 10; background-color: #000000; @include opacity(0.8); display: none;}
+      .content { visibility: hidden; opacity: 0; position: absolute; left: 1px;
+        &.selected { visibility: visible; opacity: 1; }
+        &.hidden { display: block; }
+      }
+      div.content { padding: 0 14px; /*overrides style.scss */}
+    }
+
+    .leaderBoardContent { width: $lb_content_width; margin: 0; opacity:0;
+      .note { display: none; }
+    }
+    /* Leaderboard base - in the green area on the score board */
+    #leaderboardFooterBase { position: absolute; z-index: 2; top: 455px; @include wh($lb_large_width, 68px); padding: 0 17px;
+      .footer_cell {  float: left; text-align: left; }
+      .left_cell {  width: 30%; }
+      .center_cell {  width: 40%; height: 100%; text-align: center; }
+      .right_cell {  width: 200px; float: right; }
+
+      /* left cell */
+      .popout { @include float(left); margin-top: 23px; width: 100%;
+        &.hidden { visibility: hidden; }
+        span { @include helveticaneue(medium); @include float(left); cursor: pointer;
+          background: url(/images/leaderboard/popout-lb-icon-sprite.png) left top no-repeat;
+          color: #70a370;
+          height: 26px;
+          line-height: 26px;
+          padding-left: 35px;
+          text-decoration: none;
+          text-transform: uppercase;
+          &:hover { background-position: 0 -27px; color: #fff000; }
+        }
+      }
+
+      /* center cell */
+      .messageContainer { height: 66px; width: 100%; color: $white; @include sourcesans(light); font-size: 1.167em; text-transform: none; text-align: center;
+        &:before {
+          content: '';
+          display: inline-block;
+          height: 100%;
+          vertical-align: middle;
+        }
+        .messageContent { clear: both; display: inline-block; vertical-align: middle; text-align: center; padding-top: 0;
+          span { display: inline-block;
+            &.hide { display: none; }
+          }
+
+        .round_selector { text-align: center; position:relative; height: auto; cursor: pointer; padding-top: 0;
+          .leftRound { position: relative; }
+          .rightRound { position: relative; }
+          #conCurrentRound { @include sourcesans(light); font-size: 1.167em; color: $white; text-transform: uppercase; height: 100%;
+            .selected { color: $selected_color;
+              &:hover { cursor: default; color: $selected_color;}
+            }
+            &.hide { display: none; }
+            a:hover { color: $selected_color; }
+            }
+          }
+
+          #conCurrentRoundText, .message, .allTimes, #view_playoff, #splittee {  text-align: center; color: #81ad82; @include sourcesans(light); font-size: 1em; text-transform: none; padding-top: 0px;
+            &.hide { display: none; }
+          }
+          #splittee { margin-right: 10px; }
+          #conCurrentRoundText { color: $white; text-transform: uppercase; }
+        }
+        #view_playoff { display: inline-block; vertical-align: middle;
+          a:link, a:visited { text-transform: uppercase; text-decoration: none; color: $white; }
+          a:hover { color: $selected_color; }
+        }
+      }
+
+        /* right cell */
+      .learn_more { @include float(left); margin-top: 23px; width: 100%; text-align: right;
+        a { @include helveticaneue(medium); display: block;
+          color: #70a370;
+          line-height: 23px;
+          text-decoration: none;
+          text-transform: uppercase;
+          &:before {
+            @include wh(38px, 23px);
+            content: " ";
+            background: url(/images/leaderboard/help-icon-sprite.png) 15px top no-repeat;
+            float: right;
+          }
+          &:hover {  color: #fff000;
+            &:before {
+              background-position: 15px -23px;
+            }
+          }
+        }
+      }
+    }
+
+   }
+
+
+  /* Leader Board Page Footer - in the black nav bar */
+  #leaderboardLowFooterWrapper { @include background-rgba(black, 0.8); position: relative; @include wh(100%, 50px); padding-bottom: 0px; }
+  #leaderboardLowFooter {  width: $lb_content_width; margin: 0 auto; padding: 0; overflow: visible; color: $white; line-height: 4em;
+    font-size: 13px; // use fixed px here so users with different font size settings won't have wrapping text
+    .footer_cell {  float: left; text-align: left; }
+    .left_cell {  width: 30%; }
+    .center_cell {  width: 40%; text-align: center; clear: none; }
+    .right_cell {  width: 30%; position:relative; clear: none; }
+    .currentRound { font-size: 1.167em; color: $white; @include sourcesans(light); text-transform: uppercase; }
+
+    /* center cell */
+    .center_cell {
+      .view_selector { margin: 0 auto; @include sourcesans(light); text-transform: uppercase;
+        a, a:visited  { padding: 0 1em; color: $white; text-decoration: none;
+          &.selected { color: $selected_color; cursor: default; }
+        }
+        a:hover {
+          &.selected { color: $selected_color;}
+        }
+        a.desktopShow:hover { color: $selected_color; }
+        a.leaderboardoption:hover { color: $selected_color; }
+      }
+    }
+
+    /* center cell */
+    .misc { width: 100px; @include float(right); text-align: right;
+      .radio, .popout { @include float(right); text-decoration: none; text-transform: uppercase; font-size: .9em; overflow: visible; height: 14px; cursor: pointer;
+        > div { @include float(left);
+          &.text { height: 12px; }
+          &.icon { margin-left: 2px; }
+        }
+      }
+      .radio { margin-bottom: 5px; font-style: italic;
+        &.offair { cursor: default; }
+        &.onair span { font-style: normal; color: #FFFFFF;
+          &:before { content: " "; }
+        }
+      }
+      .popout {
+        .icon { margin-top: 1px; }
+      }
+    }
+
+    /* right cell */
+    .player_search_cell { position: absolute; right: 126px; margin-left: 5px;
+      #lbSearch { @include sourcesans(light); text-transform: uppercase; position: relative; @include wh(125px,30px);
+        #searchField { font-size: 1.0em; background: #bfc0c0; @include box-sizing(border-box); @include wh(125px,30px); }
+        input[type="text"] {
+          @include input-placeholder {
+            color: $black;
+          }
+        }
+        #lbSearchButton { @include wh(30px,28px); background: url(/images/leaderboard/leaderboard-search-icons.png) no-repeat 5px 5px; display: inline; padding:0.5em 0.8em; position: absolute; top:13px; left: 0px; cursor: pointer;
+          &.on { background-position: 5px -16px; }
+        }
+        &.hidden { display: block;
+          #searchField { height: 30px; }
+          #lbSearchButton { height: 28px; }
+        }
+      }
+    }
+    .player_filter_cell { @include float(right); position: relative; font-size: 1.0em; top: 11px;
+      #playerSelector {
+        @include wh(125px,30px);
+        background:#333333 url('/images/leaderboard/leaderboard-select-icons.png') no-repeat 98% 7px;
+        border: solid 1px #858585;
+        cursor: pointer;
+        position: relative;
+          &:hover { background-color: #333333; }
+          &.open { background-position: 98% -13px; }
+
+          &.hidden { display: block; height: 30px; }
+          .selectedContainer { line-height: normal; width: 125px; padding-right: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            a.selected_option { font-size: 1.0em; }
+          }
+      }
+      @media screen and (-webkit-min-device-pixel-ratio:0) {
+        //#playerSelector { top: 10px; }
+      }
+      .filter { width: 100%; text-align: left; margin: 0 auto; position: relative; cursor: pointer;
+        .options { display: none; z-index: 4; width: 240px; position: absolute; top: 38px; left: -90px; margin-top: 0; }
+        .option { font-size: 1.0em; text-decoration: none; color: #333333; line-height: 36px;
+          @include sourcesans; text-transform: uppercase; padding: 0px 15px;
+          }
+        .option { border-top: 1px solid #1F1F1F; display: block; }
+        &.open { background-position: 6px -13px;
+          &:after { background-position: 7px 7px; }
+        }
+        button { display: none; }
+      } /* ends filter */
+    }
+  }
+
+  .ie8 .player_search_cell {
+    #lbSearch { top: -5px;
+      #lbSearchButton { top: 18px!important; }
+    }
+  }
+
+  .ie9 .player_filter_cell {
+    #playerSelector { top: 12px!important; }
+  }
+
+
+  .leaderboardBracket{display: block; position: relative; width:104px; height:22px; margin:0px auto; }
+  .leaderboardPole{display: block; clear: both; width:77px; height:22px; margin:0px auto; background:url(/images/misc/poleOnly.jpg) repeat-y top;}
+
+  /* popout LB - Full Leader Board Link at the bottom of the page */
+  #lbpopbodybottom { display: none; }
+
+}
+
+
+@import 'leaderboard_common';
+@import 'leaderboard_overunder';
+@import 'leaderboard_traditional';
+@import 'leaderboard_playoff';
+
+
+
+
+/******************************************************************
+ * LARGER LARGER SIZE AND ABOVE
+ * Screen Size >= 1024px and 668 height
+ *
+ * NORMAL smaller Skeuomorphic view (no Nexus 10 case)
+ * inherit most of the styles _from lblargeralpha
+ *****************************************************************/ 
+
+@include lbbreakpoint(lblarger) {
+  $lb_header_title_height: 53px; /* LEADERS */
+  section.page-wrap { min-height: 80%; }
+  #leaderboardWrapper {
+    #leaderboardLowContainer { margin: 20px 0 0 0;
+      #header { @include wh(100%,$lb_header_title_height); }
+     }
+   }
+   #leaderboardLow { margin-top: $lb_header_title_height; }
+   #leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper { top: 259px; }
+}
+
+
+/******************************************************************
+ * LARGER LARGEST SIZE AND ABOVE
+ * Screen Size >= 1440px and 820px height
+ *****************************************************************/ 
+
+
+@include lbbreakpoint(lblargest) {
+  $lb_large_width: 1180px; /* entire score board width */
+  $lb_content_width: 1146px; /* actual content area */
+  $lb_holes_container_width: 1021px;
+
+  $lb_header_title_height: 63px; /* LEADERS */
+
+  $lb_content_height: 507px; /* header row + scores */
+  $lb_score_content_height: 423px; /* score section only - scrolling content area */
+
+  $lb_header_row_height: 82px;
+  $lb_player_row_height: 42px;
+
+  $lb_border_color: #3c3c3b;
+
+  #leaderboardWrapper { 
+    width: $lb_large_width; margin: 0px auto;
+    #leaderboardLowContainer { margin: 69px 0 0 0; padding-bottom: 83px;
+    #header { @include wh(100%,$lb_header_title_height); }
+    #leaderboardBg { display: block!important; z-index:0; @include wh($lb_large_width,656px);
+      #largeSkeuomorphicBg { display: block !important; }
+      #smallSkeuomorphicBg { display: none !important; }
+     }
+    }
+
+    /* common classes */
+    .triplebottomborder { border-bottom: solid 3px $lb_border_color!important; }
+    .tripleheight { height:($lb_player_row_height + 3px)!important; }
+
+    .titleRow, .noplayers, .missedcutHeader, .cutline { background: transparent url(/images/leaderboard/titleRow-text-l.png) no-repeat 0 0; height: $lb_player_row_height; line-height: $lb_player_row_height; font-size: 2.2em; }
+    .favoritesTitle { background-position: 0 -8px;  }
+    .allPlayersTitle { background-position: 0 -52px; }
+    .noplayers { background-position: 0 -138px; }
+    .cutline { font-size: 2.4em; background-position: 0 -98px!important; }
+
+
+    #leaderboardLow {
+      @include wh($lb_large_width,$lb_content_height); margin-top: $lb_header_title_height; padding: 0px 17px;
+      div.content { padding: 0 16px; /*overrides style.scss */}
+    }
+
+    #leaderBoardPlayers-wrapper, #leaderBoardPlayersTraditional-wrapper {
+         @include wh(100%, 426px); top: 336px; left: 0;
+    }
+
+    #leaderBoardPlayersContent, #leaderBoardPlayersTraditionalContent {
+      float: left; width: $lb_content_width; padding-bottom: 0;
+    }
+
+    #leaderBoardPlayersFavContent, #leaderBoardPlayersTraditionalFavContent {
+      width: $lb_content_width;
+    }
+
+    .leaderBoardContent { width: $lb_content_width; margin: 0; opacity:0;
+      .note { display: none; }
+    }
+
+    /* Leaderboard base - in the green area on the score board */
+    #leaderboardFooterBase { top: 565px; @include wh($lb_large_width, 84px); padding: 0 17px;
+      .right_cell {  width: 260px; }
+
+      /* left cell */
+      .learn_more { margin-top: 32px; font-size: 1.167em;
+        a{
+          &:before {
+            @include wh(71px, 23px);
+            background-position: 48px 0px;
+          }
+          &:hover {
+            &:before {
+              background-position: 48px -23px;
+            }
+          }
+        }
+        }
+      .popout { margin-top: 32px; font-size: 1.167em; }
+
+      /* center cell */
+      .round_selector {
+        #conCurrentRound { font-size: 1.167em; }
+        }
+
+      /* right cell */
+      .messageContainer { height: 86px;
+        .messageContent { padding-top: 0; }
+      }
+
+        #conCurrentRoundText, .message, .allTimes, #view_playoff, #splittee { font-size: 1.167em; }
+    }
+
+   }
+
+
+  /* Leader Board Page Footer - in the black nav bar */
+  #leaderboardLowFooter {  width: $lb_content_width; }
+
+}
+
+
+
+
+
