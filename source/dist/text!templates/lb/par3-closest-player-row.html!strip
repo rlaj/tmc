@@ -1,0 +1,3 @@
+
+define('text!templates/lb/par3-closest-player-row.html!strip',[],function () { return '<div class="hole"><%=player.hole %></div>\n<div class="playerName"><div class="data">\n  <% if(is_hoverable) { %>\n    <a href="/en_US/players/player_<%=player.id %>.html?promo=bio_par3contest"><%=player.last_name %></a>\n  <% } else { %>\n    <%=player.last_name %>\n  <% } %>\n</div></div>\n<div class="distanceWrapper">\n\t<div class="distanceContainer">\n\t  <div class="distance"><div class="data"><%= firstDigit %></div></div>\n\t  <div class="distance"><div class="data"><%= secondDigit %></div></div>\n\t</div>\n</div>';});
+

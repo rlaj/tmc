@@ -1,0 +1,3 @@
+
+define('text!templates/lb/trad-teetime-cell.html!strip',[],function () { return '<div class="data teetime"><%= t[0] %> <span><%= t[1] %></span></div>';});
+

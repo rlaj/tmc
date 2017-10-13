@@ -1,0 +1,3 @@
+
+define('text!templates/lb/par3-playoff-header.html!strip',[],function () { return '<tr class="header">\n  <td class="description">HOLE</td>\n  <%= hole_header_html %>\n  <%= empty_cells %>\n</tr>\n\n<tr class="par">\n  <td class="description">PAR</td>\n  <%= par_header_html %>\n  <%= empty_cells %>\n</tr>';});
+

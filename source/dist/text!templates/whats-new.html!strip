@@ -1,0 +1,3 @@
+
+define('text!templates/whats-new.html!strip',[],function () { return '<div class="content center">\n    <div class="close">\n        <a href="#"><img src="/images/misc/lightbox_close_white.png" width="10" height="10" border="0" alt="Close" title="Close"/></a>\n    </div>\n    <div class="message">\n        <p><%= message %></p>\n\n\t\t<% if (arrow_direction && arrow_direction.trim()) { %>\n\t        <img class="newArrows <%= arrow_direction %>" src="/images/misc/whatsnew_arrow_<%= arrow_direction %>.png" border="0" alt="Arrow <%= arrow_direction %>" title="Arrow <%= arrow_direction %>"/>\n        <% } %>\n    </div>\n</div>\n';});
+

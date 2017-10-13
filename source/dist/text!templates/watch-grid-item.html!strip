@@ -1,0 +1,3 @@
+
+define('text!templates/watch-grid-item.html!strip',[],function () { return '<div class="channel <%= klass %>">\n<% if(obj.live) { %>\n  <%= link %>\n<% } %>\n    <div class="image <%= liveClass %>"><!--[if lt IE 9]><span></span><![endif]--><img src="/images/now/trans_16x9.gif" data-src="<%= obj.imagePathL %>" border="0" alt=""/></div>\n    <div class="label text <%= liveClass %>"><%= statusText %></div>\n    <div class="caption_row">\n<% if(obj.live) { %>\n  <% if (obj.channelId === "radio") { %>\n      <div class="label icon radio"></div>\n  <% } else { %>\n      <div class="label icon video"></div>\n  <% } %>\n<% } %>\n      <div class="caption"><%= obj.name %></div>\n    </div>\n<% if(obj.live) { %>\n  </a>\n<% } %>\n</div>';});
+

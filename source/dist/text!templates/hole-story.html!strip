@@ -1,0 +1,3 @@
+
+define('text!templates/hole-story.html!strip',[],function () { return '<span class="details_title">THE HOLE STORY</span>\n<p><%= desc %></p>\n<p><%= text %></p>\n<div id="ipadonly">\n\t<span class="details_title">NAMING THE HOLE</span>\n</div>\n<div class="hole_flower">\n\t<div class="flower">\n\t\t<img src="<%= plant_image%>" alt="temp flower">\n\t</div>\n\t<div class="flower_content">\n\t\t<span class="details_title">NAMING THE HOLE</span>\n\t\t<p><%= plant_text %></p>\n\t</div>\n</div>';});
+

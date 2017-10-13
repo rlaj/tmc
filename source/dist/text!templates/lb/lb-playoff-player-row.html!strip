@@ -1,0 +1,3 @@
+
+define('text!templates/lb/lb-playoff-player-row.html!strip',[],function () { return '<td class="playerName"><a href="/en_US/scores/track/track.html?pid=<%= player.id %>&amp;promo=track_playoff_lb"><%= player.display_name %></a></td>\n<%= sorecards %>\n<%= empty_cells %>';});
+

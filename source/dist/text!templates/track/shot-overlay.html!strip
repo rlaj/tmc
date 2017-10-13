@@ -1,0 +1,3 @@
+
+define('text!templates/track/shot-overlay.html!strip',[],function () { return '<div class="detail-overlay shot-overlay shot<%= number %> <%= number === 0 ? \'tee\' : \'\' %>" data-shot="<%= number %>">\n  <% if(number > 0) { %>\n  <div class="distance">\n    <span></span>\n  </div>\n  <div class="topin">\n    <span></span>\n  </div>\n  <% } else { %>\n  <div class="message">Group is on tee</div>\n  <% } %>\n  <a href="#" class="close">\n    <span><img src="/images/misc/trans.gif" alt=""></span>\n  </a>\n</div>';});
+
