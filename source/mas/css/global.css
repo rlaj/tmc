@@ -42,7 +42,7 @@ nav[role=navigation] li a:hover { color: #fff000; }
 nav[role=navigation] span.live { padding: 0.2em 0.5em; margin-left: 0.5em; }
 nav#submenu ul { margin-top: 0; }
 nav#submenu li { font-family: "Source Sans Pro", Arial, Helvetica, sans-serif; font-weight: normal; }
-nav#submenu .footer { width: 83%; margin: 3em auto 5%; text-align: left; color: #ffffff; font-family: "Source Sans Pro", Arial, Helvetica, sans-serif; font-weight: normal; font-size: .833em; }
+nav#submenu .footer { width: 83%; margin: 3em auto 5%; text-align: left; color: #bdbdbd; font-family: "Source Sans Pro", Arial, Helvetica, sans-serif; font-weight: normal; font-size: .833em; }
 nav#submenu .footer .app_store { margin-top: 1.5em; }
 nav#submenu .footer .app_store img { display: inline; }
 nav#submenu .footer a { color: #999999; }
@@ -56,12 +56,12 @@ nav.mainmenu li::before { content: "\00b7"; font-family: "Source Sans Pro Bold",
 nav.mainmenu li a { background: none; border: 0; padding: 0 0.3em 0 0.4em; float: left; }
 nav.mainmenu li:first-child::before { content: ""; display: none; }
 nav.mainmenu span.live { padding: 0.2em 0.5em; margin-left: 0.3em; line-height: 16px; margin-top: -2px; display: inline-block; }
-nav#submenu { display: none; position: absolute; top: 50px; left: 0; width: 386px; -webkit-transform: translateZ(0); background-color: #222222; }
+nav#submenu { display: none; position: absolute; top: 50px; left: 0; width: 186px; -webkit-transform: translateZ(0); background-color: #222222; }
 nav#submenu.active { display: block; top: 50px; }
-nav#submenu ul { margin-top: 75px; }
+nav#submenu ul { margin-top: 8px; }
 nav#submenu li { font-size: 1.33em; line-height: 2em; }
 nav#submenu li a { display: block; padding: 0 7.7%; }
-nav#submenu .footer { margin-top: 1.5em; font-size: 1em; width: 84.6%; }
+nav#submenu .footer { margin-top: 1.2em; font-size: .755em; width: 84.6%; }
 nav#submenu .footer .app_store { display: none; } }
 /* header -------------------------------------------------*/
 header#top { position: fixed; top: 0; height: 40px; background: #000000; width: 100%; /*position: fixed; top: 0; z-index: 5; - commenting out to make it slide down menu until the navigatoin decision is made */ z-index: 9; }
@@ -81,7 +81,7 @@ a.fav-link { display: none; }
 .leaderboardEverywhereIcon { cursor: pointer; position: absolute; top: 11px; width: 32px; height: 22px; display: block; left: 44px; background: url("/images/nav/lb_everywhere_icon.png") no-repeat; background-size: 23px 16px; background-position: 5px 2px; }
 .leaderboardEverywhereIcon.active { background-image: url("/images/nav/lb_everywhere_icon_active.png"); }
 .leaderboardEverywhereIcon.hidden { display: none; }
-#eventLogo { background: url(/images/now/masters_logo.png) no-repeat 0px 6px; background-size: 104px 27px; width: 112px; height: 40px; margin: 0 auto; }
+#eventLogo { background: url(/images/logos/tmc_nav_trans.png) no-repeat 0px 6px; background-size: 104px 36px; width: 112px; height: 50px; margin: 0 auto; }
 #eventLogo a { display: block; width: 112px; height: 40px; text-indent: -9999px; }
 #eventLogo.popout { float: left; margin-left: 5px; }
 @media only screen and (min-width: 45em) { /* equivalent of 600px. make the menu fixed on the tablet and above */
@@ -100,7 +100,7 @@ a.fav-link:hover:before { background-position: -24px -24px; }
 a.fav-link.active { background: #333333; color: #FFF000; -webkit-transform: translateZ(0); border-bottom: 1px solid #333333; }
 a.fav-link.active:before { background-position: -24px -24px; }
 a.fav-link.active:after { display: none; }
-.sponsors { z-index: 9; top: 15px; right: 0; float: right; position: relative; margin-right: 10px; width: 54px; }
+.sponsors { z-index: 9; top: 13px; right: 0; float: right; position: relative; margin-right: 5px; width: 34px; }
 .sponsors div:nth-child(2) img { display: block; }
 .sponsors div:nth-child(2) img + img { display: none; }
 .leaderboardEverywhereIcon { position: relative; left: 0; float: right; cursor: pointer; top: 15px; margin-right: 26px; }
