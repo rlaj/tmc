@@ -1,0 +1,3 @@
+
+define('text!templates/pairings-group.html!strip',[],function () { return '<div class="pairingsGroupText" data-rawtime="">\n\t<span class="groupLabel"> Group <%= group.number %>, </span>\n\t<div class="mastersPairingsTime"> \n\t\t<%= group.time %>\n\t\t<span>\n\t\t\t<span>EDT</span>\n\t\t</span>\n\t</div>\t\n\t<div class="yourPairingsTime <%= display %>">\n\t\t<%= clientTime %> \n\t</div>\n\t\n\t<% if(splitTee) { %>\n\t\t<span>*</span>\n\t<% } %>\n\t<div class="playerCard"> </div>\n</div>\n';});
+

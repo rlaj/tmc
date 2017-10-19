@@ -1,0 +1,3 @@
+
+define('text!templates/lb/trad-today-teetime-cell.html!strip',[],function () { return '<div class="score" attr="today3">\n\t<div class="data">\n\t\t<span class="<%= is_split_tee ? \'splitTeetime\' : \'teetime\' %>"><%= today_teetime[0] %></span>\n\t\t<span class="meridiem"><%= today_teetime[1] %></span>\n\t</div>\n</div>\n<div class="score thru" attr="thru"><div class="data"><%= roundThru %></div></div>';});
+

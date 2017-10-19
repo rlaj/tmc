@@ -1,0 +1,3 @@
+
+define('text!templates/photo-caption.html!strip',[],function () { return '<div class="caption_credit">\n    <% if(options.credit && options.credit !== \'\') { %>\n      Photo by: <%= options.credit %><br/>\n    <% } %>\n    <%= options.lcaption %>\n</div>';});
+

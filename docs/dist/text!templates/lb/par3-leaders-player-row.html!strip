@@ -1,0 +1,3 @@
+
+define('text!templates/lb/par3-leaders-player-row.html!strip',[],function () { return '<div class="playerName"><div class="data">\n  <% if(is_hoverable) { %>\n    <a href="/en_US/players/player_<%=player.id %>.html?promo=bio_par3contest"><%=player.name %></a>\n  <% } else { %>\n    <%=player.name %>\n  <% } %>\n</div></div>\n<div class="toparContainer">\n  <div class="par topar <%= par_ouclass %>"><div class="data"><%= firstDigit %></div></div>\n  <div class="par topar <%= par_ouclass %>"><div class="data"><%= secondDigit %></div></div>\n</div>\n\n';});
+

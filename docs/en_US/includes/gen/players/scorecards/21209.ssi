@@ -1,0 +1,238 @@
+<div class="headers hole">
+  <div class="description">
+    <span class="full">Hole</span>
+    <span class="half">No.</span>
+  </div>
+  <div class="hole_no">1</div>
+  <div class="hole_no">2</div>
+  <div class="hole_no">3</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no">5</div>
+  <div class="hole_no">6</div>
+  <div class="hole_no">7</div>
+  <div class="hole_no">8</div>
+  <div class="hole_no">9</div>
+  <div class="subtotal half out">Out</div>
+  <div class="hole_no full">10</div>
+  <div class="hole_no full">11</div>
+  <div class="hole_no full">12</div>
+  <div class="hole_no full">13</div>
+  <div class="hole_no full">14</div>
+  <div class="hole_no full">15</div>
+  <div class="hole_no full">16</div>
+  <div class="hole_no full">17</div>
+  <div class="hole_no full">18</div>
+  <div class="total">Tot<span class="full">al</span></div>
+</div>
+
+<div class="headers hole_par">
+  <div class="description">Par</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no">5</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no">3</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no">3</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no">5</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no subtotal half out">36</div>
+  <div class="hole_no full">4</div>
+  <div class="hole_no full">4</div>
+  <div class="hole_no full">3</div>
+  <div class="hole_no full">5</div>
+  <div class="hole_no full">4</div>
+  <div class="hole_no full">5</div>
+  <div class="hole_no full">3</div>
+  <div class="hole_no full">4</div>
+  <div class="hole_no full">4</div>
+  <div class="total">72</div>
+</div>
+
+<div class="rd rd1 selected">
+  <div class="description"><span class="full">RD 1</span>&nbsp;</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">5</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no birdie">4</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no subtotal half out">35</div>
+  <div class="hole_no full ">4</div>
+  <div class="hole_no full ">4</div>
+  <div class="hole_no full ">3</div>
+  <div class="hole_no full ">5</div>
+  <div class="hole_no full ">4</div>
+  <div class="hole_no full ">5</div>
+  <div class="hole_no full ">3</div>
+  <div class="hole_no full ">4</div>
+  <div class="hole_no full ">4</div>
+<!-- <div class="hole_no subtotal half in">36</div> -->
+  <div class="total">71</div>
+</div>
+
+<div class="rd rd2 ">
+  <div class="description"><span class="full">RD 2</span>&nbsp;</div>
+  <div class="hole_no birdie video" data-rd="2" data-hole="1">3</div>
+  <div class="hole_no birdie video" data-rd="2" data-hole="2">4</div>
+  <div class="hole_no birdie video" data-rd="2" data-hole="3">3</div>
+  <div class="hole_no bogey">4</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">5</div>
+  <div class="hole_no birdie">3</div>
+  <div class="hole_no subtotal half out">33</div>
+  <div class="hole_no full bogey video" data-rd="2" data-hole="10">5</div>
+  <div class="hole_no full ">4</div>
+  <div class="hole_no full ">3</div>
+  <div class="hole_no full bogey video" data-rd="2" data-hole="13">6</div>
+  <div class="hole_no full ">4</div>
+  <div class="hole_no full birdie video" data-rd="2" data-hole="15">4</div>
+  <div class="hole_no full ">3</div>
+  <div class="hole_no full birdie video" data-rd="2" data-hole="17">3</div>
+  <div class="hole_no full ">4</div>
+  <!-- <div class="hole_no subtotal half in">36</div> -->
+  <div class="total">69</div>
+</div>
+
+<div class="rd rd3 ">
+  <div class="description"><span class="full">RD 3</span>&nbsp;</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">5</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no birdie video" data-rd="3" data-hole="5">3</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no bogey">5</div>
+  <div class="hole_no birdie video" data-rd="3" data-hole="8">4</div>
+  <div class="hole_no bogey">5</div>
+  <div class="hole_no subtotal half out">36</div>
+  <div class="hole_no full ">4</div>
+  <div class="hole_no full ">4</div>
+  <div class="hole_no full ">3</div>
+  <div class="hole_no full birdie video" data-rd="3" data-hole="13">4</div>
+  <div class="hole_no full ">4</div>
+  <div class="hole_no full birdie video" data-rd="3" data-hole="15">4</div>
+  <div class="hole_no full ">3</div>
+  <div class="hole_no full video" data-rd="3" data-hole="17">4</div>
+  <div class="hole_no full ">4</div>
+  <!-- <div class="hole_no subtotal half in">34</div> -->
+  <div class="total">70</div>
+</div>
+
+<div class="rd rd4 ">
+  <div class="description"><span class="full">RD 4</span>&nbsp;</div>
+  <div class="hole_no birdie video" data-rd="4" data-hole="1">3</div>
+  <div class="hole_no ">5</div>
+  <div class="hole_no birdie video" data-rd="4" data-hole="3">3</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no video" data-rd="4" data-hole="6">3</div>
+  <div class="hole_no video" data-rd="4" data-hole="7">4</div>
+  <div class="hole_no ">5</div><div class="hole_no ">4</div>
+  <div class="hole_no subtotal half out">34</div>
+  <div class="hole_no full bogey video" data-rd="4" data-hole="10">5</div>
+  <div class="hole_no full bogey video" data-rd="4" data-hole="11">5</div>
+  <div class="hole_no full ">3</div>
+  <div class="hole_no full video" data-rd="4" data-hole="13">5</div>
+  <div class="hole_no full birdie video" data-rd="4" data-hole="14">3</div>
+  <div class="hole_no full eagle video" data-rd="4" data-hole="15">3</div>
+  <div class="hole_no full ">3</div>
+  <div class="hole_no full video" data-rd="4" data-hole="17">4</div>
+  <div class="hole_no full video" data-rd="4" data-hole="18">4</div>
+  <!-- <div class="hole_no subtotal half in">35</div> -->
+  <div class="total">69</div>
+</div>
+<!-- Only Displayed on Mobile Sized Screens -->
+<div class="headers hole mobile">
+  <div class="description">
+    <span class="full">Hole</span>
+    <span class="half">No.</span>
+  </div>
+  <div class="hole_no">10</div>
+  <div class="hole_no">11</div>
+  <div class="hole_no">12</div>
+  <div class="hole_no">13</div>
+  <div class="hole_no">14</div>
+  <div class="hole_no">15</div>
+  <div class="hole_no">16</div>
+  <div class="hole_no">17</div>
+  <div class="hole_no">18</div>
+  <div class="subtotal half in">In</div>
+  <div class="total">Tot<span class="full">al</span></div>
+</div>
+<div class="headers hole_par mobile">
+  <div class="description">Par</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no">3</div>
+  <div class="hole_no">5</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no">5</div>
+  <div class="hole_no">3</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no">4</div>
+  <div class="hole_no subtotal half in">36</div>
+  <div class="total">72</div>
+</div>
+<div class="rd rd1 selected mobile">
+  <div class="description"><span class="full">RD 1</span>&nbsp;</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no ">5</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">5</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no subtotal half in">36</div>
+  <div class="total">71</div>
+</div>
+<div class="rd rd2 mobile">
+  <div class="description"><span class="full">RD 2</span>&nbsp;</div>
+  <div class="hole_no bogey video" data-rd="2" data-hole="10">5</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no bogey video" data-rd="2" data-hole="13">6</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no birdie video" data-rd="2" data-hole="15">4</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no birdie video" data-rd="2" data-hole="17">3</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no subtotal half in">36</div>
+  <div class="total">69</div>
+</div>
+<div class="rd rd3 mobile">
+  <div class="description"><span class="full">RD 3</span>&nbsp;</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no birdie video" data-rd="3" data-hole="13">4</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no birdie video" data-rd="3" data-hole="15">4</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no video" data-rd="3" data-hole="17">4</div>
+  <div class="hole_no ">4</div>
+  <div class="hole_no subtotal half in">34</div>
+  <div class="total">70</div>
+</div>
+<div class="rd rd4 mobile">
+  <div class="description"><span class="full">RD 4</span>&nbsp;</div>
+  <div class="hole_no bogey video" data-rd="4" data-hole="10">5</div>
+  <div class="hole_no bogey video" data-rd="4" data-hole="11">5</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no video" data-rd="4" data-hole="13">5</div>
+  <div class="hole_no birdie video" data-rd="4" data-hole="14">3</div>
+  <div class="hole_no eagle video" data-rd="4" data-hole="15">3</div>
+  <div class="hole_no ">3</div>
+  <div class="hole_no video" data-rd="4" data-hole="17">4</div>
+  <div class="hole_no video" data-rd="4" data-hole="18">4</div>
+  <div class="hole_no subtotal half in">35</div>
+  <div class="total">69</div>
+</div>
+</div>

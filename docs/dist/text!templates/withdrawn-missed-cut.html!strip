@@ -1,0 +1,3 @@
+
+define('text!templates/withdrawn-missed-cut.html!strip',[],function () { return '<table id="wdmctable" class="wdmctable tablesaw tablesaw-swipe" data-tablesaw-mode="swipe">\n  <thead>\n    <tr>\n      <th class="status" data-tablesaw-priority="persist">Status</th>\n      <th class="player" data-tablesaw-priority="persist">Player</th>\n      <th class="par_total">Total</th>\n      <th class="r1">R1</th>\n      <th class="r2">R2</th>\n      <th class="r3">R3</th>\n      <th class="r4">R4</th>\n      <th class="total">Round Total</th>\n    </tr>\n  </thead>\n  <tbody>\n    <%= rows %>\n  </tbody>\n</table>\n\n\n\n';});
+

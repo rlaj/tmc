@@ -1,0 +1,3 @@
+
+define('text!templates/player-bio/tab-news.html!strip',[],function () { return '<div class="tabWrapper dark">\n  <div class="tabs" id="mediaSelector">\n    <a href="#tab_all" class="selected">All <span>Content</span></a>\n    <a href="#tab_news">News</a>\n    <a href="#tab_photos">Photos</a>\n    <a href="#tab_videos">Video</a>\n  </div>\n</div>\n\n<section class="content content-padding rec-content" id="recContent">\n  <a href="#" class="loading"><img src="/images/now/loading.gif" width="89" height="50"></a>\n</section>\n';});
+

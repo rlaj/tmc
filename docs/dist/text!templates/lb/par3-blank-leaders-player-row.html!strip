@@ -1,0 +1,3 @@
+
+define('text!templates/lb/par3-blank-leaders-player-row.html!strip',[],function () { return '<div class="playerRow searchEmptyRow">\n\t<div class="playerName"><div class="data">&nbsp;</div></div>\n\t<div class="toparContainer">\n\t  <div class="par topar"><div class="data">&nbsp;</div></div>\n\t  <div class="par topar"><div class="data">&nbsp;</div></div>\n\t</div>\n</div>\n\n';});
+

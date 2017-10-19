@@ -1,0 +1,3 @@
+
+define('text!templates/related-article-item.html!strip',[],function () { return '<a href="<%= link %>" data-id="<%= id%>">\n  <div class="photo"><img src="<%= photo %>"></div>\n  <div class="header">Related Article</div>\n  <div class="articleInfo">\n    <div class="title"><%= title%></div>\n    <div class="author_date"><%= author_date%></div>\n  </div>\n</a>';});
+

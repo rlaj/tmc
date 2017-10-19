@@ -1,0 +1,3 @@
+
+define('text!templates/lb/trad-score-cell.html!strip',[],function () { return '<div class="data <%= klass %>"><%= score %></div>';});
+

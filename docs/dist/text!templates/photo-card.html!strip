@@ -1,0 +1,3 @@
+
+define('text!templates/photo-card.html!strip',[],function () { return '<div class="photo">\n  <a <%= url %>><img src="/images/now/trans_16x9.gif" data-lower="<%= imagePath.L %>" data-medium="<%= imagePath.M %>" data-high="<%= imagePath.H %>" data-url="<%= this.options.photopage %>" border="0" alt=""/></a>\n</div>';});
+

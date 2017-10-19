@@ -1,0 +1,3 @@
+
+define('text!templates/lb/trad-today-cell.html!strip',[],function () { return '<div class="score" attr="today3"><%= today %></div>\n<div class="score thru" attr="thru"><div class="data"><%= roundThru %></div></div>';});
+

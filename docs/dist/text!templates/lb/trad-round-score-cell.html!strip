@@ -1,0 +1,3 @@
+
+define('text!templates/lb/trad-round-score-cell.html!strip',[],function () { return '<div class="round_score" attr="r<%= round %>">\n\t<div class="data <%= total_klass %>"><%= total %></div>\n</div>';});
+

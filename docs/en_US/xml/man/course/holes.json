@@ -1,0 +1,165 @@
+{
+  "holes": [
+    {
+      "plant": "Thursday AM, We-Ko-Pa Golf Club - Cholla Course ",
+      "par": "72",
+      "yds": "6740",
+      "imageL": {
+        "src": "/images/course/480x270/H_hole1.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageM": {
+        "src": "/images/course/720x405/H_hole1.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageH": {
+        "src": "/images/course/1024x576/H_hole1.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "thumbnail": {
+        "src": "/images/course/H_hole1_thumb.jpg",
+        "width": "246",
+        "height": "143"
+      },
+      "feed": "/en_US/xml/man/course/hole1.json"
+    },
+    {
+      "number": "2",
+      "plant": "Thursday PM, We-Ko-Pa Golf Club - Saguaro Course",
+      "par": "71",
+      "yds": "6603",
+      "imageL": {
+        "src": "/images/course/480x270/H_hole2.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageM": {
+        "src": "/images/course/720x405/H_hole2.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageH": {
+        "src": "/images/course/1024x576/H_hole2.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "thumbnail": {
+        "src": "/images/course/H_hole2_thumb.jpg",
+        "width": "246",
+        "height": "143"
+      },
+      "feed": "/en_US/xml/man/course/hole2.json"
+    },
+    {
+      "number": "3",
+      "plant": "Friday AM, Troon North Golf Club - Pinnacle Course",
+      "par": "71",
+      "yds": "6635",
+      "imageL": {
+        "src": "/images/course/480x270/H_hole3.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageM": {
+        "src": "/images/course/720x405/H_hole3.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageH": {
+        "src": "/images/course/1024x576/H_hole3.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "thumbnail": {
+        "src": "/images/course/H_hole3_thumb.jpg",
+        "width": "246",
+        "height": "143"
+      },
+      "feed": "/en_US/xml/man/course/hole3.xml"
+    },
+    {
+      "number": "4",
+      "plant": "Friday PM, Troon North Golf Club - Monument Course",
+      "par": "72",
+      "yds": "6716",
+      "imageL": {
+        "src": "/images/course/480x270/H_hole4.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageM": {
+        "src": "/images/course/720x405/H_hole4.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageH": {
+        "src": "/images/course/1024x576/H_hole4.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "thumbnail": {
+        "src": "/images/course/H_hole4_thumb.jpg",
+        "width": "246",
+        "height": "143"
+      },
+      "feed": "/en_US/xml/man/course/hole4.xml"
+    },
+    {
+      "number": "5",
+      "plant": "Saturday, The Boulders Golf Club - North Course",
+      "par": "72",
+      "yds": "6811",
+      "imageL": {
+        "src": "/images/course/480x270/H_hole5.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageM": {
+        "src": "/images/course/720x405/H_hole5.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageH": {
+        "src": "/images/course/1024x576/H_hole5.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "thumbnail": {
+        "src": "/images/course/H_hole5_thumb.jpg",
+        "width": "246",
+        "height": "143"
+      },
+      "feed": "/en_US/xml/man/course/hole5.xml"
+    },
+    {
+      "number": "6",
+      "plant": "Sunday, Quintero Golf Club",
+      "par": "72",
+      "yds": "6675",
+      "imageL": {
+        "src": "/images/course/480x270/H_hole6.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageM": {
+        "src": "/images/course/720x405/H_hole6.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "imageH": {
+        "src": "/images/course/1024x576/H_hole6.jpg",
+        "width": "748",
+        "height": "420"
+      },
+      "thumbnail": {
+        "src": "/images/course/H_hole6_thumb.jpg",
+        "width": "246",
+        "height": "143"
+      },
+      "feed": "/en_US/xml/man/course/hole6.xml"
+    }
+  ]
+}

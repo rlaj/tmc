@@ -1,0 +1,3 @@
+
+define('text!templates/notifications.html!strip',[],function () { return '<div class=\'title\'>\n    <%= title %>\n</div>\n<div class=\'text\'>\n    <%= content %>\n</div>\n<% if(channel !== \'\') { %>\n    <div class=\'channels\'>\n        <span class=\'live\'>LIVE</span><%= channel %>\n    </div>\n<% } %>\n<% if(link_title !== \'\') { %>\n    <div class=\'link\'><%= link_title %>\n        <div class=\'icon <%= link_type %>\'>\n            <img src=\'/images/now/trans_16x9.gif\' width=\'13px\' height=\'13px\'>\n        </div>\n    </div>\n<% } %>\n';});
+

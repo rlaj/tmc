@@ -1,0 +1,3 @@
+
+define('text!templates/lb/par3-playoff-player-row.html!strip',[],function () { return '<td class="playerName"><%= player.name %></td>\n<%= sorecards %>\n<%= empty_cells %>';});
+

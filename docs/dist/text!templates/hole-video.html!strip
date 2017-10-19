@@ -1,0 +1,3 @@
+
+define('text!templates/hole-video.html!strip',[],function () { return '<div class="containerVideo bodyVideo" video-id="<%= videoID %>">\n    <a href="#">\n        <div class="image"><img class="srcpic" data-high=" <%= pictureH %>" data-medium="<%= pictureL %>" data-lower="<%= pictureL %>" src="<%= pictureH %>"></div>\n        <div class="centered_icon play"></div>\n        <div class="caption"></div>\n    </a>\n    <section class="ecp-player">\n        <div id="wrapper_<%= videoID %>" class="masters-ecp playerwrapperContainer"></div>\n    </section>\n</div>';});
+

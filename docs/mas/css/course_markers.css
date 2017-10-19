@@ -1,0 +1,56 @@
+/** Define all top-level and section elements here in the order they should appear. Use these lists to structure your z-index layering orders within a given section of the page. Avoid using one-off values UNLESS they are 0 or negative values. Usage: z-index: z($list_name, element_name); Example: z-index: z($elements, page); */
+.course-sprite { background-image: url('/sprites/course-sad7d9db709.png'); background-repeat: no-repeat; }
+.coursemap #hole1 { left: 6.11111%; top: 60.24691%; background: url('/sprites/course-sad7d9db709.png') 0 -996px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole2 { left: 35.83333%; top: 68.14815%; background: url('/sprites/course-sad7d9db709.png') 0 -1098px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole3 { left: 49.44444%; top: 63.45679%; background: url('/sprites/course-sad7d9db709.png') 0 -1200px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole4 { left: 48.33333%; top: 83.33333%; background: url('/sprites/course-sad7d9db709.png') 0 -1302px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole5 { left: 84.86111%; top: 71.60494%; background: url('/sprites/course-sad7d9db709.png') 0 -1404px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole6 { left: 70.41667%; top: 71.35802%; background: url('/sprites/course-sad7d9db709.png') 0 -1506px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole7 { left: 51.73611%; top: 51.35802%; background: url('/sprites/course-sad7d9db709.png') 0 -1608px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole8 { left: 27.77778%; top: 59.25926%; background: url('/sprites/course-sad7d9db709.png') 0 -1710px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole9 { left: 15.55556%; top: 49.1358%; background: url('/sprites/course-sad7d9db709.png') 0 -1812px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole10 { left: 30.41667%; top: 27.90123%; background: url('/sprites/course-sad7d9db709.png') 0 -78px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole11 { left: 59.16667%; top: 6.54321%; background: url('/sprites/course-sad7d9db709.png') 0 -180px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole12 { left: 83.05556%; top: 14.81481%; background: url('/sprites/course-sad7d9db709.png') 0 -282px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole13 { left: 77.29167%; top: 27.28395%; background: url('/sprites/course-sad7d9db709.png') 0 -384px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole14 { left: 59.44444%; top: 20.49383%; background: url('/sprites/course-sad7d9db709.png') 0 -486px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole15 { left: 59.16667%; top: 33.95062%; background: url('/sprites/course-sad7d9db709.png') 0 -588px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole16 { left: 73.61111%; top: 62.22222%; background: url('/sprites/course-sad7d9db709.png') 0 -690px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole17 { left: 54.86111%; top: 43.95062%; background: url('/sprites/course-sad7d9db709.png') 0 -792px no-repeat; height: 24px; width: 24px; }
+.coursemap #hole18 { left: 29.16667%; top: 37.77778%; background: url('/sprites/course-sad7d9db709.png') 0 -894px no-repeat; height: 24px; width: 24px; }
+@media only screen and (min-width: 45em) { .coursemap #hole1 { left: 31.80556%; top: 65.18519%; background-position: 0 -962px; height: 34px; width: 34px; }
+.coursemap #hole2 { left: 44.86111%; top: 71.85185%; background-position: 0 -1064px; height: 34px; width: 34px; }
+.coursemap #hole3 { left: 50.13889%; top: 67.16049%; background-position: 0 -1166px; height: 34px; width: 34px; }
+.coursemap #hole4 { left: 50.41667%; top: 86.17284%; background-position: 0 -1268px; height: 34px; width: 34px; }
+.coursemap #hole5 { left: 66.11111%; top: 75.30864%; background-position: 0 -1370px; height: 34px; width: 34px; }
+.coursemap #hole6 { left: 60%; top: 75.30864%; background-position: 0 -1472px; height: 34px; width: 34px; }
+.coursemap #hole7 { left: 51.73611%; top: 57.53086%; background-position: 0 -1574px; height: 34px; width: 34px; }
+.coursemap #hole8 { left: 40.97222%; top: 64.19753%; background-position: 0 -1676px; height: 34px; width: 34px; }
+.coursemap #hole9 { left: 35%; top: 55.30864%; background-position: 0 -1778px; height: 34px; width: 34px; }
+.coursemap #hole10 { left: 40.83333%; top: 35.30864%; background-position: 0 -44px; height: 34px; width: 34px; }
+.coursemap #hole11 { left: 55%; top: 14.5679%; background-position: 0 -146px; height: 34px; width: 34px; }
+.coursemap #hole12 { left: 65.69444%; top: 22.22222%; background-position: 0 -248px; height: 34px; width: 34px; }
+.coursemap #hole13 { left: 63.40278%; top: 33.45679%; background-position: 0 -350px; height: 34px; width: 34px; }
+.coursemap #hole14 { left: 55.27778%; top: 27.90123%; background-position: 0 -452px; height: 34px; width: 34px; }
+.coursemap #hole15 { left: 54.86111%; top: 40.12346%; background-position: 0 -554px; height: 34px; width: 34px; }
+.coursemap #hole16 { left: 61.11111%; top: 67.16049%; background-position: 0 -656px; height: 34px; width: 34px; }
+.coursemap #hole17 { left: 52.77778%; top: 48.88889%; background-position: 0 -758px; height: 34px; width: 34px; }
+.coursemap #hole18 { left: 41.66667%; top: 43.95062%; background-position: 0 -860px; height: 34px; width: 34px; } }
+@media only screen and (min-width: 57.5em) { .coursemap #hole1 { background-position: 0 -918px; height: 44px; width: 44px; }
+.coursemap #hole2 { background-position: 0 -1020px; height: 44px; width: 44px; }
+.coursemap #hole3 { background-position: 0 -1122px; height: 44px; width: 44px; }
+.coursemap #hole4 { background-position: 0 -1224px; height: 44px; width: 44px; }
+.coursemap #hole5 { background-position: 0 -1326px; height: 44px; width: 44px; }
+.coursemap #hole6 { background-position: 0 -1428px; height: 44px; width: 44px; }
+.coursemap #hole7 { background-position: 0 -1530px; height: 44px; width: 44px; }
+.coursemap #hole8 { background-position: 0 -1632px; height: 44px; width: 44px; }
+.coursemap #hole9 { background-position: 0 -1734px; height: 44px; width: 44px; }
+.coursemap #hole10 { background-position: 0 0; height: 44px; width: 44px; }
+.coursemap #hole11 { background-position: 0 -102px; height: 44px; width: 44px; }
+.coursemap #hole12 { background-position: 0 -204px; height: 44px; width: 44px; }
+.coursemap #hole13 { background-position: 0 -306px; height: 44px; width: 44px; }
+.coursemap #hole14 { background-position: 0 -408px; height: 44px; width: 44px; }
+.coursemap #hole15 { background-position: 0 -510px; height: 44px; width: 44px; }
+.coursemap #hole16 { background-position: 0 -612px; height: 44px; width: 44px; }
+.coursemap #hole17 { background-position: 0 -714px; height: 44px; width: 44px; }
+.coursemap #hole18 { background-position: 0 -816px; height: 44px; width: 44px; } }

@@ -1,0 +1,3 @@
+
+define('text!templates/lb/score-blank-cell.html!strip',[],function () { return '<div class="score">&nbsp;</div>';});
+

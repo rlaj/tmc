@@ -1,0 +1,3 @@
+
+define('text!templates/lb/trad-edge-status-cell.html!strip',[],function () { return '<div class="<%= status_klass %>"><%= status_text %></div>';});
+

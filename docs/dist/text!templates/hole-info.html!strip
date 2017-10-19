@@ -1,0 +1,3 @@
+
+define('text!templates/hole-info.html!strip',[],function () { return '<div class="holeInfo text centered">\n      <div class="holeTitle single">Hole No. <%= hole_number %>, <%= plant_name %></div>\n      <div class="holeTitle stacked">\n            <span class="holeNo">Hole No. <%= hole_number %>,</span>\n            <span class="holeValue"><%= plant_name %></span>\n      </div>\n      <div class="par stacked">\n            <span class="holeLabel">Par</span>\n            <span class="holeValue"><%= par %></span>\n      </div>\n      <div class="divider">&nbsp;</div>\n      <div class="yards stacked">\n            <span class="holeLabel">Yards</span>\n            <span class="holeValue"><%= yds %></span>\n      </div>\n</div>';});
+

@@ -1,0 +1,3 @@
+
+define('text!templates/hole-footer.html!strip',[],function () { return '<div class="previous">\n\t<a href="/en_US/course/hole<%= prev %>.html" class="footerlink chevron left black ">\n    <!--[if lt IE 9]><span></span><![endif]--> \n    <div class="mobileText">Hole </div>No. <%= prev %>\n    </a>\n</div>\n<div class="current">\n\t<a href="/en_US/course/index.html">Course Map</a>\n</div>\n<div class="next"><a href="/en_US/course/hole<%= next %>.html" class="footerlink chevron right black"><div class="mobileText">Hole </div>No. <%= next %>\n\t<!--[if lt IE 9]><span></span><![endif]--></a>\n</div>';});
+

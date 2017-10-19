@@ -1,0 +1,3 @@
+
+define('text!templates/lb/par3-blank-all-player-row.html!strip',[],function () { return '<div class="playerRow searchEmptyRow">\n\t<div class="pos">&nbsp;</div>\n\t<div class="playerName">&nbsp;</div>\n\t<div class="thru score">&nbsp;</div>\n\t<div class="par topar">&nbsp;</div>\n\t<div class="total score last">&nbsp;</div>\n</div>\n\n';});
+
