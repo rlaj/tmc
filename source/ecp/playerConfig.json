@@ -1,0 +1,223 @@
+{
+    "general": {
+        "refresh": -1,
+        "cdns": [
+            {"percent":100, "retry":2, "order":"Akamai"},
+            {"percent":0, "retry":2, "order":"Level3"}
+        ],
+        "akamai":{
+            "acceleration": true
+        },
+        "players": {
+            "default": {
+                "default": {
+                    "application/x-mpegURL": "hlsjs",
+                    "video/mp4": "hlsjs",
+                    "captions": "custom",
+                    "vjsTechs": ["html5"]
+                },
+                "safari": {
+                    "application/x-mpegURL": "hlsjs",
+                    "video/mp4": "hlsjs",
+                    "captions": "default",
+                    "vjsTechs": ["html5"]
+                },
+                "safari9": {
+                    "application/x-mpegURL": "videojs",
+                    "video/mp4": "videojs",
+                    "captions": "default",
+                    "vjsTechs": ["html5"]
+                },
+                "explorer10": {
+                    "application/x-mpegURL": "videojs",
+                    "video/mp4": "videojs",
+                    "captions": "default",
+                    "vjsTechs": ["flash", "html5"]
+                }
+            },
+            "windows7": {
+                "explorer11": {
+                    "application/x-mpegURL": "videojs",
+                    "video/mp4": "videojs",
+                    "captions": "default",
+                    "vjsTechs": ["flash", "html5"]
+                },
+                "default": {
+                    "application/x-mpegURL": "hlsjs",
+                    "video/mp4": "hlsjs",
+                    "captions": "custom",
+                    "vjsTechs": ["html5"]
+                }
+            },
+            "ipad": {
+                "default": {
+                    "application/x-mpegURL": "videojs",
+                    "video/mp4": "videojs",
+                    "captions": "default",
+                    "vjsTechs": ["html5"]
+                },
+                "safari": {
+                    "application/x-mpegURL": "videojs",
+                    "video/mp4": "videojs",
+                    "captions": "default",
+                    "vjsTechs": ["html5"]
+                }
+            },
+            "iphone": {
+                "default": {
+                    "application/x-mpegURL": "videojs",
+                    "video/mp4": "videojs",
+                    "captions": "default",
+                    "vjsTechs": ["html5"]
+                },
+                "safari": {
+                    "application/x-mpegURL": "videojs",
+                    "video/mp4": "videojs",
+                    "captions": "default",
+                    "vjsTechs": ["html5"]
+                }
+            },
+            "android": {
+                "default": {
+                    "application/x-mpegURL": "hlsjs",
+                    "video/mp4": "hlsjs",
+                    "captions": "custom",
+                    "vjsTechs": ["html5"]
+                }
+            }
+        },
+        "defaultVjsOrder": "source",
+        "techPaths": [
+            {"type": "videojs", "uri":"/ecp/tech/tech_videojs.html"},
+            {"type": "hlsjs", "uri":"/ecp/tech/tech_hlsjs.html"}
+        ]
+    },
+    "ui": {
+        "giantPlayButton": true,
+        "breakpoint": 500,
+        "toolbar": {
+            "show": {
+                "default": "custom", 
+                "ipad": "custom",
+                "iphone": "custom",
+                "ios": "custom"
+            },
+            "buttons": {
+                "volume": {
+                    "display": true,
+                    "position": "left",
+                    "order": 0
+                },
+                "play": {
+                    "display": true,
+                    "position": "left",
+                    "order": 0
+                },
+                "scrubber": {
+                    "display": true,
+                    "position": "left",
+                    "order": 0
+                },
+                "live": {
+                    "display": true,
+                    "position": "left",
+                    "order": 0
+                },
+                "quality": {
+                    "display": false, 
+                    "position": "right",
+                    "order": 1
+                },
+                "panel": {
+                    "display": "video_live, video_dvr",
+                    "position": "right",
+                    "order": 2
+                },
+                "pop_open": {
+                    "display": "video_live, video_dvr",
+                    "position": "right",
+                    "order": 3
+                },
+                "captions": {
+                    "display": true,
+                    "position": "right",
+                    "order": 4
+                },
+                "sharing": {
+                    "display": true,
+                    "position": "right",
+                    "order": 5
+                },
+                "fullscreen": {
+                    "display": true,
+                    "position": "right",
+                    "order": 6
+                }
+            },
+            "keyboard": {
+                "space": "pause"
+            },
+            "social": {
+                "services": {
+                    "Mail": {
+                        "image": "/ecp/css/images/share_mail.png",
+                        "label": "Share via Email",
+                        "path": "mailto:%20?subject=<email_title>&body=<email_text><email_footer>"
+                    },
+                    "Facebook": {
+                        "image": "/ecp/css/images/share_fb.png",
+                        "label": "Share on Facebook",
+                        "path": "https://www.facebook.com/sharer/sharer.php?u=<url>"
+                    },
+                    "Twitter": {
+                        "image": "/ecp/css/images/share_twitter.png",
+                        "label": "Tweet",
+                        "path": "https://twitter.com/share?url=<url>&via=TheMasters&text=<title>"
+                    },
+                    "Google": {
+                        "image": "/ecp/css/images/share_gplus.png",
+                        "label": "Share on Google+",
+                        "path": "https://plus.google.com/share?url=<url>"
+                    },
+                    "Copy": {
+                        "image": "/ecp/css/images/share_anchor.png",
+                        "label": "Share via Link",
+                        "path": "<share_url>"
+                    }
+                },
+                "appStrings": [
+                    ["Download the Masters iOS App at ", "https://itunes.apple.com/us/app/the-masters-tournament/id309025938?mt=8"],
+                    ["Download the Masters Android App at ", "https://play.google.com/store/apps/details?id=com.ibm.events.android.masters"]
+                ]
+            }
+        }
+    },
+    "analytics": {
+        "conviva": {
+            "enable": {
+                "video_vod": false,
+                "video_live": true,
+                "video_dvr": true
+            },
+            "serviceUrl": "http://livepass.conviva.com",
+            "key": "5999669ec2fc5940232ab4a6f392cdfc9a8a631f",
+            "syndicator" : "MASTERS"
+        },
+        "akamai": {
+            "enable": {
+                "video_vod": false,
+                "video_live": true,
+                "video_dvr": true
+            },
+            "beacon": "http://ma715-r.analytics.edgesuite.net/config/beacon-17067.xml"
+        },
+        "omniture": {
+            
+        }
+    },
+    "ads": {
+        "platform": {
+           
+        }
+    }
+}
