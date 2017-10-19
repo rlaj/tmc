@@ -1,0 +1,488 @@
+  <style>
+  .hero-content img { width: 100% }
+  </style>
+  <link rel="stylesheet" type="text/css" media="all" href="/mas/css/leaderboard_low.css">
+  <!--[if IE 9]><link rel="stylesheet" type="text/css" media="all" href="/mas/css/leaderboard-ie9.css" /><![endif]-->
+
+  <section class="hero-wrap half-standard-height no_gradient">
+    <div class="hero-content">
+      <img data-high="/images/leaderboard/leaderboard_background_med_new.jpg" data-medium="/images/leaderboard/leaderboard_background_med_new.jpg" data-lower="/images/leaderboard/leaderboard_background_sm_new.jpg" src="/images/leaderboard/leaderboard_background_med_new.jpg" class="unveiled">
+      <div class="contentWrapper">
+        <div class="articleInfo centered">
+          <div class="title">Leader Board</div>
+        </div>
+      </div>
+    </div>
+    <!-- /hero-content -->
+  </section>
+  
+
+  <section class="page-wrap">
+
+    <!-- Bottom Black Bar Area -->
+    <section id="leaderboardLowFooterWrapper">
+      <!-- ********* topmenubar view ********* -->
+      <div id="leaderboardLowFooter">
+        <div class="left_cell footer_cell">
+          <!-- ********* Skeuomorphic view only ********** -->
+          <!-- ********* lb-topmenu-roundnum view ********* -->
+          <div class="currentRound desktopShow">Round 4</div>
+          <!-- ********* /lb-topmenu-roundnum view ********* -->
+          <!-- ********* Ends Skeuomorphic view only ********** -->
+          <!-- ********* No Skeuomorphic view ********** -->
+          <!-- show round selector -->
+          <div class="navWrapper desktopHide" id="roundSelectorContainer">
+            <!-- ********* lbsubmenumobile view ********* -->
+            <div class="filter" id="roundSelector">
+              <div class="selected_container">
+                <a href="#" class="selected_option">Round 4</a>
+              </div>
+              <div class="options">
+                <a href="#" class="option selected">Round 4</a>
+                <a href="/en_US/scores/par3contest/index.html" class="option" data-src="par3">Par 3 Contest</a>
+              </div>
+            </div>
+            <div id="playoffViewSelector"> 
+              <a href="#" data-view="leaders" id="leadersLink" class="selected">LEADERS</a> 
+              <a href="#" data-view="playoff" id="playoffLink">PLAYOFF</a>
+            </div><!-- ********* /lbsubmenumobile view ********* -->
+          </div>
+          <!-- /navWrapper -->
+          <!-- ********* Ends No Skeuomorphic display ********** -->
+        </div>
+        <div class="center_cell footer_cell">
+          <!-- ********* lbsubmenu view ********* -->
+          <div class="view_selector">
+            <!-- a href="/en_US/scores/par3contest/index.html" class="desktopShow" data-view="par3">Par 3 Contest</a-->
+            <!-- a href="#overunder" data-view="overunder" id="viewOverunder" class="leaderboardoption">Over/Under</a-->
+            <a href="#traditional" data-view="traditional" id="viewTraditional" class="leaderboardoption selected">Traditional</a>
+            <!-- a href="#playoff" data-view="playoff" id="viewPlayoffMedium">Playoff</a-->
+          </div>
+          <!-- ********* /lbsubmenu view ********* -->
+        </div>
+        <div class="right_cell footer_cell">
+          <div class="player_search_cell">
+            <div id="lbSearch">
+              <input id="searchField" type="text" placeholder="Find a Player">
+              <div id="lbSearchButton"></div>
+              <div class="lbClearButton"></div>
+            </div>
+          </div>
+          <div class="player_filter_cell">
+              <div id="playerSelector" class="filter"> 
+                <div class="selectedContainer">
+                  <a href="#" class="selected_option">All Players</a>
+                </div> 
+                <div class="options"> 
+                  <a class="option selected" href="#" data-src="all">All Players</a> 
+                  <!--a class="option" href="#" data-src="active">On Course Players</a--> 
+                  <!--a class="option" href="#" data-src="pros">Professionals</a--> 
+                  <!--a class="option" href="#" data-src="amats">Amateurs</a--> 
+                  <!--a class="option" href="#" data-src="us">American Players</a--> 
+                  <!--a class="option" href="#" data-src="int">International Players</a--> 
+                  <a class="option" href="#" data-src="first">First Time Participants</a> 
+                  <a class="option" href="#" data-src="pastChamps">Past Champions</a> 
+                </div> 
+              </div>
+          </div>
+          <!-- player_filter_cell -->
+        </div>
+        <!-- / right_cell footer_cell -->
+      </div>
+      <!-- /leaderboardLowFooter -->
+      <!-- ********* /topmenubar view ********* -->
+    </section>
+
+
+    <!-- / leaderboardLowFooterWrapper -->
+    <div id="leaderboardWrapper">
+      <!--::before-->
+      <div id="leaderboardLowContainer">
+        <!--::before-->
+        <!-- style="opacity:0;" -->
+        <!-- Score Board Green Area -->
+        <!-- ********* lb-footer view ********* -->
+  
+        <div id="leaderboardFooterBase">
+          <!--::before-->
+          <div class="left_cell footer_cell desktopShow">
+            <div class="popout"></div>
+          </div>
+          <div class="center_cell footer_cell">
+            <div class="messageContainer">
+              <!--::before-->
+              <!--div id="view_playoff">
+                <a href="#" id="viewPlayoff">View Playoff Scores</a>
+              </div-->
+              <div class="messageContent hide">
+                <div id="conCurrentRoundContainer">
+                  <span id="conCurrentRoundText" class="hide"></span>
+                  <div class="round_selector">
+                    <div id="conCurrentRound" class="hide"></div>
+                  </div>
+                </div>
+                <div class="message"></div>
+                <!-- adhoc message comes here -->
+                <span id="splittee" class="hide"></span>
+                <span class="allTimes hide"></span>
+              </div>
+            </div>
+          </div>
+          <div class="right_cell footer_cell">
+            <div class="learn_more desktopShow">
+              <a href="/en_US/scores/about_leader_board.html"> <!-- Learn more about Over/Under --></a>
+            </div>
+          </div>
+          <!--::after-->
+        </div>
+        <!-- /leaderboardFooterBase -->
+        <!-- ********* /lb-footer view ********* -->
+        <div id="leaderboardBg">
+          <img src="/images/leaderboard/leaderboard-only-bg.png" width="940" height="522" border="0" id="smallSkeuomorphicBg">
+          <img src="/images/leaderboard/leaderboard-only-bg.png" width="1180" height="656" border="0" id="largeSkeuomorphicBg">
+        </div>
+        <div id="header">
+          <h1>Leaders</h1>
+        </div>
+        <!-- ********* lb-playoff view ********* -->
+        <div id="playoffContainer">
+          <div id="leaderboardPlayOff" style="margin-top: -0px;display: none;">
+            <div class="closeButton" style="cursor: pointer;">
+              <span class="close">Close</span>
+            </div>
+            <div id="playOffContent">
+              <div class="title">Playoff</div>
+              <div class="sd">Sudden Death</div>
+              <table id="scorecard" cellpadding="0" cellspacing="0">
+                <!-- Playoff Header + Playoff Data Table -->
+                <tbody>
+                    <tr class="header">
+                      <td class="description">HOLE</td>
+                      <td class="hole_no hole18">18</td>
+                      <td class="hole_no hole10">10</td>
+                      <td class="hole_no hole18">18</td>
+                      <td class="hole_no hole10">10</td>
+                      <td class="hole_no hole18">18</td>
+                      <td class="hole_no hole10">10</td>
+                      <td class="hole_no hole18">18</td>
+                      <td class="hole_no hole10">10</td> 
+                    </tr>
+                    <tr class="par">
+                      <td class="description">PAR</td>
+                      <td class="hole_no">4</td>
+                      <td class="hole_no">4</td>
+                      <td class="hole_no">4</td>
+                      <td class="hole_no">4</td>
+                      <td class="hole_no">4</td>
+                      <td class="hole_no">4</td>
+                      <td class="hole_no">4</td>
+                      <td class="hole_no">4</td>
+                    </tr>
+                    <tr class="player hoverable" data-id="21209">
+                      <td class="playerName">
+                        <a href="/en_US/scores/track/track.html?pid=21209&amp;promo=track_playoff_lb">Garcia</a>
+                      </td>
+                      <td class="hole_no video" data-hole="1">
+                        <a href="/en_US/watch/2017/r5_21209_1.html?promo=highlight_lb">
+                          <div class="birdie">3</div>
+                        </a>
+                      </td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                    </tr>
+                    <tr class="player hoverable" data-id="22405">
+                      <td class="playerName">
+                        <a href="/en_US/scores/track/track.html?pid=22405&amp;promo=track_playoff_lb">Rose</a>
+                      </td>
+                      <td class="hole_no video" data-hole="1">
+                        <a href="/en_US/watch/2017/r5_22405_1.html?promo=highlight_lb">
+                          <div class="bogey">5</div>
+                        </a>
+                      </td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                      <td class="hole_no">&nbsp;</td>
+                    </tr>
+                </tbody>
+              </table> 
+            </div>
+          </div>
+        </div>
+        <!-- ********* /lb-playoff view ********* -->
+        <!-- ********* lb-body view ********* -->
+        <div id="leaderboardLow">
+          <div class="fade" id="playoffFade" style="display: none;"></div>
+
+          <!-- ********* ou view ********* -->
+          <div class="content ou" id="overunder">
+            <div class="headerWrapper">
+              <div class="headerRow">
+                <div class="headerRowContent">
+                  <div class="prior">Pr<span>i</span>or</div>
+                  <div class="holesContainer">
+                    <div class="holes">
+                      <div class="description">Hole</div>
+                      <div class="hole hole1">1</div>
+                      <div class="hole">2</div>
+                      <div class="hole">3</div>
+                      <div class="hole">4</div>
+                      <div class="hole">5</div>
+                      <div class="hole">6</div>
+                      <div class="hole">7</div>
+                      <div class="hole">8</div>
+                      <div class="hole hole9">9</div>
+                      <div class="hole hole1">10</div>
+                      <div class="hole">11</div>
+                      <div class="hole">12</div>
+                      <div class="hole">13</div>
+                      <div class="hole">14</div>
+                      <div class="hole">15</div>
+                      <div class="hole">16</div>
+                      <div class="hole">17</div>
+                      <div class="hole hole9">18</div>
+                    </div>
+                    <div class="par">
+                      <div class="description">Par</div>
+                      <div class="hole hole1">4</div>
+                      <div class="hole">5</div>
+                      <div class="hole">4</div>
+                      <div class="hole">3</div>
+                      <div class="hole">4</div>
+                      <div class="hole">3</div>
+                      <div class="hole">4</div>
+                      <div class="hole">5</div>
+                      <div class="hole hole9">4</div>
+                      <div class="hole hole1">4</div>
+                      <div class="hole">4</div>
+                      <div class="hole">3</div>
+                      <div class="hole">5</div>
+                      <div class="hole">4</div>
+                      <div class="hole">5</div>
+                      <div class="hole">3</div>
+                      <div class="hole">4</div>
+                      <div class="hole hole9">4</div>
+                    </div>
+                  </div>
+                  <div class="rightHeader track">Track</div>
+                  <div class="rightHeader fav">Fav</div>
+                </div>
+              </div>
+            </div>
+            <div id="leaderBoardPlayers-wrapper" class="scroll-pane hideFav">
+              <div class="leaderBoardContent ou">
+                <div id="leaderBoardPlayersFavContent"></div>
+                <div id=leaderBoardPlayersContent">
+                  
+                  <div class="leaderBoardRow playerRow  hoverable" id="pr22405" data-id="22405">
+                    <div class="prior" ref="22405">
+                      <div class="data under">6</div>
+                    </div>
+                    <div class="playerContainer" ref="22405">
+		                  <div class="playerName" ref="22405" title="Click to View Scorecard">
+		                  	<div class="data ">ROSE </div>
+		                  </div>		
+                      <div class="data score hole1">
+                        <div class="data under">6</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">6</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">6</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">6</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">5</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">6</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">7</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">8</div>
+                      </div>
+                      <div class="data score hole9">
+                        <div class="data under">8</div>
+                      </div>
+                      <div class="data score hole1">
+                        <div class="data under">8</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">8</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">8</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">8</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">8</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">9</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">10</div>
+                      </div>
+                      <div class="data score">
+                        <div class="data under">9</div>
+                      </div>
+                      <div class="data score hole9">
+                        <div class="data under">9</div>
+                      </div>
+                    </div>
+                    <div class="rightOption track on" ref="22405" title="View Track">
+                      <a href="/en_US/scores/track/track.html?pid=22405&amp;promo=track_lb" style="text-decoration: none;"> &nbsp;</a>
+                    </div>
+                    <div class="rightOption favorite" ref="22405" title="Add to Favorites">&nbsp;</div>
+                  </div>
+                </div>
+                <div class="note desktopHide">
+                  <span>MC = Missed Cut</span> 
+                  <span class="pike">|</span>
+                  <span>DQ = Disqualified</span> 
+                  <span class="pike">|</span>
+                  <span>WD = Withdrew</span>
+                  <div class="about">
+                    <a href="/en_US/scores/about_leader_board.html">About the Leader Board Method</a>
+                  </div>
+                </div>
+                <!-- /desktopHide -->
+              </div>
+              <!-- /leaderBoardContent -->
+            </div>
+          </div>
+          <!-- ********* /ou view ********* -->          
+          <!-- ********* trad view ********* -->
+          <div class="content trad selected" id="traditional">
+            <div class="headerWrapper">
+              <!--::before-->
+              <div class="headerRow">
+                <div class="pos sort_item selected" id="Pos" data-id="0">
+                  <span>Pos</span>
+                  <p class="border">&nbsp;</p>
+                </div>
+                <div class="player sort_item" id="Player" data-id="1">
+                  <span>Player</span>
+                </div>
+                <div class="playerStatContainer">
+                  <div class="score sort_item" id="Today" data-id="2">
+                    <span>Today</span>
+                  </div>
+                  <div class="score sort_item" id="Thru" data-id="3">
+                    <span>Thru</span>
+                  </div>
+                  <div class="score sort_item" id="ToPar" data-id="4">
+                    <span>Total</span>
+                  </div>
+                  <div class="round_score sort_item" id="R1" data-id="5">
+                    <span>R1</span>
+                  </div>
+                  <div class="round_score sort_item" id="R2" data-id="6">
+                    <span>R2</span>
+                  </div>
+                  <div class="round_score sort_item" id="R3" data-id="7">
+                    <span>R3</span>
+                  </div>
+                  <div class="round_score sort_item" id="R4" data-id="8">
+                    <span>R4</span>
+                  </div>
+                  <div class="score sort_item last" id="Total" data-id="9">
+                    <span>Total</span>
+                  </div>
+                </div>
+                <div class="rightHeader track">Track</div>
+                <div class="rightHeader fav">Fav</div>
+              </div>
+              <!--::after-->
+            </div>
+
+            <div id="leaderBoardPlayersTraditional-wrapper" class="scroll-pane hideFav" style="padding-left: 109px;">
+              <div  class="leaderBoardContent trad" style="opacity: 1;">
+                <div id="leaderBoardPlayersTraditionalFavContent"></div>
+                <div id="leaderBoardPlayersTraditionalContent">
+
+
+
+
+
+                </div>
+                <div class="note desktopHide">
+                  <span>MC = Missed Cut</span> 
+                  <span class="pike">|</span>
+                  <span>DQ = Disqualified</span> 
+                  <span class="pike">|</span>
+                  <span>WD = Withdrew</span>
+                  <div class="about">
+                    <a href="/en_US/scores/about_leader_board.html">About the Leader Board Method</a>
+                  </div>
+                </div>
+                <!-- /desktopHide -->
+              </div>
+              <!-- /leaderBoardContent -->
+            </div>
+            <!-- /#leaderBoardPlayersTraditional-wrapper -->            
+          </div>
+          <!-- / content | traditional -->
+          <!-- ********* /trad view ********* -->
+        </div>
+        <!-- /leaderboardLow -->
+        <!-- ********* /lb-body view ********* -->
+        <!--::after-->
+      </div>
+      <!-- / leaderboardLowContainer -->
+      <!--::after-->
+    </div>
+    <!-- / leaderboardWrapper -->
+
+
+    <div class="leaderboardBracket">
+      <img src="/images/misc/poleBracket.png" width="104" height="22" border="0" alt="">
+    </div>
+    <div class="leaderboardPole" style="height: 304px;">
+      <img src="/images/misc/trans.gif" width="77" height="1">
+    </div>
+    <style>
+      section.page-wrap {
+      background-image: none;
+      }
+      @media only screen and (min-height: 38.750em) and (min-width: 64em) {
+      section.page-wrap {
+      background-image: url(/images/leaderboard/leaderboard_background_l_dkr.jpg);
+      background-color:transparent;
+      background-attachment: fixed;
+      -webkit-background-size: cover;
+      background-size: cover;
+      padding-bottom: 0;
+      }
+      }
+    </style>
+    <!--[if lt IE 9]><div class="iefixedbg horizontal"><img src="/images/leaderboard/leaderboard_background_l_dkr.jpg" /></div><style>
+section.page-wrap { background-image: none !important; background-color: transparent;}
+div.iefixedbg { width: 120%; }
+    </style><![endif]-->  
+  </section>
+
+  <!-- page-wrap -->
+
+  <script type="application/json" class="page_vars">
+  {
+  "documentTitle": "Leader Board",
+  "pageState": "live"
+  }
+  </script>
+

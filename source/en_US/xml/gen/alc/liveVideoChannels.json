@@ -1,0 +1,186 @@
+
+{
+  "cdnBalance" : {
+    "desktop" : {
+    
+      "akamai" : "1,2,3,4,5,6,7,8,9,0",
+      "level3" : ""
+    },
+    "mobile" : {
+    
+      "akamai" : "1,2,3,4,5,6,7,8,9,0",
+      "level3" : ""
+    },
+    "nodvr" : {
+    
+      "akamai" : "",
+      "level3" : "1,2,3,4,5,6,7,8,9,0"
+    }
+  },
+  "channels": [
+    
+      {
+          "name": "Green Jacket Ceremony",
+          "channelId": "gj",
+          "live": false,
+          "launchUrl": "gj",
+          "replay" : "",
+          "desktop": {
+            
+              "akamai" : "https://ibmlive2017-lh.akamaihd.net/i/ac_1@454941/master.m3u8?__b__=1164&b=664-3564&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_ac_desktop.m3u8"
+          },
+          "mobile" : {
+            
+              "akamai" : "http://ibmlive2017-lh.akamaihd.net/i/ac_1@454941/master.m3u8?__b__=364&b=164-3064&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_ac_mobile.m3u8"
+          },
+          "nodvr" : {
+            
+              "akamai" : "http://ibmlive2017-lh.akamaihd.net/i/ac_1@454941/master.m3u8?__b__=1164&b=664-3564&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&n=10&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_ac_desktop.m3u8"
+          },
+          "imagePath": "/images/apps/slates/slate_channel10.jpg",
+          "caption" : "Coverage has concluded",
+          "fg" : "",
+           
+          "relatedContent" : "/en_US/xml/gen/video/lastX.json"
+            
+      },
+      {
+          "name": "Broadcast",
+          "channelId": "simul",
+          "live": false,
+          "launchUrl": "simul",
+          "replay" : "/en_US/watch/2017-04-08/simulsat_20170408.html",
+          "desktop": {
+            
+              "akamai" : "https://ibmlive2017-lh.akamaihd.net/i/simul_1@454946/master.m3u8?__b__=1164&b=664-3564&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_simul_desktop.m3u8"
+          },
+          "mobile" : {
+            
+              "akamai" : "http://ibmlive2017-lh.akamaihd.net/i/simul_1@454946/master.m3u8?__b__=364&b=164-3064&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_simul_mobile.m3u8"
+          },
+          "nodvr" : {
+            
+              "akamai" : "http://ibmlive2017-lh.akamaihd.net/i/simul_1@454946/master.m3u8?__b__=1164&b=664-3564&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&n=10&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_simul_desktop.m3u8"
+          },
+          "imagePath": "/images/apps/slates/slate_channel3.jpg",
+          "caption" : "Coverage has concluded",
+          "fg" : "",
+           
+          "relatedContent" : "/en_US/xml/gen/video/lastX.json"
+            
+      },
+      {
+          "name": "Featured Groups",
+          "channelId": "fg1",
+          "live": false,
+          "launchUrl": "fg1",
+          "replay" : "",
+          "desktop": {
+            
+              "akamai" : "https://ibmlive2017-lh.akamaihd.net/i/fg_1@454943/master.m3u8?__b__=1164&b=664-3564&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_fg_desktop.m3u8"
+          },
+          "mobile" : {
+            
+              "akamai" : "http://ibmlive2017-lh.akamaihd.net/i/fg_1@454943/master.m3u8?__b__=364&b=164-3064&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_fg_mobile.m3u8"
+          },
+          "nodvr" : {
+            
+              "akamai" : "http://ibmlive2017-lh.akamaihd.net/i/fg_1@454943/master.m3u8?__b__=1164&b=664-3564&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&n=10&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_fg_desktop.m3u8"
+          },
+          "imagePath": "/images/apps/slates/slate_channel2.jpg",
+          "caption" : "Coverage has concluded",
+          "fg" : "",
+           
+          "relatedContent" : ""
+            
+      },
+      {
+          "name": "Holes 15 & 16",
+          "channelId": "1516",
+          "live": false,
+          "launchUrl": "1516",
+          "replay" : "/en_US/watch/2017-04-08/h1516friday_20170408.html",
+          "desktop": {
+            
+              "akamai" : "https://ibmlive2017-lh.akamaihd.net/i/1516_1@454942/master.m3u8?__b__=1164&b=664-3564&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_1516_desktop.m3u8"
+          },
+          "mobile" : {
+            
+              "akamai" : "http://ibmlive2017-lh.akamaihd.net/i/1516_1@454942/master.m3u8?__b__=364&b=164-3064&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_1516_mobile.m3u8"
+          },
+          "nodvr" : {
+            
+              "akamai" : "http://ibmlive2017-lh.akamaihd.net/i/1516_1@454942/master.m3u8?__b__=1164&b=664-3564&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&n=10&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_1516_desktop.m3u8"
+          },
+          "imagePath": "/images/apps/slates/slate_channel6.jpg",
+          "caption" : "Coverage has concluded",
+          "fg" : "",
+           
+          "relatedContent" : ""
+            
+      },
+      {
+          "name": "Amen Corner",
+          "channelId": "ac",
+          "live": false,
+          "launchUrl": "ac",
+          "replay" : "/en_US/watch/2017-04-08/acsaturday_20170408.html",
+          "desktop": {
+            
+              "akamai" : "https://ibmlive2017-lh.akamaihd.net/i/ac_1@454941/master.m3u8?__b__=1164&b=664-3564&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_ac_desktop.m3u8"
+          },
+          "mobile" : {
+            
+              "akamai" : "http://ibmlive2017-lh.akamaihd.net/i/ac_1@454941/master.m3u8?__b__=364&b=164-3064&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_ac_mobile.m3u8"
+          },
+          "nodvr" : {
+            
+              "akamai" : "http://ibmlive2017-lh.akamaihd.net/i/ac_1@454941/master.m3u8?__b__=1164&b=664-3564&set-akamai-hls-revision=4&set-segment-duration=quality&set-cc-attribute=cc&n=10&__a__=off",
+              "level3" : "http://www.masters.com/multimedia/Level3_ac_desktop.m3u8"
+          },
+          "imagePath": "/images/apps/slates/slate_channel7.jpg",
+          "caption" : "Coverage has concluded",
+          "fg" : "",
+           
+          "relatedContent" : ""
+            
+      },
+      {
+          "name": "Masters Radio",
+          "channelId": "radio",
+          "live": false,
+          "launchUrl": "radio",
+          "replay" : "",
+          "desktop": {
+            
+          },
+          "mobile" : {
+            
+          },
+          "nodvr" : {
+            
+          },
+          "imagePath": "/images/apps/slates/slate_channel15.jpg",
+          "caption" : "Coverage has concluded",
+          "fg" : "",
+           
+          "relatedContent" : "/en_US/xml/gen/video/lastX.json"
+            
+      }
+  ]
+}
+  
